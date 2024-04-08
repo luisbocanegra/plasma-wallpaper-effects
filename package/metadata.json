@@ -1,0 +1,22 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "luisbocanegra17b@gmail.com",
+                "Name": "Luis Bocanegra"
+            }
+        ],
+        "BugReportUrl": "https://github.com/luisbocanegra/plasma-wallpaper-effects/issues",
+        "Category": "Graphics",
+        "Description": "Active Blur and other cool effects for the Desktop",
+        "Id": "luisbocanegra.desktop.wallpaper.effects",
+        "EnabledByDefault": false,
+        "Icon":"desktop",
+        "License": "GPL-3.0",
+        "Name": "Wallpaper Effects",
+        "Version": "0.1.0",
+        "Website": "https://github.com/luisbocanegra/plasma-wallpaper-effects"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

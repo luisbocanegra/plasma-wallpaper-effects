@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg
+    xmlns="http://www.kde.org/standards/kcfg/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name="" />
+  <group name="General">
+    <entry name="hideWidget" type="Bool">
+      <default>False</default>
+    </entry>
+    <!-- Show blur
+        0: when existing a maximized or full-screen windows
+        1: when a visible window is active
+        2: when a window is visible
+        3: video is paused
+        4: always
+        5: never
+    -->
+    <entry name="BlurMode" type="Int">
+      <default>1</default>
+    </entry>
+    <entry name="CheckActiveScreen" type="Bool">
+      <label>Whether or not check for windows from all screens instead of just the active one.</label>
+      <default>true</default>
+    </entry>
+    <entry name="BlurRadius" type="Int">
+      <default>64</default>
+    </entry>
+  </group>
+</kcfg>
