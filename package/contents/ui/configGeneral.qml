@@ -13,7 +13,14 @@ KCM.SimpleKCM {
     property alias cfg_BlurMode: blurModeCombo.currentIndex
     property alias cfg_CheckActiveScreen: activeScreenOnlyCheckbx.checked
     property alias cfg_BlurRadius: blurRadiusSpinBox.value
+    property alias cfg_isEnabled: isEnabledCheckbox.checked
     Kirigami.FormLayout {
+        CheckBox {
+            id: isEnabledCheckbox
+            Kirigami.FormData.label: i18n("Enabled:")
+            checked: cfg_isEnabled
+            onCheckedChanged: cfg_isEnabled = checked
+        }
         CheckBox {
             id: hideWidget
             Kirigami.FormData.label: i18n("Hide widget:")

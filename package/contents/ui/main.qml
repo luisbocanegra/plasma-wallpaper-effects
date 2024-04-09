@@ -14,9 +14,10 @@ PlasmoidItem {
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
     property bool widgetConfiguring: Plasmoid.userConfiguring
-    property bool showBlur: windowModel.showBlur
+    property bool showBlur: windowModel.showBlur && isEnabled
     property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
     property bool isLoaded: false
+    property bool isEnabled: plasmoid.configuration.isEnabled
     property var wallpaperItem: Plasmoid.containment.wallpaperGraphicsObject
     property string wallpaperPluginName: wallpaperItem?.pluginName
     property var rootItem: {
