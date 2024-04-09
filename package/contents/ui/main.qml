@@ -3,7 +3,6 @@ import QtQuick
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
-import Qt5Compat.GraphicalEffects
 import QtQuick.Effects
 
 import "components" as Components
@@ -128,11 +127,14 @@ PlasmoidItem {
         height: target.height
         width: target.width
         property var target
-        FastBlur {
+        MultiEffect {
             anchors.fill: parent
-            radius: blurRadius
             source: target
-            Behavior on radius {
+            blurEnabled: true
+            blurMax: 145
+            blur: blurRadius / 145
+            autoPaddingEnabled: false
+            Behavior on blur {
                 NumberAnimation {
                     duration: 300
                 }
