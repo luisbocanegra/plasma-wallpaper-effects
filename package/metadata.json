@@ -9,7 +9,7 @@
         ],
         "BugReportUrl": "https://github.com/luisbocanegra/plasma-wallpaper-effects/issues",
         "Category": "Graphics",
-        "Description": "Active Blur and other effects for the Desktop",
+        "Description": "Active Blur and other effects for all Wallpaper Plugins",
         "Id": "luisbocanegra.desktop.wallpaper.effects",
         "EnabledByDefault": false,
         "Icon":"desktop",
