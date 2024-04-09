@@ -16,6 +16,9 @@ KCM.SimpleKCM {
     property alias cfg_BlurRadius: blurRadiusSpinBox.value
     property alias cfg_isEnabled: isEnabledCheckbox.checked
     property alias cfg_borderEnabled: borderEnabledCheckbox.checked
+    property int cfg_borderColorMode: plasmoid.configuration.borderColorMode
+    property alias cfg_borderColorModeTheme: borderModeTheme.currentIndex
+    property alias cfg_borderColorModeThemeVariant: borderModeThemeVariant.currentIndex
     property alias cfg_borderColor: borderColorButton.color
     property alias cfg_borderRadius: borderRadiusSpinBox.value
     property alias cfg_borderMarginTop: marginTopSpinBox.value
@@ -109,6 +112,33 @@ KCM.SimpleKCM {
             }
         }
 
+        RadioButton {
+            Kirigami.FormData.label: i18n("Color source:")
+            text: i18n("Custom")
+            id: customColorRadio
+            ButtonGroup.group: colorModeGroup
+            property int index: 0
+            checked: plasmoid.configuration.borderColorMode === index
+            enabled: borderEnabledCheckbox.checked
+        }
+        RadioButton {
+            text: i18n("System")
+            id: systemColorRadio
+            ButtonGroup.group: colorModeGroup
+            property int index: 1
+            checked: plasmoid.configuration.borderColorMode === index
+            enabled: borderEnabledCheckbox.checked
+        }
+
+        ButtonGroup {
+            id: colorModeGroup
+            onCheckedButtonChanged: {
+                if (checkedButton) {
+                    cfg_borderColorMode = checkedButton.index
+                }
+            }
+        }
+
         Components.ColorButton {
             id: borderColorButton
             showAlphaChannel: false
@@ -119,7 +149,46 @@ KCM.SimpleKCM {
                 cfg_borderColor = color
             }
             enabled: borderEnabledCheckbox.checked
+            visible: customColorRadio.checked
         }
+
+        ComboBox {
+            id: borderModeTheme
+            Kirigami.FormData.label: i18n("Color:")
+            model: [
+                i18n("Text"),
+                i18n("Disabled Text"),
+                i18n("Highlighted Text"),
+                i18n("Active Text"),
+                i18n("Link"),
+                i18n("Visited Link"),
+                i18n("Negative Text"),
+                i18n("Neutral Text"),
+                i18n("Positive Text"),
+                i18n("Background"),
+                i18n("Highlight"),
+                i18n("Active Background"),
+                i18n("Link Background"),
+                i18n("Visited Link Background"),
+                i18n("Negative Background"),
+                i18n("Neutral Background"),
+                i18n("Positive Background"),
+                i18n("Alternate Background"),
+                i18n("Focus"),
+                i18n("Hover")
+            ]
+            visible: systemColorRadio.checked
+            enabled: borderEnabledCheckbox.checked
+        }
+
+        ComboBox {
+            id: borderModeThemeVariant
+            Kirigami.FormData.label: i18n("Color set:")
+            model: [i18n("View"), i18n("Window"), i18n("Button"), i18n("Selection"), i18n("Tooltip"), i18n("Complementary"), i18n("Header")]
+            visible: systemColorRadio.checked
+            enabled: borderEnabledCheckbox.checked
+        }
+
         SpinBox {
             Kirigami.FormData.label: i18nd("@spinbox:border_radius", "Radius:")
             id: borderRadiusSpinBox

@@ -1,5 +1,6 @@
 import QtCore
 import QtQuick
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import Qt5Compat.GraphicalEffects
@@ -20,7 +21,22 @@ PlasmoidItem {
     property bool isLoaded: false
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool borderEnabled: plasmoid.configuration.borderEnabled && isEnabled
-    property string borderColor: plasmoid.configuration.borderColor
+    property int borderColorMode: plasmoid.configuration.borderColorMode
+    property int borderColorModeTheme: plasmoid.configuration.borderColorModeTheme
+    property string borderColor: {
+        if (borderColorMode === 0) {
+            return plasmoid.configuration.borderColor
+        } else {
+            Kirigami.Theme.colorSet = borderColorScope
+            Kirigami.Theme.inherit = false
+            return themeColors[borderColorModeTheme]
+        }
+    }
+    property int borderColorModeThemeVariant: plasmoid.configuration.borderColorModeThemeVariant
+    property var borderColorScope: {
+        return themeScopes[borderColorModeThemeVariant]
+    }
+
     property int borderRadius: plasmoid.configuration.borderRadius
     property int borderMarginTop: plasmoid.configuration.borderMarginTop
     property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
@@ -40,6 +56,38 @@ PlasmoidItem {
     }
     property var blurItem: null
     property var roundedItem: null
+    property var themeColors: [
+        Kirigami.Theme.textColor,
+        Kirigami.Theme.disabledTextColor,
+        Kirigami.Theme.highlightedTextColor,
+        Kirigami.Theme.activeTextColor,
+        Kirigami.Theme.linkColor,
+        Kirigami.Theme.visitedLinkColor,
+        Kirigami.Theme.negativeTextColor,
+        Kirigami.Theme.neutralTextColor,
+        Kirigami.Theme.positiveTextColor,
+        Kirigami.Theme.backgroundColor,
+        Kirigami.Theme.highlightColor,
+        Kirigami.Theme.activeBackgroundColor,
+        Kirigami.Theme.linkBackgroundColor,
+        Kirigami.Theme.visitedLinkBackgroundColor,
+        Kirigami.Theme.negativeBackgroundColor,
+        Kirigami.Theme.neutralBackgroundColor,
+        Kirigami.Theme.positiveBackgroundColor,
+        Kirigami.Theme.alternateBackgroundColor,
+        Kirigami.Theme.focusColor,
+        Kirigami.Theme.hoverColor
+    ]
+
+    property var themeScopes: [
+        Kirigami.Theme.View,
+        Kirigami.Theme.Window,
+        Kirigami.Theme.Button,
+        Kirigami.Theme.Selection,
+        Kirigami.Theme.Tooltip,
+        Kirigami.Theme.Complementary,
+        Kirigami.Theme.Header
+    ]
 
     Plasmoid.backgroundHints: {
         if ((main.inEditMode || main.widgetConfiguring) || !hideWidget) {

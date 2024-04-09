@@ -50,5 +50,21 @@
     <entry name="borderMarginRight" type="Int">
       <default>0</default>
     </entry>
+    <!-- color modes: custom, system -->
+    <entry
+        name="borderColorMode"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="borderColorModeTheme"
+        type="Int">
+        <default>9</default>
+    </entry>
+    <entry
+        name="borderColorModeThemeVariant"
+        type="Int">
+        <default>0</default>
+    </entry>
   </group>
 </kcfg>
