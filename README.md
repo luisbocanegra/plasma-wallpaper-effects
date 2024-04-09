@@ -16,8 +16,8 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
 
 ## Demo
 
-[![Demo](https://img.shields.io/badge/TODO-demo?style=for-the-badge&logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
-)](https://www.youtube.com)
+[![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?style=for-the-badge&logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
+)](https://youtu.be/fdTAewwZLVs)
 
 <details>
     <summary>Screenshots</summary>
@@ -69,7 +69,7 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
 
 ### Arch Linux
 
-~~[aur/plasma6-plasma-wallpaper-effects](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects) use your preferred AUR helper e.g:~~ TODO
+~~[aur/plasma6-applets-wallpaper-effects](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects) use your preferred AUR helper e.g:~~ TODO
 
 ## How to use
 
