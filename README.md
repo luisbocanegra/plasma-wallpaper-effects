@@ -6,13 +6,13 @@
 [![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluisbocanegra%2Fplasma-wallpaper-effects%2Fmain%2Fpackage%2Fmetadata.json&query=KPlugin.Version&style=for-the-badge&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/21309670)
 [![Liberapay](https://img.shields.io/liberapay/patrons/luisbocanegra?style=for-the-badge&logo=liberapay&logoColor=%23F6C814&labelColor=%232D333B&label=supporters)](https://liberapay.com/luisbocanegra/)
 
-Plasma Widget to enable Active Blur and other effects for the Plasma Desktop
+Plasma Widget to enable Active Blur and other effects for all Wallpaper Plugins
 
 ![icon](screenshots/icon.png)
 
 </div>
 
-Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur) ([bouteillerAlan/blurredwallpaper](https://github.com/bouteillerAlan/blurredwallpaper) for plasma 6) but packed into a widget so it can be applied to other Wallpaper Plugins.
+Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur) ([bouteillerAlan/blurredwallpaper](https://github.com/bouteillerAlan/blurredwallpaper) for plasma 6) but packed into a widget so it can be applied to any Wallpaper Plugin.
 
 ## Demo
 
@@ -28,20 +28,27 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
 
 ## Features
 
-- [x] Blur wallpaper
-- Conditions
-  - Maximized or full-screen window
-  - Active window
-  - Window is present
-  - Always
-  - Never
-- Radius
-- [ ] Disable effects on
+- **Blur**
+  - Conditions
+    - Maximized or full-screen window
+    - Active window
+    - Window is present
+    - Always
+    - Never
+    - Radius
+- **Rounded corners**
+  - Radius
+  - Background color
+  - Margins (top, bottom, left, right)
+- [ ] **Color effects**
+  - [ ] Colorization
+  - [ ] Brightness
+  - [ ] Contrast
+  - [ ] Saturation
+- [ ] **Toggle effects on**
   - [ ] Overview
   - [ ] Grid
   - [ ] Show desktop
-- [ ] Color filter
-- [ ] Rounded corners??
 - [ ] You tell me
 
 ## Installing
