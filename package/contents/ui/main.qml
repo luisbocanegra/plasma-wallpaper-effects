@@ -30,6 +30,7 @@ PlasmoidItem {
         }
         return null
     }
+    property var blurItem: null
 
     Plasmoid.backgroundHints: {
         if ((main.inEditMode || main.widgetConfiguring) || !hideWidget) {
@@ -91,12 +92,16 @@ PlasmoidItem {
 
     function applyEffects() {
         var blurSource = findBlurSource(wallpaperItem, rootItem)
-        blurComponent.createObject(
+        blurItem = blurComponent.createObject(
             wallpaperItem,
             {
                 "target": blurSource
             }
         )
+    }
+
+    function cleanupEffects() {
+        if (blurItem) blurItem.destroy()
     }
 
     onWallpaperPluginNameChanged: {
@@ -117,5 +122,16 @@ PlasmoidItem {
 
     Component.onCompleted: {
         startTimer.start()
+    }
+
+    Connections {
+        target: Qt.application
+        function onAboutToQuit() {
+            cleanupEffects()
+        }
+    }
+
+    Component.onDestruction: {
+        cleanupEffects()
     }
 }
