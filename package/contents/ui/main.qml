@@ -3,6 +3,7 @@ import QtQuick
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 import "components" as Components
 
@@ -18,6 +19,13 @@ PlasmoidItem {
     property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
     property bool isLoaded: false
     property bool isEnabled: plasmoid.configuration.isEnabled
+    property bool borderEnabled: plasmoid.configuration.borderEnabled && isEnabled
+    property string borderColor: plasmoid.configuration.borderColor
+    property int borderRadius: plasmoid.configuration.borderRadius
+    property int borderMarginTop: plasmoid.configuration.borderMarginTop
+    property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
+    property int borderMarginLeft: plasmoid.configuration.borderMarginLeft
+    property int borderMarginRight: plasmoid.configuration.borderMarginRight
     property var wallpaperItem: Plasmoid.containment.wallpaperGraphicsObject
     property string wallpaperPluginName: wallpaperItem?.pluginName
     property var rootItem: {
@@ -31,6 +39,7 @@ PlasmoidItem {
         return null
     }
     property var blurItem: null
+    property var roundedItem: null
 
     Plasmoid.backgroundHints: {
         if ((main.inEditMode || main.widgetConfiguring) || !hideWidget) {
@@ -83,6 +92,51 @@ PlasmoidItem {
         }
     }
 
+    property Component roundedComponent: Item {
+        property var target
+        property var root
+        anchors.fill: target
+        opacity: borderEnabled ? 1 : 0
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 300
+            }
+        }
+        Rectangle {
+            id: overlayRectangle
+            color: borderColor
+            width: target.width
+            height: target.height
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                maskEnabled: true
+                maskInverted: true
+                maskSpreadAtMax: 1
+                maskSpreadAtMin: 1
+                maskThresholdMin: 0.5
+                maskSource: ShaderEffectSource {
+                    sourceItem: Item {
+                        width: target.width
+                        height: target.height
+                        Rectangle {
+                            anchors.fill: parent
+                            anchors.topMargin: borderMarginTop
+                            anchors.bottomMargin: borderMarginBottom
+                            anchors.leftMargin: borderMarginLeft
+                            anchors.rightMargin: borderMarginRight
+                            radius: borderEnabled ? borderRadius : 0
+                            Behavior on radius {
+                                NumberAnimation {
+                                    duration: 300
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     function findBlurSource(element, root) {
         var visibleChildren = element.children.filter(function(child) {
             return child.height === root.height && child.width === root.width && child.visible;
@@ -98,14 +152,23 @@ PlasmoidItem {
                 "target": blurSource
             }
         )
+        roundedItem = roundedComponent.createObject(
+            wallpaperItem,
+            { 
+                "target" : wallpaperItem,
+                "root":rootItem
+            }
+        )
     }
 
     function cleanupEffects() {
         if (blurItem) blurItem.destroy()
+        if (roundedItem) roundedItem.destroy()
     }
 
     onWallpaperPluginNameChanged: {
         if (!isLoaded) return
+        cleanupEffects()
         applyEffects()
     }
 
