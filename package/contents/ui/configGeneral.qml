@@ -35,7 +35,7 @@ KCM.SimpleKCM {
         CheckBox {
             id: hideWidget
             Kirigami.FormData.label: i18n("Hide widget:")
-            text: i18n("Widget will show when configuring or desktop Edit Mode")
+            text: i18n("Widget will show in Desktop Edit Mode")
             checked: cfg_hideWidget
             onCheckedChanged: cfg_hideWidget = checked
         }

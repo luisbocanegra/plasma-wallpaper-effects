@@ -90,7 +90,7 @@ PlasmoidItem {
     ]
 
     Plasmoid.backgroundHints: {
-        if ((main.inEditMode || main.widgetConfiguring) || !hideWidget) {
+        if (main.inEditMode || !hideWidget) {
             return PlasmaCore.Types.DefaultBackground
         }
         else {

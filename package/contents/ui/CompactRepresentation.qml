@@ -25,7 +25,7 @@ MouseArea {
             height: Kirigami.Units.iconSizes.roundedIconSize(Math.min(parent.width, parent.height))
             width: height
             source: icon
-            visible: !onDesktop || main.inEditMode || main.widgetConfiguring || !main.hideWidget
+            visible: !onDesktop || main.inEditMode || !main.hideWidget
         }
     }
 
