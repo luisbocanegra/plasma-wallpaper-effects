@@ -26,8 +26,6 @@ PlasmoidItem {
         if (borderColorMode === 0) {
             return plasmoid.configuration.borderColor
         } else {
-            Kirigami.Theme.colorSet = borderColorScope
-            Kirigami.Theme.inherit = false
             return themeColors[borderColorModeTheme]
         }
     }
@@ -51,8 +49,6 @@ PlasmoidItem {
         if (colorizationColorMode === 0) {
             return plasmoid.configuration.colorizationColor
         } else {
-            Kirigami.Theme.colorSet = colorizationColorScope
-            Kirigami.Theme.inherit = false
             return themeColors[colorizationColorModeTheme]
         }
     }
@@ -75,36 +71,36 @@ PlasmoidItem {
     property var blurItem: null
     property var roundedItem: null
     property var themeColors: [
-        Kirigami.Theme.textColor,
-        Kirigami.Theme.disabledTextColor,
-        Kirigami.Theme.highlightedTextColor,
-        Kirigami.Theme.activeTextColor,
-        Kirigami.Theme.linkColor,
-        Kirigami.Theme.visitedLinkColor,
-        Kirigami.Theme.negativeTextColor,
-        Kirigami.Theme.neutralTextColor,
-        Kirigami.Theme.positiveTextColor,
-        Kirigami.Theme.backgroundColor,
-        Kirigami.Theme.highlightColor,
-        Kirigami.Theme.activeBackgroundColor,
-        Kirigami.Theme.linkBackgroundColor,
-        Kirigami.Theme.visitedLinkBackgroundColor,
-        Kirigami.Theme.negativeBackgroundColor,
-        Kirigami.Theme.neutralBackgroundColor,
-        Kirigami.Theme.positiveBackgroundColor,
-        Kirigami.Theme.alternateBackgroundColor,
-        Kirigami.Theme.focusColor,
-        Kirigami.Theme.hoverColor
+        "textColor",
+        "disabledTextColor",
+        "highlightedTextColor",
+        "activeTextColor",
+        "linkColor",
+        "visitedLinkColor",
+        "negativeTextColor",
+        "neutralTextColor",
+        "positiveTextColor",
+        "backgroundColor",
+        "highlightColor",
+        "activeBackgroundColor",
+        "linkBackgroundColor",
+        "visitedLinkBackgroundColor",
+        "negativeBackgroundColor",
+        "neutralBackgroundColor",
+        "positiveBackgroundColor",
+        "alternateBackgroundColor",
+        "focusColor",
+        "hoverColor"
     ]
 
     property var themeScopes: [
-        Kirigami.Theme.View,
-        Kirigami.Theme.Window,
-        Kirigami.Theme.Button,
-        Kirigami.Theme.Selection,
-        Kirigami.Theme.Tooltip,
-        Kirigami.Theme.Complementary,
-        Kirigami.Theme.Header
+        "View",
+        "Window",
+        "Button",
+        "Selection",
+        "Tooltip",
+        "Complementary",
+        "Header"
     ]
 
     Plasmoid.backgroundHints: {
@@ -116,7 +112,7 @@ PlasmoidItem {
         }
     }
 
-    toolTipSubText: !onDesktop ? "⚠️ Wallpaper not found, this widget must be placed on the Desktop" : Plasmoid.metaData.description + colorizationColor
+    toolTipSubText: !onDesktop ? "⚠️ Wallpaper not found, this widget must be placed on the Desktop" : Plasmoid.metaData.description
     toolTipTextFormat: Text.RichText
     preferredRepresentation: compactRepresentation
     compactRepresentation: CompactRepresentation {
@@ -157,7 +153,15 @@ PlasmoidItem {
             contrast: main.contrast
             saturation: main.saturation
             colorization: main.colorization
-            colorizationColor: main.colorizationColor
+            Kirigami.Theme.colorSet: Kirigami.Theme[colorizationColorScope]
+            Kirigami.Theme.inherit: false
+            colorizationColor: {
+                if (main.colorizationColor.startsWith("#")) {
+                    return main.colorizationColor
+                } else {
+                    return Kirigami.Theme[main.colorizationColor]
+                }
+            }
             Behavior on blur {
                 NumberAnimation {
                     duration: 300
@@ -178,7 +182,15 @@ PlasmoidItem {
         }
         Rectangle {
             id: overlayRectangle
-            color: borderColor
+            Kirigami.Theme.colorSet: borderColorScope
+            Kirigami.Theme.inherit: false
+            color: {
+                if (main.borderColor.startsWith("#")) {
+                    return main.borderColor
+                } else {
+                    return Kirigami.Theme[main.borderColor]
+                }
+            }
             width: target.width
             height: target.height
             layer.enabled: true
