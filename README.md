@@ -3,7 +3,7 @@
 # KDE Wallpaper Effects
 
 [![AUR version](https://img.shields.io/aur/version/plasma6-applets-wallpaper-effects?style=for-the-badge&logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects)
-[![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluisbocanegra%2Fplasma-wallpaper-effects%2Fmain%2Fpackage%2Fmetadata.json&query=KPlugin.Version&style=for-the-badge&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/21309670)
+[![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluisbocanegra%2Fplasma-wallpaper-effects%2Fmain%2Fpackage%2Fmetadata.json&query=KPlugin.Version&style=for-the-badge&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2145723)
 [![Liberapay](https://img.shields.io/liberapay/patrons/luisbocanegra?style=for-the-badge&logo=liberapay&logoColor=%23F6C814&labelColor=%232D333B&label=supporters)](https://liberapay.com/luisbocanegra/)
 
 Plasma Widget to enable Active Blur and other effects for all Wallpaper Plugins
@@ -53,10 +53,10 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
 
 ## Installing
 
-~~Install the plugin from the KDE Store [Plasma 6 version](https://store.kde.org/p/21309670)~~ TODO
+Install the plugin from the KDE Store [Plasma 6 version](https://store.kde.org/p/2145723)
 
-~~1. **Right click on the Desktop** > **Edit Mode** > **Add Widgets** > **Get New Widgets** > **Download new...**~~
-~~2. **Search** for "**Wallpaper Effects**", install and add it to your Desktop.~~
+1. **Right click on the Desktop** > **Edit Mode** > **Add Widgets** > **Get New Widgets** > **Download new...**
+2. **Search** for "**Wallpaper Effects**", install and add it to your Desktop.
 
 ### Manually
 
