@@ -35,12 +35,31 @@ PlasmoidItem {
     property var borderColorScope: {
         return themeScopes[borderColorModeThemeVariant]
     }
-
     property int borderRadius: plasmoid.configuration.borderRadius
     property int borderMarginTop: plasmoid.configuration.borderMarginTop
     property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
     property int borderMarginLeft: plasmoid.configuration.borderMarginLeft
     property int borderMarginRight: plasmoid.configuration.borderMarginRight
+    property bool showColorEffects: windowModel.showColorEffects && isEnabled
+    property real brightness: showColorEffects ? plasmoid.configuration.brightness : 0
+    property real contrast: showColorEffects ? plasmoid.configuration.contrast : 0
+    property real saturation: showColorEffects ? plasmoid.configuration.saturation : 0
+    property real colorization: showColorEffects ? plasmoid.configuration.colorization : 0
+    property int colorizationColorMode: plasmoid.configuration.colorizationColorMode
+    property int colorizationColorModeTheme: plasmoid.configuration.colorizationColorModeTheme
+    property string colorizationColor: {
+        if (colorizationColorMode === 0) {
+            return plasmoid.configuration.colorizationColor
+        } else {
+            Kirigami.Theme.colorSet = colorizationColorScope
+            Kirigami.Theme.inherit = false
+            return themeColors[colorizationColorModeTheme]
+        }
+    }
+    property int colorizationColorModeThemeVariant: plasmoid.configuration.colorizationColorModeThemeVariant
+    property var colorizationColorScope: {
+        return themeScopes[colorizationColorModeThemeVariant]
+    }
     property var wallpaperItem: Plasmoid.containment.wallpaperGraphicsObject
     property string wallpaperPluginName: wallpaperItem?.pluginName
     property var rootItem: {
@@ -97,7 +116,7 @@ PlasmoidItem {
         }
     }
 
-    toolTipSubText: !onDesktop ? "⚠️ Wallpaper not found, this widget must be placed on the Desktop" : Plasmoid.metaData.description
+    toolTipSubText: !onDesktop ? "⚠️ Wallpaper not found, this widget must be placed on the Desktop" : Plasmoid.metaData.description + colorizationColor
     toolTipTextFormat: Text.RichText
     preferredRepresentation: compactRepresentation
     compactRepresentation: CompactRepresentation {
@@ -134,6 +153,11 @@ PlasmoidItem {
             blurMax: 145
             blur: blurRadius / 145
             autoPaddingEnabled: false
+            brightness: main.brightness
+            contrast: main.contrast
+            saturation: main.saturation
+            colorization: main.colorization
+            colorizationColor: main.colorizationColor
             Behavior on blur {
                 NumberAnimation {
                     duration: 300

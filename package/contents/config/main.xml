@@ -66,5 +66,57 @@
         type="Int">
         <default>0</default>
     </entry>
+    <entry
+        name="brightness"
+        type="Double">
+        <default>0.0</default>
+    </entry>
+    <entry
+        name="contrast"
+        type="Double">
+        <default>0.0</default>
+    </entry>
+    <entry
+        name="saturation"
+        type="Double">
+        <default>0.0</default>
+    </entry>
+    <entry
+        name="colorization"
+        type="Double">
+        <default>0.0</default>
+    </entry>
+    <entry
+        name="colorizationColor"
+        type="String">
+        <default>#1A7597</default>
+    </entry>
+    <!-- color modes: custom, system -->
+    <entry
+        name="colorizationColorMode"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="colorizationColorModeTheme"
+        type="Int">
+        <default>10</default>
+    </entry>
+    <entry
+        name="colorizationColorModeThemeVariant"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <!-- Show color effects
+        0: when existing a maximized or full-screen windows
+        1: when a visible window is active
+        2: when a window is visible
+        3: video is paused
+        4: always
+        5: never
+    -->
+    <entry name="colorEffectsMode" type="Int">
+      <default>1</default>
+    </entry>
   </group>
 </kcfg>

@@ -27,6 +27,8 @@ Item {
     property var screenGeometry
     property int blurMode: plasmoid.configuration.BlurMode
     property bool showBlur: false
+    property int colorEffectsMode: plasmoid.configuration.colorEffectsMode
+    property bool showColorEffects: false
     property bool maximizedExists: false
     property bool visibleExists: false
     property bool activeExists: false
@@ -64,6 +66,27 @@ Item {
                 shouldBlur = false
         }
         showBlur = shouldBlur
+    }
+
+    function updateColorEffect() {
+        let show = true
+        switch(colorEffectsMode) {
+            case 0:
+                show = maximizedExists
+                break
+            case 1:
+                show = activeExists
+                break
+            case 2:
+                show = visibleExists
+                break
+            case 3:
+                show = true
+                break
+            case 4:
+                show = false
+        }
+        showColorEffects = show
     }
 
     TaskManager.VirtualDesktopInfo {
@@ -116,6 +139,7 @@ Item {
         maximizedExists = maximizedCount > 0
         activeExists = activeCount > 0
         updateBlur()
+        updateColorEffect()
     }
 }
 
