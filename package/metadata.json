@@ -12,7 +12,7 @@
         "Description": "Active Blur and other effects for all Wallpaper Plugins",
         "Id": "luisbocanegra.desktop.wallpaper.effects",
         "EnabledByDefault": false,
-        "Icon":"desktop",
+        "Icon":"preferences-desktop-effects",
         "License": "GPL-3.0",
         "Name": "Wallpaper Effects",
         "Version": "0.1.0",
