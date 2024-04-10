@@ -143,6 +143,7 @@ PlasmoidItem {
         width: target.width
         property var target
         MultiEffect {
+            id: effect
             anchors.fill: parent
             source: target
             blurEnabled: true
@@ -164,6 +165,31 @@ PlasmoidItem {
             }
             Behavior on blur {
                 NumberAnimation {
+                    duration: 300
+                }
+            }
+            Behavior on brightness {
+                NumberAnimation {
+                    duration: 300
+                }
+            }
+            Behavior on contrast {
+                NumberAnimation {
+                    duration: 300
+                }
+            }
+            Behavior on saturation {
+                NumberAnimation {
+                    duration: 300
+                }
+            }
+            Behavior on colorization {
+                NumberAnimation {
+                    duration: 300
+                }
+            }
+            Behavior on colorizationColor {
+                ColorAnimation {
                     duration: 300
                 }
             }
