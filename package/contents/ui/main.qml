@@ -56,8 +56,8 @@ PlasmoidItem {
     property var colorizationColorScope: {
         return themeScopes[colorizationColorModeThemeVariant]
     }
-    property var wallpaperItem: Plasmoid.containment.wallpaperGraphicsObject
-    property string wallpaperPluginName: wallpaperItem?.pluginName
+    property var wallpaperItem
+    property var wallpaperPluginName
     property var rootItem: {
         let candidate = main.parent;
         while (candidate) {
@@ -250,6 +250,7 @@ PlasmoidItem {
     }
 
     function findBlurSource(element, root) {
+        if (!element.children) return null
         var visibleChildren = element.children.filter(function(child) {
             return child.height === root.height && child.width === root.width && child.visible;
         });
@@ -257,13 +258,16 @@ PlasmoidItem {
     }
 
     function applyEffects() {
+        if (!wallpaperItem) return
         var blurSource = findBlurSource(wallpaperItem, rootItem)
-        blurItem = blurComponent.createObject(
-            wallpaperItem,
-            {
-                "target": blurSource
-            }
-        )
+        if (blurSource) {
+            blurItem = blurComponent.createObject(
+                wallpaperItem,
+                {
+                    "target": blurSource
+                }
+            )
+        }
         roundedItem = roundedComponent.createObject(
             wallpaperItem,
             { 
@@ -282,6 +286,24 @@ PlasmoidItem {
         if (!isLoaded) return
         cleanupEffects()
         applyEffects()
+    }
+
+    function reloadWallpaper() {
+        wallpaperItem = Plasmoid.containment.wallpaperGraphicsObject
+        var tmp = wallpaperItem?.pluginName
+        if (wallpaperPluginName !== tmp) {
+            wallpaperPluginName = tmp
+        }
+    }
+
+    Timer {
+        id: reloadWallpaperTimer
+        running: true
+        repeat: true
+        interval: 1000
+        onTriggered: {
+            reloadWallpaper()
+        }
     }
 
     Timer {
