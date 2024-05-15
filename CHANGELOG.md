@@ -1,15 +1,9 @@
 # Changelog
 
-## v0.0.0 TODO
+## 2024-05-14 v0.1.1 Bugfix Release
 
-### New features
+### Fixes
 
-- TODO
+- Fixed widget crashing after disabling/re-enabling the screen it was on, causing effects to stop working
 
-### Bug fixes
-
-- TODO
-
-### Other
-
-- TODO
+## 2024-04-10 v0.1.0 Initial Release
