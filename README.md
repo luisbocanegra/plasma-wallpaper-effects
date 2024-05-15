@@ -35,7 +35,7 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
     - Window is present
     - Always
     - Never
-    - Radius
+  - Radius
 - **Rounded corners**
   - Radius
   - Background color
