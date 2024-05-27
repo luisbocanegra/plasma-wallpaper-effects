@@ -53,6 +53,12 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
 
 ## Installing
 
+### Arch Linux
+
+[aur/plasma6-applets-wallpaper-effects](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects) use your preferred AUR helper (e.g `yay -S plasma6-applets-wallpaper-effects`)
+
+### KDE Store
+
 Install the plugin from the KDE Store [Plasma 6 version](https://store.kde.org/p/2145723)
 
 1. **Right click on the Desktop** > **Edit Mode** > **Add Widgets** > **Get New Widgets** > **Download new...**
@@ -73,10 +79,6 @@ Install the plugin from the KDE Store [Plasma 6 version](https://store.kde.org/p
       cd plasma-wallpaper-effects
       ./install.sh
       ```
-
-### Arch Linux
-
-~~[aur/plasma6-applets-wallpaper-effects](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects) use your preferred AUR helper e.g:~~ TODO
 
 ## How to use
 
