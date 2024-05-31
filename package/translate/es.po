@@ -173,12 +173,12 @@ msgid "Widget will show in Desktop Edit Mode"
 msgstr "El widget se mostrará en el modo de edición de escritorio"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Ejecutable QDbus:"
-msgstr ""
+msgid "QDbus executable:"
+msgstr "Ejecutable QDbus:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "p.ej. qdbus, qdbus6, qdbus-qt6"
-msgstr ""
+msgid "e.g. qdbus, qdbus6, qdbus-qt6"
+msgstr "p.ej. qdbus, qdbus6, qdbus-qt6"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Blur"

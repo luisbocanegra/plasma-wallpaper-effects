@@ -150,22 +150,32 @@ KCM.SimpleKCM {
                 cfg_CheckActiveScreen = checked
             }
         }
-        SpinBox {
+
+        RowLayout {
             Kirigami.FormData.label: i18n("Blur radius:")
-            id: blurRadiusSpinBox
-            from: 0
-            to: 145
-            value: cfg_BlurRadius
-            onValueChanged: {
-                cfg_BlurRadius = value
+            SpinBox {
+                id: blurRadiusSpinBox
+                from: 0
+                to: 145
+                value: cfg_BlurRadius
+                onValueChanged: {
+                    cfg_BlurRadius = value
+                }
+                visible: cfg_BlurMode !== 4
             }
-            visible: cfg_BlurMode !== 4
-        }
-        Kirigami.InlineMessage {
-            Layout.fillWidth: true
-            type: Kirigami.MessageType.Warning
-            visible: blurRadiusSpinBox.visible && cfg_BlurRadius > 64
-            text: i18n("Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!")
+
+            Button {
+                visible: blurRadiusSpinBox.visible && cfg_BlurRadius > 64
+                icon.name: "dialog-warning-symbolic"
+                ToolTip.text: i18n("Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!")
+                highlighted: true
+                hoverEnabled: true
+                ToolTip.visible: hovered
+                Kirigami.Theme.inherit: false
+                Kirigami.Theme.textColor: Kirigami.Theme.neutralTextColor
+                Kirigami.Theme.highlightColor: Kirigami.Theme.neutralTextColor
+                icon.color: Kirigami.Theme.neutralTextColor
+            }
         }
 
         Kirigami.Separator {
