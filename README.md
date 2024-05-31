@@ -45,7 +45,11 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
   - Brightness
   - Contrast
   - Saturation
-- [ ] **Toggle effects on**
+- **Toggle effects on**
+  - Overview
+  - Grid
+  - Show desktop
+- [ ] **Hide desktop widgets/files**
   - [ ] Overview
   - [ ] Grid
   - [ ] Show desktop
@@ -90,7 +94,11 @@ Install the plugin from the KDE Store [Plasma 6 version](https://store.kde.org/p
 
 Changes to the Desktop are not permanent and can be removed by disabling them from **Widget Settings** > **General tab** > **Enabled** checkbox or removing the widget from the Desktop.
 
-## How it works
+## Translations
+
+Instructions to translate the project are available [here](https://github.com/luisbocanegra/plasma-wallpaper-effects/blob/main/package/translate/ReadMe.md)
+
+## How does it work
 
 Similar to [plasma-panel-colorizer](https://github.com/luisbocanegra/plasma-panel-colorizer), this widget works by injecting/managing effects of the existing wallpaper. Replicating the famous Active Blur for all Wallpaper Plugins without having to modify each Plugin source code.
 
