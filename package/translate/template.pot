@@ -1,0 +1,278 @@
+# Translation of effects in LANGUAGE
+# Copyright (C) 2024
+# This file is distributed under the same license as the effects package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: effects\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-effects\n"
+"POT-Creation-Date: 2024-05-31 00:50-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../metadata.json
+msgid "Wallpaper Effects"
+msgstr ""
+
+#: ../metadata.json
+msgid "Active Blur and other effects for all Wallpaper Plugins"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Text"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Disabled Text"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Highlighted Text"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active Text"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Link"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visited Link"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Negative Text"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Neutral Text"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Positive Text"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Highlight"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Link Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visited Link Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Negative Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Neutral Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Positive Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Alternate Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Focus"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hover"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "View"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Window"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Button"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Selection"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Tooltip"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Complementary"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Header"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Maximized or full-screen windows"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active window is present"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "At least one window is shown"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Always"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Never"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Widget will show in Desktop Edit Mode"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Blur"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enable:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Filter:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Only check for windows in active screen"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Blur radius:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color Effects"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Brightness:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Contrast:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Saturation:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Colorization"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Amount:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color source:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Custom"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "System"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color set:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Rounded Corners"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Draw rounded corners over wallpaper"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border Color"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Radius:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Margins"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Top:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Bottom:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Left:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Right:"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Wallpaper not found, this widget must be placed on the Desktop"
+msgstr ""

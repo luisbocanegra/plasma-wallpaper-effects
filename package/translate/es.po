@@ -1,0 +1,286 @@
+# Translation of effects in fr
+# Copyright (C) 2024
+# This file is distributed under the same license as the effects package.
+#
+# SPDX-FileCopyrightText: 2024 Luis Bocanegra <luisbocanegra17b@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: effects\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
+"effects\n"
+"POT-Creation-Date: 2024-05-31 00:50-0600\n"
+"PO-Revision-Date: 2024-05-31 01:17-0600\n"
+"Last-Translator: Luis Bocanegra <luisbocanegra17b@gmail.com>\n"
+"Language-Team: English <kde-i18n-doc@kde.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 24.05.0\n"
+
+#: ../metadata.json
+msgid "Wallpaper Effects"
+msgstr "Efectos de fondo de pantalla"
+
+#: ../metadata.json
+msgid "Active Blur and other effects for all Wallpaper Plugins"
+msgstr ""
+"Desenfoque activo y otros efectos para todos los plugins de fondo de pantalla"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "General"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Text"
+msgstr "Texto"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Disabled Text"
+msgstr "Texto deshabilitado"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Highlighted Text"
+msgstr "Texto resaltado"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active Text"
+msgstr "Texto activo"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Link"
+msgstr "Enlace"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visited Link"
+msgstr "Enlace visitado"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Negative Text"
+msgstr "Texto negativo"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Neutral Text"
+msgstr "Texto neutro"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Positive Text"
+msgstr "Texto positivo"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "Fondo"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Highlight"
+msgstr "Destacar"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active Background"
+msgstr "Fondo activo"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Link Background"
+msgstr "Fondo de enlace"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visited Link Background"
+msgstr "Antecedentes de enlace visitado"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Negative Background"
+msgstr "Fondo negativo"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Neutral Background"
+msgstr "Fondo neutro"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Positive Background"
+msgstr "Fondo positivo"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Alternate Background"
+msgstr "Fondo alternativo"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Focus"
+msgstr "Enfocado"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hover"
+msgstr "Bajo el cursor"
+
+#: ../contents/ui/configGeneral.qml
+msgid "View"
+msgstr "Vista"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Window"
+msgstr "Ventana"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Button"
+msgstr "Botón"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Selection"
+msgstr "Selección"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Tooltip"
+msgstr "Descripción emergente"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Complementary"
+msgstr "Complementario"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Header"
+msgstr "Cabecera"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Maximized or full-screen windows"
+msgstr "Ventanas maximizadas o en pantalla completa"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active window is present"
+msgstr "Ventana activa está presente"
+
+#: ../contents/ui/configGeneral.qml
+msgid "At least one window is shown"
+msgstr "Se muestra al menos una ventana"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Always"
+msgstr "Siempre"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Never"
+msgstr "Nunca"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled:"
+msgstr "Activado:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr "Ocultar widget:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Widget will show in Desktop Edit Mode"
+msgstr "El widget se mostrará en el modo de edición de escritorio"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Blur"
+msgstr "Desenfoque"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enable:"
+msgstr "Activar:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Filter:"
+msgstr "Filtro:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Only check for windows in active screen"
+msgstr "Verifique solo las ventanas en la pantalla activa"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Blur radius:"
+msgstr "Radio de desenfoque:"
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"Quality of the blur is reduced if value exceeds 64. Higher values may cause "
+"the blur to stop working!"
+msgstr ""
+"La calidad del desenfoque se reduce si el valor excede 64. ¡Valores más "
+"altos pueden hacer que el desenfoque deje de funcionar!"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color Effects"
+msgstr "Efectos de color"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Brightness:"
+msgstr "Brillo:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Contrast:"
+msgstr "Contraste:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Saturation:"
+msgstr "Saturación:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Colorization"
+msgstr "Colorización"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Amount:"
+msgstr "Cantidad:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color source:"
+msgstr "Fuente de color:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Custom"
+msgstr "Personalizado"
+
+#: ../contents/ui/configGeneral.qml
+msgid "System"
+msgstr "Sistema"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color:"
+msgstr "Color:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color set:"
+msgstr "Conjunto de colores:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Rounded Corners"
+msgstr "Esquinas redondeadas"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Draw rounded corners over wallpaper"
+msgstr "Mostrar esquinas redondeadas sobre el fondo de pantalla"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border Color"
+msgstr "Color del borde"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Radius:"
+msgstr "Radio:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Margins"
+msgstr "Márgenes"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Top:"
+msgstr "Arriba:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Bottom:"
+msgstr "Abajo:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Left:"
+msgstr "Izquierda:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Right:"
+msgstr "Derecha:"
+
+#: ../contents/ui/main.qml
+msgid "Wallpaper not found, this widget must be placed on the Desktop"
+msgstr ""
+"Fondo de pantalla no encontrado, este widget debe colocarse en el Escritorio"
