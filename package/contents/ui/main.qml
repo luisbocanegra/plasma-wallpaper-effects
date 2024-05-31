@@ -112,7 +112,9 @@ PlasmoidItem {
         }
     }
 
-    toolTipSubText: !onDesktop ? "⚠️ Wallpaper not found, this widget must be placed on the Desktop" : Plasmoid.metaData.description
+    toolTipSubText: !onDesktop
+        ? "⚠️ " + i18n("Wallpaper not found, this widget must be placed on the Desktop")
+        : Plasmoid.metaData.description
     toolTipTextFormat: Text.RichText
     preferredRepresentation: compactRepresentation
     compactRepresentation: CompactRepresentation {

@@ -34,6 +34,54 @@ KCM.SimpleKCM {
     property alias cfg_colorizationColorModeThemeVariant: colorizationColorModeThemeVariant.currentIndex
     property alias cfg_colorizationColor: colorizationColorButton.color
     property alias cfg_colorEffectsMode: colorEffectsModeCombo.currentIndex
+    property var systemColors: [
+        i18n("Text"),
+        i18n("Disabled Text"),
+        i18n("Highlighted Text"),
+        i18n("Active Text"),
+        i18n("Link"),
+        i18n("Visited Link"),
+        i18n("Negative Text"),
+        i18n("Neutral Text"),
+        i18n("Positive Text"),
+        i18n("Background"),
+        i18n("Highlight"),
+        i18n("Active Background"),
+        i18n("Link Background"),
+        i18n("Visited Link Background"),
+        i18n("Negative Background"),
+        i18n("Neutral Background"),
+        i18n("Positive Background"),
+        i18n("Alternate Background"),
+        i18n("Focus"),
+        i18n("Hover")
+    ]
+    property var systemColorSets: [
+        i18n("View"),
+        i18n("Window"),
+        i18n("Button"),
+        i18n("Selection"),
+        i18n("Tooltip"),
+        i18n("Complementary"),
+        i18n("Header")
+    ]
+    property var effectStates: [
+        {
+            'label': i18n("Maximized or full-screen windows")
+        },
+        {
+            'label': i18n("Active window is present")
+        },
+        {
+            'label': i18n("At least one window is shown")
+        },
+        {
+            'label': i18n("Always")
+        },
+        {
+            'label': i18n("Never")
+        }
+    ]
     Kirigami.FormLayout {
         CheckBox {
             id: isEnabledCheckbox
@@ -55,25 +103,9 @@ KCM.SimpleKCM {
         }
 
         ComboBox {
-            Kirigami.FormData.label: i18nd("@buttonGroup:blur_mode", "Blur wallpaper:")
+            Kirigami.FormData.label: i18n("Enable:")
             id: blurModeCombo
-            model: [
-                {
-                    'label': i18nd("@option:blur_mode", "Maximized or full-screen windows")
-                },
-                {
-                    'label': i18nd("@option:blur_mode", "Active window is present")
-                },
-                {
-                    'label': i18nd("@option:blur_mode", "At least one window is shown")
-                },
-                {
-                    'label': i18nd("@option:blur_mode", "Always")
-                },
-                {
-                    'label': i18nd("@option:blur_mode", "Never")
-                }
-            ]
+            model: effectStates
             textRole: "label"
             onCurrentIndexChanged: cfg_BlurMode = currentIndex
             currentIndex: cfg_BlurMode
@@ -81,7 +113,7 @@ KCM.SimpleKCM {
 
         CheckBox {
             id: activeScreenOnlyCheckbx
-            Kirigami.FormData.label: i18nd("@checkbox:screen_filter", "Filter:")
+            Kirigami.FormData.label: i18n("Filter:")
             checked: cfg_CheckActiveScreen
             text: i18n("Only check for windows in active screen")
             onCheckedChanged: {
@@ -89,7 +121,7 @@ KCM.SimpleKCM {
             }
         }
         SpinBox {
-            Kirigami.FormData.label: i18nd("@checkBox:blur_strength", "Blur radius:")
+            Kirigami.FormData.label: i18n("Blur radius:")
             id: blurRadiusSpinBox
             from: 0
             to: 145
@@ -103,7 +135,7 @@ KCM.SimpleKCM {
             Layout.fillWidth: true
             type: Kirigami.MessageType.Warning
             visible: blurRadiusSpinBox.visible && cfg_BlurRadius > 64
-            text: qsTr("Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!")
+            text: i18n("Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!")
         }
 
         Kirigami.Separator {
@@ -111,31 +143,15 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Color Effects")
         }
         ComboBox {
-            Kirigami.FormData.label: i18nd("@buttonGroup:blur_mode", "Enable:")
+            Kirigami.FormData.label: i18n("Enable:")
             id: colorEffectsModeCombo
-            model: [
-                {
-                    'label': i18nd("@option:blur_mode", "Maximized or full-screen windows")
-                },
-                {
-                    'label': i18nd("@option:blur_mode", "Active window is present")
-                },
-                {
-                    'label': i18nd("@option:blur_mode", "At least one window is shown")
-                },
-                {
-                    'label': i18nd("@option:blur_mode", "Always")
-                },
-                {
-                    'label': i18nd("@option:blur_mode", "Never")
-                }
-            ]
+            model: effectStates
             textRole: "label"
             onCurrentIndexChanged: cfg_colorEffectsMode = currentIndex
             currentIndex: cfg_colorEffectsMode
         }
         RowLayout {
-            Kirigami.FormData.label: i18nd("@textField:brightness_value", "Brightness:")
+            Kirigami.FormData.label: i18n("Brightness:")
             TextField {
                 id: brightnessInput
                 placeholderText: "0-1"
@@ -172,7 +188,7 @@ KCM.SimpleKCM {
             }
         }
         RowLayout {
-            Kirigami.FormData.label: i18nd("@textField:contrast_value", "Contrast:")
+            Kirigami.FormData.label: i18n("Contrast:")
             TextField {
                 id: contrastInput
                 placeholderText: "0-1"
@@ -209,7 +225,7 @@ KCM.SimpleKCM {
             }
         }
         RowLayout {
-            Kirigami.FormData.label: i18nd("@textField:saturation_value", "Saturation:")
+            Kirigami.FormData.label: i18n("Saturation:")
             TextField {
                 id: saturationInput
                 placeholderText: "0-1"
@@ -252,7 +268,7 @@ KCM.SimpleKCM {
         }
 
         RowLayout {
-            Kirigami.FormData.label: i18nd("@textField:saturation_amount", "Amount:")
+            Kirigami.FormData.label: i18n("Amount:")
             TextField {
                 id: colorizationInput
                 placeholderText: "0-1"
@@ -319,8 +335,8 @@ KCM.SimpleKCM {
         Components.ColorButton {
             id: colorizationColorButton
             showAlphaChannel: false
-            Kirigami.FormData.label: i18nd("@button:background_color", "Color:")
-            dialogTitle: i18nd("@dialog:background_color", "Colorization")
+            Kirigami.FormData.label: i18n("Color:")
+            dialogTitle: i18n("Colorization")
             color: cfg_colorizationColor
             onAccepted: {
                 cfg_colorizationColor = color
@@ -332,28 +348,7 @@ KCM.SimpleKCM {
         ComboBox {
             id: colorizationColorModeTheme
             Kirigami.FormData.label: i18n("Color:")
-            model: [
-                i18n("Text"),
-                i18n("Disabled Text"),
-                i18n("Highlighted Text"),
-                i18n("Active Text"),
-                i18n("Link"),
-                i18n("Visited Link"),
-                i18n("Negative Text"),
-                i18n("Neutral Text"),
-                i18n("Positive Text"),
-                i18n("Background"),
-                i18n("Highlight"),
-                i18n("Active Background"),
-                i18n("Link Background"),
-                i18n("Visited Link Background"),
-                i18n("Negative Background"),
-                i18n("Neutral Background"),
-                i18n("Positive Background"),
-                i18n("Alternate Background"),
-                i18n("Focus"),
-                i18n("Hover")
-            ]
+            model: systemColors
             visible: systemColorizationColorRadio.checked
             enabled: cfg_colorization > 0
         }
@@ -361,7 +356,7 @@ KCM.SimpleKCM {
         ComboBox {
             id: colorizationColorModeThemeVariant
             Kirigami.FormData.label: i18n("Color set:")
-            model: [i18n("View"), i18n("Window"), i18n("Button"), i18n("Selection"), i18n("Tooltip"), i18n("Complementary"), i18n("Header")]
+            model: systemColorSets
             visible: systemColorizationColorRadio.checked
             enabled: cfg_colorization > 0
         }
@@ -373,7 +368,7 @@ KCM.SimpleKCM {
 
         CheckBox {
             id: borderEnabledCheckbox
-            Kirigami.FormData.label: i18nd("@checkbox:border_checkbox", "Enable:")
+            Kirigami.FormData.label: i18n("Enable:")
             checked: cfg_borderEnabled
             text: i18n("Draw rounded corners over wallpaper")
             onCheckedChanged: {
@@ -411,8 +406,8 @@ KCM.SimpleKCM {
         Components.ColorButton {
             id: borderColorButton
             showAlphaChannel: false
-            Kirigami.FormData.label: i18nd("@button:background_color", "Color:")
-            dialogTitle: i18nd("@dialog:background_color", "Border Color")
+            Kirigami.FormData.label: i18n("Color:")
+            dialogTitle: i18n("Border Color")
             color: cfg_borderColor
             onAccepted: {
                 cfg_borderColor = color
@@ -424,28 +419,7 @@ KCM.SimpleKCM {
         ComboBox {
             id: borderModeTheme
             Kirigami.FormData.label: i18n("Color:")
-            model: [
-                i18n("Text"),
-                i18n("Disabled Text"),
-                i18n("Highlighted Text"),
-                i18n("Active Text"),
-                i18n("Link"),
-                i18n("Visited Link"),
-                i18n("Negative Text"),
-                i18n("Neutral Text"),
-                i18n("Positive Text"),
-                i18n("Background"),
-                i18n("Highlight"),
-                i18n("Active Background"),
-                i18n("Link Background"),
-                i18n("Visited Link Background"),
-                i18n("Negative Background"),
-                i18n("Neutral Background"),
-                i18n("Positive Background"),
-                i18n("Alternate Background"),
-                i18n("Focus"),
-                i18n("Hover")
-            ]
+            model: systemColors
             visible: systemColorRadio.checked
             enabled: borderEnabledCheckbox.checked
         }
@@ -453,13 +427,13 @@ KCM.SimpleKCM {
         ComboBox {
             id: borderModeThemeVariant
             Kirigami.FormData.label: i18n("Color set:")
-            model: [i18n("View"), i18n("Window"), i18n("Button"), i18n("Selection"), i18n("Tooltip"), i18n("Complementary"), i18n("Header")]
+            model: systemColorSets
             visible: systemColorRadio.checked
             enabled: borderEnabledCheckbox.checked
         }
 
         SpinBox {
-            Kirigami.FormData.label: i18nd("@spinbox:border_radius", "Radius:")
+            Kirigami.FormData.label: i18n("Radius:")
             id: borderRadiusSpinBox
             from: 0
             to: 145
@@ -476,7 +450,7 @@ KCM.SimpleKCM {
         }
 
         SpinBox {
-            Kirigami.FormData.label: i18nd("@spinbox:margin_top", "Top:")
+            Kirigami.FormData.label: i18n("Top:")
             id: marginTopSpinBox
             from: 0
             to: 999
@@ -487,7 +461,7 @@ KCM.SimpleKCM {
             enabled: borderEnabledCheckbox.checked
         }
         SpinBox {
-            Kirigami.FormData.label: i18nd("@spinbox:margin_bottom", "Bottom:")
+            Kirigami.FormData.label: i18n("Bottom:")
             id: marginBottomSpinBox
             from: 0
             to: 999
@@ -498,7 +472,7 @@ KCM.SimpleKCM {
             enabled: borderEnabledCheckbox.checked
         }
         SpinBox {
-            Kirigami.FormData.label: i18nd("@spinbox:margin_left", "Left:")
+            Kirigami.FormData.label: i18n("Left:")
             id: marginLeftSpinBox
             from: 0
             to: 999
@@ -509,7 +483,7 @@ KCM.SimpleKCM {
             enabled: borderEnabledCheckbox.checked
         }
         SpinBox {
-            Kirigami.FormData.label: i18nd("@spinbox:margin_right", "Right:")
+            Kirigami.FormData.label: i18n("Right:")
             id: marginRightSpinBox
             from: 0
             to: 999
