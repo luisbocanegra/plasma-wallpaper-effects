@@ -24,7 +24,7 @@ Item {
     id: effectsModel
     property var activeEffects: []
     // TODO: make config
-    property string qdbusExecName: "qdbus6"
+    property string qdbusExecName: plasmoid.configuration.qdbusExecName
     property string activeEffectsCmd: qdbusExecName + " org.kde.KWin.Effect.WindowView1 /Effects org.kde.kwin.Effects.activeEffects"
     property bool activeEffectsCmdRunning: false
 

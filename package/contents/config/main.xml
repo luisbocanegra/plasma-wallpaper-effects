@@ -138,5 +138,9 @@
     <entry name="effectsShowBorder" type="String">
       <default></default>
     </entry>
+    <entry name="qdbusExecName" type="String">
+
+      <default>qdbus6</default>
+    </entry>
   </group>
 </kcfg>

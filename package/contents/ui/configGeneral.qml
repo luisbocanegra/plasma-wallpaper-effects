@@ -36,12 +36,11 @@ KCM.SimpleKCM {
     property alias cfg_colorEffectsMode: colorEffectsModeCombo.currentIndex
     property alias cfg_effectsShowBlur: effectsShowBlurInput.text
     property alias cfg_effectsHideBlur: effectsHideBlurInput.text
-
     property alias cfg_effectsShowColorization: effectsShowColorizationInput.text
     property alias cfg_effectsHideColorization: effectsHideColorizationInput.text
-
     property alias cfg_effectsShowBorder: effectsShowBorderInput.text
     property alias cfg_effectsHideBorder: effectsHideBorderInput.text
+    property alias cfg_qdbusExecName: qdbusExecTextField.text
     property var systemColors: [
         i18n("Text"),
         i18n("Disabled Text"),
@@ -104,6 +103,14 @@ KCM.SimpleKCM {
             checked: cfg_hideWidget
             onCheckedChanged: cfg_hideWidget = checked
         }
+
+        TextField {
+        Kirigami.FormData.label: i18n("QDbus executable:")
+        id: qdbusExecTextField
+        placeholderText: i18n("e.g. qdbus, qdbus6, qdbus-qt6")
+        Layout.maximumWidth: 300
+        visible: !screenLockModeCheckbox.checked && screenLockPausesVideoCheckbox.checked
+    }
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
