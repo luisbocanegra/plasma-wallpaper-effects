@@ -34,6 +34,14 @@ KCM.SimpleKCM {
     property alias cfg_colorizationColorModeThemeVariant: colorizationColorModeThemeVariant.currentIndex
     property alias cfg_colorizationColor: colorizationColorButton.color
     property alias cfg_colorEffectsMode: colorEffectsModeCombo.currentIndex
+    property alias cfg_effectsShowBlur: effectsShowBlurInput.text
+    property alias cfg_effectsHideBlur: effectsHideBlurInput.text
+
+    property alias cfg_effectsShowColorization: effectsShowColorizationInput.text
+    property alias cfg_effectsHideColorization: effectsHideColorizationInput.text
+
+    property alias cfg_effectsShowBorder: effectsShowBorderInput.text
+    property alias cfg_effectsHideBorder: effectsHideBorderInput.text
     property var systemColors: [
         i18n("Text"),
         i18n("Disabled Text"),
@@ -111,6 +119,21 @@ KCM.SimpleKCM {
             currentIndex: cfg_BlurMode
         }
 
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Desktop Effects")
+            Layout.fillWidth: true
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Hide in:")
+            id: effectsHideBlurInput
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Show in:")
+            id: effectsShowBlurInput
+        }
+
         CheckBox {
             id: activeScreenOnlyCheckbx
             Kirigami.FormData.label: i18n("Filter:")
@@ -149,6 +172,20 @@ KCM.SimpleKCM {
             textRole: "label"
             onCurrentIndexChanged: cfg_colorEffectsMode = currentIndex
             currentIndex: cfg_colorEffectsMode
+        }
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Desktop Effects")
+            Layout.fillWidth: true
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Hide in:")
+            id: effectsHideColorizationInput
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Show in:")
+            id: effectsShowColorizationInput
         }
         RowLayout {
             Kirigami.FormData.label: i18n("Brightness:")
@@ -374,6 +411,21 @@ KCM.SimpleKCM {
             onCheckedChanged: {
                 cfg_borderEnabled = checked
             }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Desktop Effects")
+            Layout.fillWidth: true
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Hide in:")
+            id: effectsHideBorderInput
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Show in:")
+            id: effectsShowBorderInput
         }
 
         RadioButton {

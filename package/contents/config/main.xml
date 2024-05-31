@@ -118,5 +118,25 @@
     <entry name="colorEffectsMode" type="Int">
       <default>1</default>
     </entry>
+
+    <!-- Desktop effects -->
+    <entry name="effectsHideBlur" type="String">
+      <default>windowaperture,overview</default>
+    </entry>
+    <entry name="effectsShowBlur" type="String">
+      <default></default>
+    </entry>
+    <entry name="effectsHideColorization" type="String">
+      <default></default>
+    </entry>
+    <entry name="effectsShowColorization" type="String">
+      <default></default>
+    </entry>
+    <entry name="effectsHideBorder" type="String">
+      <default>overview</default>
+    </entry>
+    <entry name="effectsShowBorder" type="String">
+      <default></default>
+    </entry>
   </group>
 </kcfg>

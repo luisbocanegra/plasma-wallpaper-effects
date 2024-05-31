@@ -15,11 +15,22 @@ PlasmoidItem {
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
     property bool widgetConfiguring: Plasmoid.userConfiguring
-    property bool showBlur: windowModel.showBlur && isEnabled
+    property var activeEffects: effectsModel.activeEffects
+    property var effectsHideBlur: plasmoid.configuration.effectsHideBlur.split(",")
+    property var effectsShowBlur: plasmoid.configuration.effectsShowBlur.split(",")
+    property bool effectHideBlur: effectsHideBlur.some(item => activeEffects.includes(item))
+    property bool effectShowBlur: effectsShowBlur.some(item => activeEffects.includes(item))
+    property bool showBlur: (windowModel.showBlur && isEnabled && !effectHideBlur) || effectShowBlur
     property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
     property bool isLoaded: false
     property bool isEnabled: plasmoid.configuration.isEnabled
-    property bool borderEnabled: plasmoid.configuration.borderEnabled && isEnabled
+    property var effectsHideBorder: plasmoid.configuration.effectsHideBorder.split(",")
+    property var effectsShowBorder: plasmoid.configuration.effectsShowBorder.split(",")
+    property bool effectHideBorder: effectsHideBorder.some(item => activeEffects.includes(item))
+    property bool effectShowBorder: effectsShowBorder.some(item => activeEffects.includes(item))
+    property bool borderEnabled: (
+            plasmoid.configuration.borderEnabled && isEnabled && !effectHideBorder
+        ) || effectShowBorder
     property int borderColorMode: plasmoid.configuration.borderColorMode
     property int borderColorModeTheme: plasmoid.configuration.borderColorModeTheme
     property string borderColor: {
@@ -38,11 +49,19 @@ PlasmoidItem {
     property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
     property int borderMarginLeft: plasmoid.configuration.borderMarginLeft
     property int borderMarginRight: plasmoid.configuration.borderMarginRight
-    property bool showColorEffects: windowModel.showColorEffects && isEnabled
+    property var effectsHideColorization: plasmoid.configuration.effectsHideColorization.split(",")
+    property var effectsShowColorization: plasmoid.configuration.effectsShowColorization.split(",")
+    property bool effectHideColorization: effectsHideColorization.some(item => activeEffects.includes(item))
+    property bool effectShowColorization: effectsShowColorization.some(item => activeEffects.includes(item))
+    property bool showColorEffects: (
+            windowModel.showColorEffects && isEnabled && !effectHideColorization
+        ) || effectShowColorization
     property real brightness: showColorEffects ? plasmoid.configuration.brightness : 0
     property real contrast: showColorEffects ? plasmoid.configuration.contrast : 0
     property real saturation: showColorEffects ? plasmoid.configuration.saturation : 0
-    property real colorization: showColorEffects ? plasmoid.configuration.colorization : 0
+    property real colorization: showColorEffects
+        ? plasmoid.configuration.colorization
+        : 0
     property int colorizationColorMode: plasmoid.configuration.colorizationColorMode
     property int colorizationColorModeTheme: plasmoid.configuration.colorizationColorModeTheme
     property string colorizationColor: {
@@ -126,6 +145,10 @@ PlasmoidItem {
     WindowModel {
         id: windowModel
         screenGeometry: Plasmoid.containment.screenGeometry
+    }
+
+    EffectsModel {
+        id: effectsModel
     }
 
     function dumpProps(obj) {
@@ -304,6 +327,7 @@ PlasmoidItem {
         repeat: true
         interval: 1000
         onTriggered: {
+            // console.log(effectsModel.activeEffects);
             reloadWallpaper()
         }
     }
