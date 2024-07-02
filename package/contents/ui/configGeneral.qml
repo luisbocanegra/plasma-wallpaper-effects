@@ -109,7 +109,6 @@ KCM.SimpleKCM {
         id: qdbusExecTextField
         placeholderText: i18n("e.g. qdbus, qdbus6, qdbus-qt6")
         Layout.maximumWidth: 300
-        visible: !screenLockModeCheckbox.checked && screenLockPausesVideoCheckbox.checked
     }
 
         Kirigami.Separator {

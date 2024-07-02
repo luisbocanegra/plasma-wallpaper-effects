@@ -27,11 +27,12 @@ Item {
     property string qdbusExecName: plasmoid.configuration.qdbusExecName
     property string activeEffectsCmd: qdbusExecName + " org.kde.KWin.Effect.WindowView1 /Effects org.kde.kwin.Effects.activeEffects"
     property bool activeEffectsCmdRunning: false
+    property bool active: false
 
     Connections {
         target: plasmoid.configuration
         function onValueChanged() {
-            updateWindowsinfo()
+            updateActiveEffects()
         }
     }
 
@@ -85,7 +86,7 @@ Item {
 
 
     Timer {
-        running: true
+        running: active
         repeat: true
         interval: 100
         onTriggered: {

@@ -16,16 +16,16 @@ PlasmoidItem {
     property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
     property bool widgetConfiguring: Plasmoid.userConfiguring
     property var activeEffects: effectsModel.activeEffects
-    property var effectsHideBlur: plasmoid.configuration.effectsHideBlur.split(",")
-    property var effectsShowBlur: plasmoid.configuration.effectsShowBlur.split(",")
+    property var effectsHideBlur: plasmoid.configuration.effectsHideBlur.split(",").filter(Boolean)
+    property var effectsShowBlur: plasmoid.configuration.effectsShowBlur.split(",").filter(Boolean)
     property bool effectHideBlur: effectsHideBlur.some(item => activeEffects.includes(item))
     property bool effectShowBlur: effectsShowBlur.some(item => activeEffects.includes(item))
     property bool showBlur: (windowModel.showBlur && isEnabled && !effectHideBlur) || effectShowBlur
     property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
     property bool isLoaded: false
     property bool isEnabled: plasmoid.configuration.isEnabled
-    property var effectsHideBorder: plasmoid.configuration.effectsHideBorder.split(",")
-    property var effectsShowBorder: plasmoid.configuration.effectsShowBorder.split(",")
+    property var effectsHideBorder: plasmoid.configuration.effectsHideBorder.split(",").filter(Boolean)
+    property var effectsShowBorder: plasmoid.configuration.effectsShowBorder.split(",").filter(Boolean)
     property bool effectHideBorder: effectsHideBorder.some(item => activeEffects.includes(item))
     property bool effectShowBorder: effectsShowBorder.some(item => activeEffects.includes(item))
     property bool borderEnabled: (
@@ -49,8 +49,8 @@ PlasmoidItem {
     property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
     property int borderMarginLeft: plasmoid.configuration.borderMarginLeft
     property int borderMarginRight: plasmoid.configuration.borderMarginRight
-    property var effectsHideColorization: plasmoid.configuration.effectsHideColorization.split(",")
-    property var effectsShowColorization: plasmoid.configuration.effectsShowColorization.split(",")
+    property var effectsHideColorization: plasmoid.configuration.effectsHideColorization.split(",").filter(Boolean)
+    property var effectsShowColorization: plasmoid.configuration.effectsShowColorization.split(",").filter(Boolean)
     property bool effectHideColorization: effectsHideColorization.some(item => activeEffects.includes(item))
     property bool effectShowColorization: effectsShowColorization.some(item => activeEffects.includes(item))
     property bool showColorEffects: (
@@ -149,6 +149,13 @@ PlasmoidItem {
 
     EffectsModel {
         id: effectsModel
+        active: {
+            return [
+                effectsShowBlur, effectsHideBlur,
+                effectsShowBorder, effectsHideBorder,
+                effectsShowColorization, effectsHideColorization
+                ].some(arr => arr.length > 0)
+        }
     }
 
     function dumpProps(obj) {
@@ -161,115 +168,114 @@ PlasmoidItem {
         }
     }
 
-    property Component blurComponent: Rectangle {
-        color:"transparent"
-        id: blurRect
+    property Component blurComponent: MultiEffect {
+        property var target
+        id: effect
         height: target.height
         width: target.width
-        property var target
-        MultiEffect {
-            id: effect
-            anchors.fill: parent
-            source: target
-            blurEnabled: true
-            blurMax: 145
-            blur: blurRadius / 145
-            autoPaddingEnabled: false
-            brightness: main.brightness
-            contrast: main.contrast
-            saturation: main.saturation
-            colorization: main.colorization
-            Kirigami.Theme.colorSet: Kirigami.Theme[colorizationColorScope]
-            Kirigami.Theme.inherit: false
-            colorizationColor: {
-                if (main.colorizationColor.startsWith("#")) {
-                    return main.colorizationColor
-                } else {
-                    return Kirigami.Theme[main.colorizationColor]
-                }
-            }
-            Behavior on blur {
-                NumberAnimation {
-                    duration: 300
-                }
-            }
-            Behavior on brightness {
-                NumberAnimation {
-                    duration: 300
-                }
-            }
-            Behavior on contrast {
-                NumberAnimation {
-                    duration: 300
-                }
-            }
-            Behavior on saturation {
-                NumberAnimation {
-                    duration: 300
-                }
-            }
-            Behavior on colorization {
-                NumberAnimation {
-                    duration: 300
-                }
-            }
-            Behavior on colorizationColor {
-                ColorAnimation {
-                    duration: 300
-                }
+        source: target
+        visible: {
+            return !(blurMax === 0 && brightness === 0 && contrast === 0
+                && saturation === 0 && colorization === 0
+            )
+        }
+        blurEnabled: true
+        blurMax: blurRadius
+        blur: 1
+        autoPaddingEnabled: false
+        brightness: main.brightness
+        contrast: main.contrast
+        saturation: main.saturation
+        colorization: main.colorization
+        Kirigami.Theme.colorSet: Kirigami.Theme[colorizationColorScope]
+        Kirigami.Theme.inherit: false
+        colorizationColor: {
+            if (main.colorizationColor.startsWith("#")) {
+                return main.colorizationColor
+            } else {
+                return Kirigami.Theme[main.colorizationColor]
             }
         }
-    }
-
-    property Component roundedComponent: Item {
-        property var target
-        property var root
-        anchors.fill: target
-        opacity: borderEnabled ? 1 : 0
-        Behavior on opacity {
+        Behavior on blurMax {
             NumberAnimation {
                 duration: 300
             }
         }
-        Rectangle {
-            id: overlayRectangle
-            Kirigami.Theme.colorSet: borderColorScope
-            Kirigami.Theme.inherit: false
-            color: {
-                if (main.borderColor.startsWith("#")) {
-                    return main.borderColor
-                } else {
-                    return Kirigami.Theme[main.borderColor]
-                }
+        Behavior on brightness {
+            NumberAnimation {
+                duration: 300
             }
-            width: target.width
-            height: target.height
-            layer.enabled: true
-            layer.effect: MultiEffect {
-                maskEnabled: true
-                maskInverted: true
-                maskSpreadAtMax: 1
-                maskSpreadAtMin: 1
-                maskThresholdMin: 0.5
-                maskSource: ShaderEffectSource {
-                    sourceItem: Item {
-                        width: target.width
-                        height: target.height
-                        Rectangle {
-                            anchors.fill: parent
-                            anchors.topMargin: borderMarginTop
-                            anchors.bottomMargin: borderMarginBottom
-                            anchors.leftMargin: borderMarginLeft
-                            anchors.rightMargin: borderMarginRight
-                            radius: borderEnabled ? borderRadius : 0
-                            Behavior on radius {
-                                NumberAnimation {
-                                    duration: 300
-                                }
+        }
+        Behavior on contrast {
+            NumberAnimation {
+                duration: 300
+            }
+        }
+        Behavior on saturation {
+            NumberAnimation {
+                duration: 300
+            }
+        }
+        Behavior on colorization {
+            NumberAnimation {
+                duration: 300
+            }
+        }
+        Behavior on colorizationColor {
+            ColorAnimation {
+                duration: 300
+            }
+        }
+    }
+
+    property Component roundedComponent: Rectangle {
+        property var target
+        anchors.fill: target
+        id: overlayRectangle
+        opacity: borderEnabled ? 1 : 0
+        visible: opacity !== 0
+        z: 1000
+        Kirigami.Theme.colorSet: borderColorScope
+        Kirigami.Theme.inherit: false
+        color: {
+            if (main.borderColor.startsWith("#")) {
+                return main.borderColor
+            } else {
+                return Kirigami.Theme[main.borderColor]
+            }
+        }
+        width: target.width
+        height: target.height
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            maskEnabled: true
+            maskInverted: true
+            maskSpreadAtMax: 1
+            maskSpreadAtMin: 1
+            maskThresholdMin: 0.5
+            maskSource: ShaderEffectSource {
+                sourceItem: Item {
+                    width: target.width
+                    height: target.height
+                    Rectangle {
+                        anchors.fill: parent
+                        anchors.topMargin: borderMarginTop
+                        anchors.bottomMargin: borderMarginBottom
+                        anchors.leftMargin: borderMarginLeft
+                        anchors.rightMargin: borderMarginRight
+                        radius: borderEnabled ? borderRadius : 0
+                        Behavior on radius {
+                            NumberAnimation {
+                                duration: 100
                             }
                         }
                     }
                 }
+            }
+        }
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 100
             }
         }
     }
@@ -296,8 +302,7 @@ PlasmoidItem {
         roundedItem = roundedComponent.createObject(
             wallpaperItem,
             { 
-                "target" : wallpaperItem,
-                "root":rootItem
+                "target" : wallpaperItem
             }
         )
     }
