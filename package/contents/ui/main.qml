@@ -75,6 +75,7 @@ PlasmoidItem {
     property var colorizationColorScope: {
         return themeScopes[colorizationColorModeThemeVariant]
     }
+    property int animationDuration: plasmoid.configuration.animationDuration
     property var wallpaperItem
     property var wallpaperPluginName
     property var rootItem: {
@@ -198,32 +199,38 @@ PlasmoidItem {
         }
         Behavior on blurMax {
             NumberAnimation {
-                duration: 300
+                duration: animationDuration
+                easing.type: Easing.InOutQuad
             }
         }
         Behavior on brightness {
             NumberAnimation {
-                duration: 300
+                duration: animationDuration
+                easing.type: Easing.InOutQuad
             }
         }
         Behavior on contrast {
             NumberAnimation {
-                duration: 300
+                duration: animationDuration
+                easing.type: Easing.InOutQuad
             }
         }
         Behavior on saturation {
             NumberAnimation {
-                duration: 300
+                duration: animationDuration
+                easing.type: Easing.InOutQuad
             }
         }
         Behavior on colorization {
             NumberAnimation {
-                duration: 300
+                duration: animationDuration
+                easing.type: Easing.InOutQuad
             }
         }
         Behavior on colorizationColor {
             ColorAnimation {
-                duration: 300
+                duration: animationDuration
+                easing.type: Easing.InOutQuad
             }
         }
     }

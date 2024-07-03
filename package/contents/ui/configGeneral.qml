@@ -41,6 +41,7 @@ KCM.SimpleKCM {
     property alias cfg_effectsShowBorder: effectsShowBorderInput.text
     property alias cfg_effectsHideBorder: effectsHideBorderInput.text
     property alias cfg_qdbusExecName: qdbusExecTextField.text
+    property alias cfg_animationDuration: animationDurationSpinBox.value
     property var systemColors: [
         i18n("Text"),
         i18n("Disabled Text"),
@@ -105,11 +106,23 @@ KCM.SimpleKCM {
         }
 
         TextField {
-        Kirigami.FormData.label: i18n("QDbus executable:")
-        id: qdbusExecTextField
-        placeholderText: i18n("e.g. qdbus, qdbus6, qdbus-qt6")
-        Layout.maximumWidth: 300
-    }
+            Kirigami.FormData.label: i18n("QDbus executable:")
+            id: qdbusExecTextField
+            placeholderText: i18n("e.g. qdbus, qdbus6, qdbus-qt6")
+            Layout.maximumWidth: 300
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Top:")
+            id: animationDurationSpinBox
+            from: 0
+            to: 2000000000
+            stepSize: 100
+            value: cfg_animationDuration
+            onValueChanged: {
+                cfg_animationDuration = value
+            }
+        }
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
