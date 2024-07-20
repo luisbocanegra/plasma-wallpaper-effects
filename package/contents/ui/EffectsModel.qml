@@ -23,9 +23,9 @@ Item {
 
     id: effectsModel
     property var activeEffects: []
-    // TODO: make config
-    property string qdbusExecName: plasmoid.configuration.qdbusExecName
-    property string activeEffectsCmd: qdbusExecName + " org.kde.KWin.Effect.WindowView1 /Effects org.kde.kwin.Effects.activeEffects"
+    // sed -e "s|^(\(.*\),)$|\1|;s|^<\(.*\)>$|\1|;s|'|\"|g"
+    property string sed: "sed -e \"s|^(\\(.*\\),)$|\\1|;s|^<\\(.*\\)>$|\\1|;s|'|\\\"|g;s|@as ||g\""
+    property string activeEffectsCmd: "gdbus call --session --dest org.kde.KWin.Effect.WindowView1 --object-path /Effects --method org.freedesktop.DBus.Properties.Get org.kde.kwin.Effects activeEffects | " + sed
     property bool activeEffectsCmdRunning: false
     property bool active: false
 
@@ -72,8 +72,12 @@ Item {
                 activeEffectsCmdRunning = false
                 if (exitCode !== 0 ) return
                 if (stdout.length > 0) {
-                    activeEffects = stdout.trim().split("\n")
-                    // console.log("ACTIVE EFFECTS:", activeEffects);
+                    try {
+                        activeEffects = JSON.parse(stdout.trim())
+                        // console.log("ACTIVE EFFECTS:", activeEffects);
+                    } catch (e) {
+                        console.error(e, e.stack)
+                    }
                 }
             }
         }

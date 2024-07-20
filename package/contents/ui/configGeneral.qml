@@ -40,7 +40,6 @@ KCM.SimpleKCM {
     property alias cfg_effectsHideColorization: effectsHideColorizationInput.text
     property alias cfg_effectsShowBorder: effectsShowBorderInput.text
     property alias cfg_effectsHideBorder: effectsHideBorderInput.text
-    property alias cfg_qdbusExecName: qdbusExecTextField.text
     property alias cfg_animationDuration: animationDurationSpinBox.value
     property var systemColors: [
         i18n("Text"),
@@ -105,15 +104,8 @@ KCM.SimpleKCM {
             onCheckedChanged: cfg_hideWidget = checked
         }
 
-        TextField {
-            Kirigami.FormData.label: i18n("QDbus executable:")
-            id: qdbusExecTextField
-            placeholderText: i18n("e.g. qdbus, qdbus6, qdbus-qt6")
-            Layout.maximumWidth: 300
-        }
-
         SpinBox {
-            Kirigami.FormData.label: i18n("Top:")
+            Kirigami.FormData.label: i18n("Animation duration:")
             id: animationDurationSpinBox
             from: 0
             to: 2000000000
@@ -164,6 +156,7 @@ KCM.SimpleKCM {
         }
 
         RowLayout {
+            visible: cfg_BlurMode !== 4
             Kirigami.FormData.label: i18n("Blur radius:")
             SpinBox {
                 id: blurRadiusSpinBox
@@ -173,7 +166,6 @@ KCM.SimpleKCM {
                 onValueChanged: {
                     cfg_BlurRadius = value
                 }
-                visible: cfg_BlurMode !== 4
             }
 
             Button {
