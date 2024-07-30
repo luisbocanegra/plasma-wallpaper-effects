@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
-"POT-Creation-Date: 2024-05-31 07:09-0600\n"
+"POT-Creation-Date: 2024-07-30 09:05-0600\n"
 "PO-Revision-Date: 2024-05-31 01:17-0600\n"
 "Last-Translator: Luis Bocanegra <luisbocanegra17b@gmail.com>\n"
 "Language-Team: none\n"
@@ -173,12 +173,8 @@ msgid "Widget will show in Desktop Edit Mode"
 msgstr "El widget se mostrará en el modo de edición de escritorio"
 
 #: ../contents/ui/configGeneral.qml
-msgid "QDbus executable:"
-msgstr "Ejecutable QDbus:"
-
-#: ../contents/ui/configGeneral.qml
-msgid "e.g. qdbus, qdbus6, qdbus-qt6"
-msgstr "p.ej. qdbus, qdbus6, qdbus-qt6"
+msgid "Animation duration:"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Blur"
@@ -304,3 +300,9 @@ msgstr "Derecha:"
 msgid "Wallpaper not found, this widget must be placed on the Desktop"
 msgstr ""
 "Fondo de pantalla no encontrado, este widget debe colocarse en el Escritorio"
+
+#~ msgid "QDbus executable:"
+#~ msgstr "Ejecutable QDbus:"
+
+#~ msgid "e.g. qdbus, qdbus6, qdbus-qt6"
+#~ msgstr "p.ej. qdbus, qdbus6, qdbus-qt6"

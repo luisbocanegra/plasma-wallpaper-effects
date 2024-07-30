@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-effects\n"
-"POT-Creation-Date: 2024-05-31 07:09-0600\n"
+"POT-Creation-Date: 2024-07-30 09:05-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,11 +170,7 @@ msgid "Widget will show in Desktop Edit Mode"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "QDbus executable:"
-msgstr ""
-
-#: ../contents/ui/configGeneral.qml
-msgid "e.g. qdbus, qdbus6, qdbus-qt6"
+msgid "Animation duration:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
