@@ -41,6 +41,7 @@ KCM.SimpleKCM {
     property alias cfg_effectsShowBorder: effectsShowBorderInput.text
     property alias cfg_effectsHideBorder: effectsHideBorderInput.text
     property alias cfg_animationDuration: animationDurationSpinBox.value
+    property real cfg_shadowBlur: shadowBlurInput.text
     property var systemColors: [
         i18n("Text"),
         i18n("Disabled Text"),
@@ -515,6 +516,45 @@ KCM.SimpleKCM {
                 cfg_borderRadius = value
             }
             enabled: borderEnabledCheckbox.checked
+        }
+
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Shadow:")
+            TextField {
+                id: shadowBlurInput
+                placeholderText: "0-1"
+                text: cfg_shadowBlur
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+                property real value: parseFloat(text).toFixed(validator.decimals)
+
+                validator: DoubleValidator {
+                    bottom: 0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
+
+                onValueChanged: {
+                    cfg_shadowBlur = isNaN(value) ? 0 : value
+                }
+
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: parent.value
+                    onValueChanged: {
+                        cfg_shadowBlur = parseFloat(value).toFixed(decimals)
+                    }
+                }
+            }
         }
 
         Kirigami.Separator {
