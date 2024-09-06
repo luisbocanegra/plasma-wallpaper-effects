@@ -76,6 +76,7 @@ PlasmoidItem {
         return themeScopes[colorizationColorModeThemeVariant]
     }
     property int animationDuration: plasmoid.configuration.animationDuration
+    property real shadowBlur: plasmoid.configuration.shadowBlur
     property var wallpaperItem
     property var wallpaperPluginName
     property var rootItem: {
@@ -254,6 +255,36 @@ PlasmoidItem {
         width: target.width
         height: target.height
         layer.enabled: true
+        Rectangle {
+            id: shadowRect
+            anchors.fill: parent
+            anchors.topMargin: borderMarginTop
+            anchors.bottomMargin: borderMarginBottom
+            anchors.leftMargin: borderMarginLeft
+            anchors.rightMargin: borderMarginRight
+            radius: borderEnabled ? borderRadius : 0
+            color: parent.color
+            border {
+                color: Qt.rgba(Kirigami.Theme.highlightColor.r,Kirigami.Theme.highlightColor.g,Kirigami.Theme.highlightColor.b,0)
+                width: 2
+            }
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                source: shadowRect
+                anchors.fill: shadowRect
+                autoPaddingEnabled: true
+                shadowBlur: main.shadowBlur
+                shadowEnabled: true
+                shadowVerticalOffset: 0
+                shadowHorizontalOffset: 0
+                shadowColor: "black"
+            }
+            Behavior on radius {
+                NumberAnimation {
+                    duration: 100
+                }
+            }
+        }
         layer.effect: MultiEffect {
             maskEnabled: true
             maskInverted: true
@@ -270,7 +301,7 @@ PlasmoidItem {
                         anchors.bottomMargin: borderMarginBottom
                         anchors.leftMargin: borderMarginLeft
                         anchors.rightMargin: borderMarginRight
-                        radius: borderEnabled ? borderRadius : 0
+                        radius: borderEnabled ? borderRadius -2: 0
                         Behavior on radius {
                             NumberAnimation {
                                 duration: 100
