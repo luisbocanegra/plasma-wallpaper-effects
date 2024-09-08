@@ -40,6 +40,7 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
   - Radius
   - Background color
   - Margins (top, bottom, left, right)
+  - Shadow
 - **Color effects**
   - Colorization
   - Brightness
