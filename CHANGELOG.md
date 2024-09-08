@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.2.2...v0.3.0) (2024-09-08)
+
+
+### Features
+
+* draw shadow behind rounded corners effect ([702eb0d](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/702eb0dc39b23c4f16a3042692cadb30041ce2c6))
+
 ## v0.2.2 2024-07-30 Effects optimizations and switch to gdbus
 
 ### Improvements
