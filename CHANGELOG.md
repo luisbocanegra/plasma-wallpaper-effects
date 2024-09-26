@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.3.0...v0.3.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* settings crash due to binding on buttons with custom colors ([574f9c2](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/574f9c2c23360efe57ded3a8444c847b4845ebd9))
+
 ## [0.3.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.2.2...v0.3.0) (2024-09-08)
 
 
