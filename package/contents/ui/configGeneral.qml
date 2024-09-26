@@ -177,8 +177,8 @@ KCM.SimpleKCM {
                 hoverEnabled: true
                 ToolTip.visible: hovered
                 Kirigami.Theme.inherit: false
-                Kirigami.Theme.textColor: Kirigami.Theme.neutralTextColor
-                Kirigami.Theme.highlightColor: Kirigami.Theme.neutralTextColor
+                Kirigami.Theme.textColor: root.Kirigami.Theme.neutralTextColor
+                Kirigami.Theme.highlightColor: root.Kirigami.Theme.neutralTextColor
                 icon.color: Kirigami.Theme.neutralTextColor
             }
         }
