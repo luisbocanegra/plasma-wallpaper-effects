@@ -26,7 +26,9 @@ Item {
     id: wModel
     property var screenGeometry
     property int blurMode: plasmoid.configuration.BlurMode
+    property int grainMode: plasmoid.configuration.GrainMode
     property bool showBlur: false
+    property bool showGrain: false
     property int colorEffectsMode: plasmoid.configuration.colorEffectsMode
     property bool showColorEffects: false
     property bool maximizedExists: false
@@ -66,6 +68,27 @@ Item {
                 shouldBlur = false
         }
         showBlur = shouldBlur
+    }
+
+    function updateGrain() {
+        let shouldGrain = true
+        switch(grainMode) {
+            case 0:
+                shouldGrain = maximizedExists
+                break
+            case 1:
+                shouldGrain = activeExists
+                break
+            case 2:
+                shouldGrain = visibleExists
+                break
+            case 3:
+                shouldGrain = true
+                break
+            case 4:
+                shouldGrain = false
+        }
+        showGrain = shouldGrain
     }
 
     function updateColorEffect() {
@@ -139,6 +162,7 @@ Item {
         maximizedExists = maximizedCount > 0
         activeExists = activeCount > 0
         updateBlur()
+        updateGrain()
         updateColorEffect()
     }
 }

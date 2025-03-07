@@ -1,4 +1,5 @@
-import QtCore
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
@@ -21,6 +22,12 @@ PlasmoidItem {
     property bool effectHideBlur: effectsHideBlur.some(item => activeEffects.includes(item))
     property bool effectShowBlur: effectsShowBlur.some(item => activeEffects.includes(item))
     property bool showBlur: (windowModel.showBlur && isEnabled && !effectHideBlur) || effectShowBlur
+
+    property var effectsHideGrain: plasmoid.configuration.effectsHideGrain.split(",").filter(Boolean)
+    property var effectsShowGrain: plasmoid.configuration.effectsShowGrain.split(",").filter(Boolean)
+    property bool effectHideGrain: effectsHideGrain.some(item => activeEffects.includes(item))
+    property bool effectShowGrain: effectsShowGrain.some(item => activeEffects.includes(item))
+    property bool showGrain: (windowModel.showGrain && isEnabled && !effectHideGrain) || effectShowGrain
     property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
     property bool isLoaded: false
     property bool isEnabled: plasmoid.configuration.isEnabled
@@ -90,6 +97,7 @@ PlasmoidItem {
         return null
     }
     property var blurItem: null
+    property var shaderItem: null
     property var roundedItem: null
     property var themeColors: [
         "textColor",
@@ -236,6 +244,33 @@ PlasmoidItem {
         }
     }
 
+    property Component shaderEffect: ShaderEffect {
+        property var target
+        id: shader
+        height: target.height
+        width: target.width
+        property var src: target
+        property real time: 0
+        property real grain_amount: main.showGrain ? plasmoid.configuration.grainAmount : 0
+        property real grain_size: main.showGrain ? plasmoid.configuration.grainSize : 0
+        property bool animate: plasmoid.configuration.grainAnimate
+        Behavior on grain_amount {
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+        Behavior on grain_size {
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+        supportsAtlasTextures: true
+        visible: grain_size !== 0
+        fragmentShader: Qt.resolvedUrl("shaders/grain.frag.qsb")
+    }
+
     property Component roundedComponent: Rectangle {
         property var target
         anchors.fill: target
@@ -336,6 +371,12 @@ PlasmoidItem {
                     "target": blurSource
                 }
             )
+            shaderItem = shaderEffect.createObject(
+                wallpaperItem,
+                {
+                    "target": blurSource
+                }
+            )
         }
         roundedItem = roundedComponent.createObject(
             wallpaperItem,
@@ -348,6 +389,7 @@ PlasmoidItem {
     function cleanupEffects() {
         if (blurItem) blurItem.destroy()
         if (roundedItem) roundedItem.destroy()
+        if (shaderItem) shaderItem.destroy()
     }
 
     onWallpaperPluginNameChanged: {
@@ -399,5 +441,17 @@ PlasmoidItem {
 
     Component.onDestruction: {
         cleanupEffects()
+    }
+
+    Timer {
+        id: shaderTimer
+        running: main.showGrain && plasmoid.configuration.grainAnimate
+        repeat: true
+        interval: 33
+        onTriggered: {
+            if (shaderItem) {
+                shaderItem.time += 0.033
+            }
+        }
     }
 }
