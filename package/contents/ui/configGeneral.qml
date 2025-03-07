@@ -12,6 +12,12 @@ KCM.SimpleKCM {
     id:root
     property bool cfg_hideWidget: hideWidget.checked
     property alias cfg_BlurMode: blurModeCombo.currentIndex
+    property alias cfg_GrainMode: grainModeCombo.currentIndex
+    property alias cfg_effectsShowGrain: effectsShowGrainInput.text
+    property alias cfg_effectsHideGrain: effectsHideGrainInput.text
+    property alias cfg_grainAnimate: grainAnimateCheckbox.checked
+    property real cfg_grainSize: grainSizeInput.text
+    property real cfg_grainAmount: grainAmountInput.text
     property alias cfg_CheckActiveScreen: activeScreenOnlyCheckbx.checked
     property alias cfg_BlurRadius: blurRadiusSpinBox.value
     property alias cfg_isEnabled: isEnabledCheckbox.checked
@@ -117,6 +123,16 @@ KCM.SimpleKCM {
             }
         }
 
+        CheckBox {
+            id: activeScreenOnlyCheckbx
+            Kirigami.FormData.label: i18n("Filter:")
+            checked: cfg_CheckActiveScreen
+            text: i18n("Only check for windows in active screen")
+            onCheckedChanged: {
+                cfg_CheckActiveScreen = checked
+            }
+        }
+
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Blur")
@@ -146,16 +162,6 @@ KCM.SimpleKCM {
             id: effectsShowBlurInput
         }
 
-        CheckBox {
-            id: activeScreenOnlyCheckbx
-            Kirigami.FormData.label: i18n("Filter:")
-            checked: cfg_CheckActiveScreen
-            text: i18n("Only check for windows in active screen")
-            onCheckedChanged: {
-                cfg_CheckActiveScreen = checked
-            }
-        }
-
         RowLayout {
             visible: cfg_BlurMode !== 4
             Kirigami.FormData.label: i18n("Blur radius:")
@@ -181,6 +187,118 @@ KCM.SimpleKCM {
                 Kirigami.Theme.highlightColor: root.Kirigami.Theme.neutralTextColor
                 icon.color: Kirigami.Theme.neutralTextColor
             }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Grain Effect")
+        }
+
+        ComboBox {
+            Kirigami.FormData.label: i18n("Enable:")
+            id: grainModeCombo
+            model: effectStates
+            textRole: "label"
+            onCurrentIndexChanged: cfg_GrainMode = currentIndex
+            currentIndex: cfg_GrainMode
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Animate:")
+            id: grainAnimateCheckbox
+            checked: cfg_grainAnimate
+        }
+
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Grain size:")
+            TextField {
+                id: grainSizeInput
+                placeholderText: "0-10"
+                text: cfg_grainSize
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+                property real value: parseFloat(text).toFixed(validator.decimals)
+
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 10.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
+
+                onValueChanged: {
+                    cfg_grainSize = isNaN(value) ? 0 : value
+                }
+
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: parent.value
+                    onValueChanged: {
+                        cfg_grainSize = parseFloat(value).toFixed(decimals)
+                    }
+                }
+            }
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Grain amount:")
+            TextField {
+                id: grainAmountInput
+                placeholderText: "0-1"
+                text: cfg_grainAmount
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+                property real value: parseFloat(text).toFixed(validator.decimals)
+
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
+
+                onValueChanged: {
+                    cfg_grainAmount = isNaN(value) ? 0 : value
+                }
+
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: parent.value
+                    onValueChanged: {
+                        cfg_grainAmount = parseFloat(value).toFixed(decimals)
+                    }
+                }
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Desktop Effects")
+            Layout.fillWidth: true
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Hide in:")
+            id: effectsHideGrainInput
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Show in:")
+            id: effectsShowGrainInput
         }
 
         Kirigami.Separator {
