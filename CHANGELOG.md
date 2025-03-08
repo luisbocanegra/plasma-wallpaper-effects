@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.3.0...v0.4.0) (2025-03-08)
+
+
+### Features
+
+* add project urls, version and Desktop Effects note ([126d2fd](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/126d2fd48bb33ba9b712411a671de5f7e9e571f6))
+* grain effect ([4dc5c46](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/4dc5c46a92e70092dd3fa332f4ed0b9126f52e2e))
+* pixelate effect ([625d947](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/625d947b8f1b2c69857746c29635445501944684))
+
+
+### Bug Fixes
+
+* settings crash due to binding on buttons with custom colors ([574f9c2](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/574f9c2c23360efe57ded3a8444c847b4845ebd9))
+
 ## [0.3.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.2.2...v0.3.0) (2024-09-08)
 
 
