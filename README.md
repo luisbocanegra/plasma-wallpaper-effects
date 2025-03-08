@@ -2,9 +2,9 @@
 
 # KDE Wallpaper Effects
 
-[![AUR version](https://img.shields.io/aur/version/plasma6-applets-wallpaper-effects?style=for-the-badge&logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects)
-[![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluisbocanegra%2Fplasma-wallpaper-effects%2Fmain%2Fpackage%2Fmetadata.json&query=KPlugin.Version&style=for-the-badge&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2145723)
-[![Liberapay](https://img.shields.io/liberapay/patrons/luisbocanegra?style=for-the-badge&logo=liberapay&logoColor=%23F6C814&labelColor=%232D333B&label=supporters)](https://liberapay.com/luisbocanegra/)
+[![AUR version](https://img.shields.io/aur/version/plasma6-applets-wallpaper-effects?logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects)
+[![Store version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2145723&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2145723)
+[![Store downloads](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2145723&query=%2Focs%2Fdata%2Fcontent%2Fdownloads%2Ftext()&logo=kde&label=Downloads&labelColor=2d333b)](https://store.kde.org/p/2145723)
 
 Plasma Widget to enable Active Blur and other effects for all Wallpaper Plugins
 
@@ -12,12 +12,12 @@ Plasma Widget to enable Active Blur and other effects for all Wallpaper Plugins
 
 </div>
 
-Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur) ([bouteillerAlan/blurredwallpaper](https://github.com/bouteillerAlan/blurredwallpaper) for plasma 6) but packed into a widget so it can be applied to any Wallpaper Plugin.
+Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur) ([bouteillerAlan/blurredwallpaper](https://github.com/bouteillerAlan/blurredwallpaper) for plasma 6) but packed into a widget to work with any Wallpaper Plugin.
 
 ## Demo
 
-[![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?style=for-the-badge&logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
-)](https://youtu.be/fdTAewwZLVs)
+[![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
+)](https://www.youtube.com/watch?v=fdTAewwZLVs) (outdated)
 
 <details>
     <summary>Screenshots</summary>
@@ -28,32 +28,43 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
 
 ## Features
 
-- **Blur**
-  - Conditions
-    - Maximized or full-screen window
-    - Active window
-    - Window is present
-    - Always
-    - Never
-  - Radius
-- **Rounded corners**
-  - Radius
-  - Background color
-  - Margins (top, bottom, left, right)
-  - Shadow
-- **Color effects**
-  - Colorization
-  - Brightness
-  - Contrast
-  - Saturation
-- **Toggle effects on**
-  - Overview
-  - Grid
-  - Show desktop
-- [ ] **Hide desktop widgets/files**
-  - [ ] Overview
-  - [ ] Grid
-  - [ ] Show desktop
+### Blur
+
+- Radius
+
+### Rounded corners
+
+- Radius
+- Background color
+- Margins (top, bottom, left, right)
+- Shadow
+
+### Color effects
+
+- Colorization
+- Brightness
+- Contrast
+- Saturation
+
+### Toggle effects on
+
+- Maximized or full-screen window
+- Active window
+- Window is present
+- Always
+- Never
+- Desktop Effects (overview, windowaperture...)
+
+### Pixelate (shader)
+
+- Pixel size
+
+### Grain filter (shader)
+
+- Animate
+- Grain size
+- Grain amount
+
 - [ ] You tell me
 
 ## Installing
@@ -95,6 +106,14 @@ Install the plugin from the KDE Store [Plasma 6 version](https://store.kde.org/p
 
 Changes to the Desktop are not permanent and can be removed by disabling them from **Widget Settings** > **General tab** > **Enabled** checkbox or removing the widget from the Desktop.
 
+### How to find Desktop Effects
+
+To get the currently active effects run the following in a terminal and trigger the effect that you want to know the name of:
+
+```sh
+while sleep 1; do gdbus call --session --dest org.kde.KWin.Effect.WindowView1 --object-path /Effects --method org.freedesktop.DBus.Properties.Get org.kde.kwin.Effects activeEffects; done
+```
+
 ## Translations
 
 Instructions to translate the project are available [here](https://github.com/luisbocanegra/plasma-wallpaper-effects/blob/main/package/translate/ReadMe.md)
@@ -116,3 +135,13 @@ If you like the project you can:
 - [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) code that inspired this project.
 
 - [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) for the icons.
+
+## Screenshots
+
+Configuration
+
+![tooltip](screenshots/settings.png)
+
+Effects demo
+
+![tooltip](screenshots/desktop.png)
