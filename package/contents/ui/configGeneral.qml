@@ -15,9 +15,13 @@ KCM.SimpleKCM {
     property alias cfg_GrainMode: grainModeCombo.currentIndex
     property alias cfg_effectsShowGrain: effectsShowGrainInput.text
     property alias cfg_effectsHideGrain: effectsHideGrainInput.text
+    property alias cfg_effectsShowPixelate: effectsShowPixelateInput.text
+    property alias cfg_effectsHidePixelate: effectsHidePixelateInput.text
     property alias cfg_grainAnimate: grainAnimateCheckbox.checked
     property real cfg_grainSize: grainSizeInput.text
     property real cfg_grainAmount: grainAmountInput.text
+    property alias cfg_PixelateMode: pixelateModeCombo.currentIndex
+    property alias cfg_pixelatePixelSize: pixelatePixelSizeSpinBox.value
     property alias cfg_CheckActiveScreen: activeScreenOnlyCheckbx.checked
     property alias cfg_BlurRadius: blurRadiusSpinBox.value
     property alias cfg_isEnabled: isEnabledCheckbox.checked
@@ -191,6 +195,42 @@ KCM.SimpleKCM {
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Pixelate Effect")
+        }
+
+        ComboBox {
+            Kirigami.FormData.label: i18n("Enable:")
+            id: pixelateModeCombo
+            model: effectStates
+            textRole: "label"
+            onCurrentIndexChanged: cfg_PixelateMode = currentIndex
+            currentIndex: cfg_PixelateMode
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Pixel size:")
+            id: pixelatePixelSizeSpinBox
+            from: 0
+            to: 100
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Desktop Effects")
+            Layout.fillWidth: true
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Hide in:")
+            id: effectsHidePixelateInput
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Show in:")
+            id: effectsShowPixelateInput
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Grain Effect")
         }
 
@@ -208,7 +248,6 @@ KCM.SimpleKCM {
             id: grainAnimateCheckbox
             checked: cfg_grainAnimate
         }
-
 
         RowLayout {
             Kirigami.FormData.label: i18n("Grain size:")

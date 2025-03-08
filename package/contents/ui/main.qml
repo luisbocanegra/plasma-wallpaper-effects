@@ -21,13 +21,17 @@ PlasmoidItem {
     property var effectsShowBlur: plasmoid.configuration.effectsShowBlur.split(",").filter(Boolean)
     property bool effectHideBlur: effectsHideBlur.some(item => activeEffects.includes(item))
     property bool effectShowBlur: effectsShowBlur.some(item => activeEffects.includes(item))
-    property bool showBlur: (windowModel.showBlur && isEnabled && !effectHideBlur) || effectShowBlur
 
     property var effectsHideGrain: plasmoid.configuration.effectsHideGrain.split(",").filter(Boolean)
     property var effectsShowGrain: plasmoid.configuration.effectsShowGrain.split(",").filter(Boolean)
     property bool effectHideGrain: effectsHideGrain.some(item => activeEffects.includes(item))
     property bool effectShowGrain: effectsShowGrain.some(item => activeEffects.includes(item))
-    property bool showGrain: (windowModel.showGrain && isEnabled && !effectHideGrain) || effectShowGrain
+
+    property var effectsHidePixelate: plasmoid.configuration.effectsHidePixelate.split(",").filter(Boolean)
+    property var effectsShowPixelate: plasmoid.configuration.effectsShowPixelate.split(",").filter(Boolean)
+    property bool effectHidePixelate: effectsHidePixelate.some(item => activeEffects.includes(item))
+    property bool effectShowPixelate: effectsShowPixelate.some(item => activeEffects.includes(item))
+
     property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
     property bool isLoaded: false
     property bool isEnabled: plasmoid.configuration.isEnabled
@@ -60,9 +64,7 @@ PlasmoidItem {
     property var effectsShowColorization: plasmoid.configuration.effectsShowColorization.split(",").filter(Boolean)
     property bool effectHideColorization: effectsHideColorization.some(item => activeEffects.includes(item))
     property bool effectShowColorization: effectsShowColorization.some(item => activeEffects.includes(item))
-    property bool showColorEffects: (
-            windowModel.showColorEffects && isEnabled && !effectHideColorization
-        ) || effectShowColorization
+
     property real brightness: showColorEffects ? plasmoid.configuration.brightness : 0
     property real contrast: showColorEffects ? plasmoid.configuration.contrast : 0
     property real saturation: showColorEffects ? plasmoid.configuration.saturation : 0
@@ -99,6 +101,7 @@ PlasmoidItem {
     property var blurItem: null
     property var shaderItem: null
     property var roundedItem: null
+    property var pixelateItem: null
     property var themeColors: [
         "textColor",
         "disabledTextColor",
@@ -132,6 +135,89 @@ PlasmoidItem {
         "Header"
     ]
 
+    property bool showBlur: {
+        let shouldBlur = false
+        switch(plasmoid.configuration.BlurMode) {
+            case 0:
+                shouldBlur = tasksModel.maximizedExists
+                break
+            case 1:
+                shouldBlur = tasksModel.activeExists
+                break
+            case 2:
+                shouldBlur = tasksModel.visibleExists
+                break
+            case 3:
+                shouldBlur = true
+                break
+            case 4:
+                shouldBlur = false
+        }
+        return (shouldBlur && isEnabled && !effectHideBlur) || effectShowBlur
+    }
+    property bool showGrain: {
+        let shouldGrain = true
+        switch(plasmoid.configuration.GrainMode) {
+            case 0:
+                shouldGrain = tasksModel.maximizedExists
+                break
+            case 1:
+                shouldGrain = tasksModel.activeExists
+                break
+            case 2:
+                shouldGrain = tasksModel.visibleExists
+                break
+            case 3:
+                shouldGrain = true
+                break
+            case 4:
+                shouldGrain = false
+        }
+        return (shouldGrain && isEnabled && !effectHideGrain) || effectShowGrain
+    }
+
+    property bool showColorEffects: {
+        let showEffect = true
+        switch(plasmoid.configuration.colorEffectsMode) {
+            case 0:
+                showEffect = tasksModel.maximizedExists
+                break
+            case 1:
+                showEffect = tasksModel.activeExists
+                break
+            case 2:
+                showEffect = tasksModel.visibleExists
+                break
+            case 3:
+                showEffect = true
+                break
+            case 4:
+                showEffect = false
+        }
+        return (showEffect && isEnabled && !effectHideColorization) || effectShowColorization
+    }
+
+    property bool showPixelate: {
+        let shouldPixelate = true
+        switch(plasmoid.configuration.PixelateMode) {
+            case 0:
+                shouldPixelate = tasksModel.maximizedExists
+                break
+            case 1:
+                shouldPixelate = tasksModel.activeExists
+                break
+            case 2:
+                shouldPixelate = tasksModel.visibleExists
+                break
+            case 3:
+                shouldPixelate = true
+                break
+            case 4:
+                shouldPixelate = false
+        }
+        return (shouldPixelate && isEnabled && !effectHidePixelate) || effectShowPixelate
+    }
+
     Plasmoid.backgroundHints: {
         if (main.inEditMode || !hideWidget) {
             return PlasmaCore.Types.DefaultBackground
@@ -152,8 +238,8 @@ PlasmoidItem {
     }
     fullRepresentation: Item {}
 
-    WindowModel {
-        id: windowModel
+    TasksModel {
+        id: tasksModel
         screenGeometry: Plasmoid.containment.screenGeometry
     }
 
@@ -244,16 +330,57 @@ PlasmoidItem {
         }
     }
 
-    property Component shaderEffect: ShaderEffect {
-        property var target
+    property Component pixelateEffect: ShaderEffect {
+        property var blurItem
+        property var effectsSource
+        id: pixelate
+        height: blurItem.height
+        width: blurItem.width
+
+        property var source: ShaderEffectSource {
+            sourceItem: pixelate.blurItem.visible ? pixelate.blurItem : pixelate.effectsSource
+            live: true
+            hideSource: pixelate.visible
+            textureMirroring: ShaderEffectSource.MirrorVertically
+        }
+        property real pixelSize: main.showPixelate ? plasmoid.configuration.pixelatePixelSize : 1
+        property vector2d textureResolution: Qt.vector2d(blurItem.width, blurItem.height)
+
+        Behavior on pixelSize {
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+        visible: pixelSize !== 1
+        fragmentShader: Qt.resolvedUrl("shaders/pixelate.frag.qsb")
+    }
+
+    property Component grainEffect: ShaderEffect {
+        property var blurItem
+        property var effectsSource
+        property var pixelateItem
         id: shader
-        height: target.height
-        width: target.width
-        property var src: target
+        height: blurItem.height
+        width: blurItem.width
+
+        property var source: ShaderEffectSource {
+            sourceItem: {
+                if (shader.pixelateItem.visible) {
+                    return pixelateItem
+                }
+                return shader.blurItem.visible ? shader.blurItem : shader.effectsSource
+            }
+            live: true
+            hideSource: shader.visible
+            textureMirroring: ShaderEffectSource.MirrorVertically
+        }
+
+        property bool isAnimationRunning: grain_size !== plasmoid.configuration.grainSize
         property real time: 0
+        property bool animate: plasmoid.configuration.grainAnimate || isAnimationRunning
         property real grain_amount: main.showGrain ? plasmoid.configuration.grainAmount : 0
         property real grain_size: main.showGrain ? plasmoid.configuration.grainSize : 0
-        property bool animate: plasmoid.configuration.grainAnimate
         Behavior on grain_amount {
             NumberAnimation {
                 duration: main.animationDuration
@@ -266,7 +393,7 @@ PlasmoidItem {
                 easing.type: Easing.InOutQuad
             }
         }
-        supportsAtlasTextures: true
+        
         visible: grain_size !== 0
         fragmentShader: Qt.resolvedUrl("shaders/grain.frag.qsb")
     }
@@ -363,18 +490,27 @@ PlasmoidItem {
 
     function applyEffects() {
         if (!wallpaperItem) return
-        var blurSource = findBlurSource(wallpaperItem, rootItem)
-        if (blurSource) {
+        var effectsSource = findBlurSource(wallpaperItem, rootItem)
+        if (effectsSource) {
             blurItem = blurComponent.createObject(
                 wallpaperItem,
                 {
-                    "target": blurSource
+                    "target": effectsSource
                 }
             )
-            shaderItem = shaderEffect.createObject(
+            pixelateItem = pixelateEffect.createObject(
                 wallpaperItem,
                 {
-                    "target": blurSource
+                    "blurItem": blurItem,
+                    "effectsSource": effectsSource
+                }
+            )
+            shaderItem = grainEffect.createObject(
+                wallpaperItem,
+                {
+                    "blurItem": blurItem,
+                    "pixelateItem": pixelateItem,
+                    "effectsSource": effectsSource
                 }
             )
         }
@@ -390,6 +526,7 @@ PlasmoidItem {
         if (blurItem) blurItem.destroy()
         if (roundedItem) roundedItem.destroy()
         if (shaderItem) shaderItem.destroy()
+        if (pixelateItem) pixelateItem.destroy()
     }
 
     onWallpaperPluginNameChanged: {
@@ -445,7 +582,7 @@ PlasmoidItem {
 
     Timer {
         id: shaderTimer
-        running: main.showGrain && plasmoid.configuration.grainAnimate
+        running: (main.shaderItem && main.shaderItem.visible && plasmoid.configuration.grainAnimate) || main.shaderItem.isAnimationRunning
         repeat: true
         interval: 33
         onTriggered: {
