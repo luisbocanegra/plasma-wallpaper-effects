@@ -15,9 +15,8 @@
         0: when existing a maximized or full-screen windows
         1: when a visible window is active
         2: when a window is visible
-        3: video is paused
-        4: always
-        5: never
+        3: always
+        4: never
     -->
     <entry name="BlurMode" type="Int">
       <default>1</default>
@@ -111,9 +110,8 @@
         0: when existing a maximized or full-screen windows
         1: when a visible window is active
         2: when a window is visible
-        3: video is paused
-        4: always
-        5: never
+        3: always
+        4: never
     -->
     <entry name="colorEffectsMode" type="Int">
       <default>1</default>
@@ -148,12 +146,11 @@
         0: when existing a maximized or full-screen windows
         1: when a visible window is active
         2: when a window is visible
-        3: video is paused
-        4: always
-        5: never
+        3: always
+        4: never
     -->
-    <entry name="GrainMode" type="Bool">
-      <default>False</default>
+    <entry name="GrainMode" type="Int">
+      <default>1</default>
     </entry>
     <entry name="grainAnimate" type="Bool">
       <default>False</default>
@@ -163,6 +160,20 @@
     </entry>
     <entry name="grainSize" type="Double">
       <default>1</default>
+    </entry>
+
+    <!-- Grain effect
+        0: when existing a maximized or full-screen windows
+        1: when a visible window is active
+        2: when a window is visible
+        3: always
+        4: never
+    -->
+    <entry name="PixelateMode" type="Int">
+      <default>1</default>
+    </entry>
+    <entry name="pixelatePixelSize" type="Int">
+      <default>64</default>
     </entry>
 
   </group>
