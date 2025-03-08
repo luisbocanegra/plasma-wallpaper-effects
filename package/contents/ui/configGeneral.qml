@@ -100,6 +100,15 @@ KCM.SimpleKCM {
             'label': i18n("Never")
         }
     ]
+
+    header: ColumnLayout {
+        Components.Header {
+            id: headerComponent
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.mediumSpacing
+        }
+    }
+
     Kirigami.FormLayout {
         CheckBox {
             id: isEnabledCheckbox
@@ -135,6 +144,26 @@ KCM.SimpleKCM {
             onCheckedChanged: {
                 cfg_CheckActiveScreen = checked
             }
+        }
+
+        Button {
+            text: i18n("How to get active Desktop Effects")
+            onClicked: {
+                activeEffectsNote.visible = !activeEffectsNote.visible
+            }
+        }
+
+        TextEdit {
+            wrapMode: Text.Wrap
+            Layout.maximumWidth: 400
+            readOnly: true
+            textFormat: TextEdit.RichText
+            text: i18n("To get the currently active Desktop Effects run the following in a terminal:") + "<br><strong><code>while sleep 1; do gdbus call --session --dest org.kde.KWin.Effect.WindowView1 --object-path /Effects --method org.freedesktop.DBus.Properties.Get org.kde.kwin.Effects activeEffects; done</code></strong>"
+            color: Kirigami.Theme.textColor
+            selectedTextColor: Kirigami.Theme.highlightedTextColor
+            selectionColor: Kirigami.Theme.highlightColor
+            id: activeEffectsNote
+            visible: false
         }
 
         Kirigami.Separator {
