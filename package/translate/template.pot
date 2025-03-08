@@ -1,5 +1,5 @@
 # Translation of effects in LANGUAGE
-# Copyright (C) 2024
+# Copyright (C) 2025
 # This file is distributed under the same license as the effects package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-effects\n"
-"POT-Creation-Date: 2024-09-08 02:06-0600\n"
+"POT-Creation-Date: 2025-03-08 14:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,10 @@ msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Version:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -174,6 +178,22 @@ msgid "Animation duration:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
+msgid "Filter:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Only check for windows in active screen"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "How to get active Desktop Effects"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "To get the currently active Desktop Effects run the following in a terminal:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
 msgid "Blur"
 msgstr ""
 
@@ -194,19 +214,35 @@ msgid "Show in:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Filter:"
-msgstr ""
-
-#: ../contents/ui/configGeneral.qml
-msgid "Only check for windows in active screen"
-msgstr ""
-
-#: ../contents/ui/configGeneral.qml
 msgid "Blur radius:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Pixelate Effect"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Pixel size:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grain Effect"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Animate:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grain size:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grain amount:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
