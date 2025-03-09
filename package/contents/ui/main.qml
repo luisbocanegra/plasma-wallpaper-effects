@@ -338,7 +338,12 @@ PlasmoidItem {
         width: blurItem.width
 
         property var source: ShaderEffectSource {
-            sourceItem: pixelate.blurItem.visible ? pixelate.blurItem : pixelate.effectsSource
+            sourceItem: {
+                if (!pixelate.visible) {
+                    return null
+                }
+                return pixelate.blurItem.visible ? pixelate.blurItem : pixelate.effectsSource
+            }
             live: true
             hideSource: pixelate.visible
             textureMirroring: ShaderEffectSource.MirrorVertically
@@ -353,7 +358,7 @@ PlasmoidItem {
             }
         }
         visible: pixelSize !== 1
-        fragmentShader: Qt.resolvedUrl("shaders/pixelate.frag.qsb")
+        fragmentShader: visible ? Qt.resolvedUrl("shaders/pixelate.frag.qsb") : ""
     }
 
     property Component grainEffect: ShaderEffect {
@@ -366,6 +371,9 @@ PlasmoidItem {
 
         property var source: ShaderEffectSource {
             sourceItem: {
+                if (!shader.visible) {
+                    return null
+                }
                 if (shader.pixelateItem.visible) {
                     return pixelateItem
                 }
@@ -395,7 +403,7 @@ PlasmoidItem {
         }
         
         visible: grain_size !== 0
-        fragmentShader: Qt.resolvedUrl("shaders/grain.frag.qsb")
+        fragmentShader: visible ? Qt.resolvedUrl("shaders/grain.frag.qsb") : ""
     }
 
     property Component roundedComponent: Rectangle {
