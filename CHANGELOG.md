@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.4.0...v0.4.1) (2025-03-09)
+
+
+### Bug Fixes
+
+* high GPU usage when pixelate and grain shaders are not visible ([0f29fbb](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/0f29fbb924f98f05d3d3830f38fd0bf0c93431fe))
+
 ## [0.4.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.3.0...v0.4.0) (2025-03-08)
 
 
