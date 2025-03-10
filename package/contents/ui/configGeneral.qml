@@ -24,6 +24,7 @@ KCM.SimpleKCM {
     property alias cfg_pixelatePixelSize: pixelatePixelSizeSpinBox.value
     property alias cfg_CheckActiveScreen: activeScreenOnlyCheckbx.checked
     property alias cfg_BlurRadius: blurRadiusSpinBox.value
+    property alias cfg_BlurStrength: blurStrengthSpinBox.value
     property alias cfg_isEnabled: isEnabledCheckbox.checked
     property alias cfg_borderEnabled: borderEnabledCheckbox.checked
     property int cfg_borderColorMode: plasmoid.configuration.borderColorMode
@@ -210,6 +211,33 @@ KCM.SimpleKCM {
 
             Button {
                 visible: blurRadiusSpinBox.visible && cfg_BlurRadius > 64
+                icon.name: "dialog-warning-symbolic"
+                ToolTip.text: i18n("Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!")
+                highlighted: true
+                hoverEnabled: true
+                ToolTip.visible: hovered
+                Kirigami.Theme.inherit: false
+                Kirigami.Theme.textColor: root.Kirigami.Theme.neutralTextColor
+                Kirigami.Theme.highlightColor: root.Kirigami.Theme.neutralTextColor
+                icon.color: Kirigami.Theme.neutralTextColor
+            }
+        }
+
+        RowLayout {
+            visible: cfg_BlurMode !== 4
+            Kirigami.FormData.label: i18n("Blur Strength:")
+            SpinBox {
+                id: blurStrengthSpinBox
+                from: 0
+                to: 100
+                value: cfg_BlurStrength
+                onValueChanged: {
+                    cfg_BlurStrength = value
+                }
+            }
+
+            Button {
+                visible: blurStrengthSpinBox.visible && cfg_BlurStrength > 100
                 icon.name: "dialog-warning-symbolic"
                 ToolTip.text: i18n("Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!")
                 highlighted: true
