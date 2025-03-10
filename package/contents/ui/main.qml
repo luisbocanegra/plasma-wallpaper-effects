@@ -33,6 +33,8 @@ PlasmoidItem {
     property bool effectShowPixelate: effectsShowPixelate.some(item => activeEffects.includes(item))
 
     property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
+    property double blurStrength: showBlur ? plasmoid.configuration.BlurStrength / 100 : 0
+
     property bool isLoaded: false
     property bool isEnabled: plasmoid.configuration.isEnabled
     property var effectsHideBorder: plasmoid.configuration.effectsHideBorder.split(",").filter(Boolean)
@@ -277,7 +279,7 @@ PlasmoidItem {
         }
         blurEnabled: true
         blurMax: blurRadius
-        blur: 1
+        blur: blurStrength
         autoPaddingEnabled: false
         brightness: main.brightness
         contrast: main.contrast
@@ -293,6 +295,12 @@ PlasmoidItem {
             }
         }
         Behavior on blurMax {
+            NumberAnimation {
+                duration: animationDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+        Behavior on blur {
             NumberAnimation {
                 duration: animationDuration
                 easing.type: Easing.InOutQuad

@@ -3,8 +3,8 @@
 # KDE Wallpaper Effects
 
 [![AUR version](https://img.shields.io/aur/version/plasma6-applets-wallpaper-effects?logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects)
-[![Store version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2145723&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2145723)
-[![Store downloads](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2145723&query=%2Focs%2Fdata%2Fcontent%2Fdownloads%2Ftext()&logo=kde&label=Downloads&labelColor=2d333b)](https://store.kde.org/p/2145723)
+[![Store version](<https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2145723&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store>)](https://store.kde.org/p/2145723)
+[![Store downloads](<https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2145723&query=%2Focs%2Fdata%2Fcontent%2Fdownloads%2Ftext()&logo=kde&label=Downloads&labelColor=2d333b>)](https://store.kde.org/p/2145723)
 
 Plasma Widget to enable Active Blur and other effects for all Wallpaper Plugins
 
@@ -16,8 +16,7 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
 
 ## Demo
 
-[![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
-)](https://www.youtube.com/watch?v=fdTAewwZLVs) (outdated)
+[![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222)](https://www.youtube.com/watch?v=fdTAewwZLVs) (outdated)
 
 <details>
     <summary>Screenshots</summary>
@@ -30,42 +29,43 @@ Inspired by the [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tr
 
 ### Blur
 
-- Radius
+-   Radius
+-   Strength
 
 ### Rounded corners
 
-- Radius
-- Background color
-- Margins (top, bottom, left, right)
-- Shadow
+-   Radius
+-   Background color
+-   Margins (top, bottom, left, right)
+-   Shadow
 
 ### Color effects
 
-- Colorization
-- Brightness
-- Contrast
-- Saturation
+-   Colorization
+-   Brightness
+-   Contrast
+-   Saturation
 
 ### Toggle effects on
 
-- Maximized or full-screen window
-- Active window
-- Window is present
-- Always
-- Never
-- Desktop Effects (overview, windowaperture...)
+-   Maximized or full-screen window
+-   Active window
+-   Window is present
+-   Always
+-   Never
+-   Desktop Effects (overview, windowaperture...)
 
 ### Pixelate (shader)
 
-- Pixel size
+-   Pixel size
 
 ### Grain filter (shader)
 
-- Animate
-- Grain size
-- Grain amount
+-   Animate
+-   Grain size
+-   Grain amount
 
-- [ ] You tell me
+-   [ ] You tell me
 
 ## Installing
 
@@ -82,19 +82,19 @@ Install the plugin from the KDE Store [Plasma 6 version](https://store.kde.org/p
 
 ### Manually
 
-  1. Install these dependencies or their equivalents for your distribution
+1. Install these dependencies or their equivalents for your distribution
 
-      ```txt
-      cmake extra-cmake-modules libplasma plasma5support
-      ```
+    ```txt
+    cmake extra-cmake-modules libplasma plasma5support
+    ```
 
-  2. Run
+2. Run
 
-      ```sh
-      git clone https://github.com/luisbocanegra/plasma-wallpaper-effects
-      cd plasma-wallpaper-effects
-      ./install.sh
-      ```
+    ```sh
+    git clone https://github.com/luisbocanegra/plasma-wallpaper-effects
+    cd plasma-wallpaper-effects
+    ./install.sh
+    ```
 
 ## How to use
 
@@ -130,11 +130,11 @@ If you like the project please consider donating/sponsoring this and [my other o
 
 ## Acknowledgements
 
-- [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur) [bouteillerAlan/blurredwallpaper](https://github.com/bouteillerAlan/blurredwallpaper)
+-   [Zren/inactiveblur](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur) [bouteillerAlan/blurredwallpaper](https://github.com/bouteillerAlan/blurredwallpaper)
 
-- [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) code that inspired this project.
+-   [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) code that inspired this project.
 
-- [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) for the icons.
+-   [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) for the icons.
 
 ## Screenshots
 
