@@ -225,7 +225,7 @@ KCM.SimpleKCM {
 
         RowLayout {
             visible: cfg_BlurMode !== 4
-            Kirigami.FormData.label: i18n("Blur Strength:")
+            Kirigami.FormData.label: i18n("Blur strength:")
             SpinBox {
                 id: blurStrengthSpinBox
                 from: 0
