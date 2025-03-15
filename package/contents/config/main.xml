@@ -175,6 +175,18 @@
     <entry name="pixelatePixelSize" type="Int">
       <default>64</default>
     </entry>
+    <entry name="effectsHideGrain" type="String">
+      <default></default>
+    </entry>
+    <entry name="effectsShowGrain" type="String">
+      <default></default>
+    </entry>
+    <entry name="effectsHidePixelate" type="String">
+      <default></default>
+    </entry>
+    <entry name="effectsShowPixelate" type="String">
+      <default></default>
+    </entry>
 
   </group>
 </kcfg>
