@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.4.1...v0.4.2) (2025-03-15)
+
+
+### Bug Fixes
+
+* add missing setting xml entries ([e78993e](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/e78993ecbdb84a4078f070ff4ef59ee6a8cb9cce))
+
 ## [0.4.1](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.4.0...v0.4.1) (2025-03-09)
 
 
