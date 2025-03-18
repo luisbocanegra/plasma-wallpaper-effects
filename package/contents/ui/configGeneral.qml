@@ -18,6 +18,7 @@ KCM.SimpleKCM {
     property alias cfg_effectsShowPixelate: effectsShowPixelateInput.text
     property alias cfg_effectsHidePixelate: effectsHidePixelateInput.text
     property alias cfg_grainAnimate: grainAnimateCheckbox.checked
+    property alias cfg_grainOpenGL2Mode: grainOpenGL2ModeCheckbox.checked
     property real cfg_grainSize: grainSizeInput.text
     property real cfg_grainAmount: grainAmountInput.text
     property alias cfg_PixelateMode: pixelateModeCombo.currentIndex
@@ -273,47 +274,16 @@ KCM.SimpleKCM {
         }
 
         CheckBox {
+            Kirigami.FormData.label: i18n("OpenGL ES 2.0 mode:")
+            id: grainOpenGL2ModeCheckbox
+            checked: cfg_grainOpenGL2Mode
+            text: i18n("Less random grain but supports older devices")
+        }
+
+        CheckBox {
             Kirigami.FormData.label: i18n("Animate:")
             id: grainAnimateCheckbox
             checked: cfg_grainAnimate
-        }
-
-        RowLayout {
-            Kirigami.FormData.label: i18n("Grain size:")
-            TextField {
-                id: grainSizeInput
-                placeholderText: "0-10"
-                text: cfg_grainSize
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-                property real value: parseFloat(text).toFixed(validator.decimals)
-
-                validator: DoubleValidator {
-                    bottom: 0.0
-                    top: 10.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onValueChanged: {
-                    cfg_grainSize = isNaN(value) ? 0 : value
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: parent.value
-                    onValueChanged: {
-                        cfg_grainSize = parseFloat(value).toFixed(decimals)
-                    }
-                }
-            }
         }
 
         RowLayout {

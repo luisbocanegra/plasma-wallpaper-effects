@@ -384,26 +384,27 @@ PlasmoidItem {
             textureMirroring: ShaderEffectSource.MirrorVertically
         }
 
-        property bool isAnimationRunning: grain_size !== plasmoid.configuration.grainSize
+        property bool isAnimationRunning: grain_amount !== plasmoid.configuration.grainAmount
         property real time: 0
         property bool animate: plasmoid.configuration.grainAnimate || isAnimationRunning
         property real grain_amount: main.showGrain ? plasmoid.configuration.grainAmount : 0
-        property real grain_size: main.showGrain ? plasmoid.configuration.grainSize : 0
         Behavior on grain_amount {
             NumberAnimation {
                 duration: main.animationDuration
                 easing.type: Easing.InOutQuad
             }
         }
-        Behavior on grain_size {
-            NumberAnimation {
-                duration: main.animationDuration
-                easing.type: Easing.InOutQuad
+
+        visible: grain_amount !== 0
+        fragmentShader: {
+            if (!visible) {
+                return ""
             }
+            if (plasmoid.configuration.grainOpenGL2Mode) {
+                return Qt.resolvedUrl("shaders/grainOpenGL2.frag.qsb")
+            }
+            return Qt.resolvedUrl("shaders/grain.frag.qsb")
         }
-        
-        visible: grain_size !== 0
-        fragmentShader: visible ? Qt.resolvedUrl("shaders/grain.frag.qsb") : ""
     }
 
     property Component roundedComponent: Rectangle {
