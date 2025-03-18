@@ -152,14 +152,14 @@
     <entry name="GrainMode" type="Int">
       <default>1</default>
     </entry>
+    <entry name="grainOpenGL2Mode" type="Bool">
+      <default>False</default>
+    </entry>
     <entry name="grainAnimate" type="Bool">
       <default>False</default>
     </entry>
     <entry name="grainAmount" type="Double">
-      <default>0.05</default>
-    </entry>
-    <entry name="grainSize" type="Double">
-      <default>1</default>
+      <default>0.15</default>
     </entry>
 
     <!-- Grain effect
