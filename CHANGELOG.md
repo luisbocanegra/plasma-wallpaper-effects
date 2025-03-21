@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.3](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.4.2...v0.4.3) (2025-03-21)
+
+
+### Bug Fixes
+
+* grain effect visible patterns/lines/stripes ([95a8900](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/95a89006b2f7896269c27192d42cfe95221bf58c))
+
 ## [0.4.2](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.4.1...v0.4.2) (2025-03-15)
 
 

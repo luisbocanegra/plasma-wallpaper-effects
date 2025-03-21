@@ -17,7 +17,7 @@
         "License": "GPL-3.0",
         "Name": "Wallpaper Effects",
         "Name[es]": "Efectos de fondo de pantalla",
-        "Version": "0.4.2",
+        "Version": "0.4.3",
         "Website": "https://github.com/luisbocanegra/plasma-wallpaper-effects"
     },
     "X-Plasma-API-Minimum-Version": "6.0"
