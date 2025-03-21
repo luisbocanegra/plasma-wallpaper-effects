@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-effects\n"
-"POT-Creation-Date: 2025-03-08 14:05+0000\n"
+"POT-Creation-Date: 2025-03-21 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,11 +234,15 @@ msgid "Grain Effect"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Animate:"
+msgid "OpenGL ES 2.0 mode:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Grain size:"
+msgid "Less random grain but supports older devices"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Animate:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
