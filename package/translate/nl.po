@@ -1,0 +1,347 @@
+# Translation of effects in LANGUAGE
+# Copyright (C) 2025
+# This file is distributed under the same license as the effects package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: effects\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
+"effects\n"
+"POT-Creation-Date: 2025-03-21 17:03+0000\n"
+"PO-Revision-Date: 2025-03-25 11:29+0100\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ../metadata.json
+msgid "Wallpaper Effects"
+msgstr "Achtergrondeffecten"
+
+#: ../metadata.json
+msgid "Active Blur and other effects for all Wallpaper Plugins"
+msgstr "Actieve vervaging en andere effecten voor achtergrondplug-ins"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "Algemeen"
+
+#: ../contents/ui/components/Header.qml
+msgid "Version:"
+msgstr "Versie:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Text"
+msgstr "Tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Disabled Text"
+msgstr "Uitgeschakelde tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Highlighted Text"
+msgstr "Gemarkeerde tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active Text"
+msgstr "Actieve tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Link"
+msgstr "Link"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visited Link"
+msgstr "Bezochte link"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Negative Text"
+msgstr "Negatieve tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Neutral Text"
+msgstr "Neutrale tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Positive Text"
+msgstr "Positieve tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "Achtergrond"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Highlight"
+msgstr "Markering"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active Background"
+msgstr "Actieve achtergrondkleur"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Link Background"
+msgstr "Achtergrondkleur van link"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visited Link Background"
+msgstr "Achtergrondkleur van bezochte link"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Negative Background"
+msgstr "Negatieve achtergrondkleur"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Neutral Background"
+msgstr "Neutrale achtergrondkleur"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Positive Background"
+msgstr "Positieve achtergrondkleur"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Alternate Background"
+msgstr "Afwisselende achtergrondkleur"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Focus"
+msgstr "Focus"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hover"
+msgstr "Na aanwijzen"
+
+#: ../contents/ui/configGeneral.qml
+msgid "View"
+msgstr "Weergave"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Window"
+msgstr "Venster"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Button"
+msgstr "Knop"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Selection"
+msgstr "Selectie"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Tooltip"
+msgstr "Hulpballon"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Complementary"
+msgstr "Aanvullend"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Header"
+msgstr "Kop"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Maximized or full-screen windows"
+msgstr "Gemaximaliseerde of schermvullende vensters"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active window is present"
+msgstr "Als er een actief venster is"
+
+#: ../contents/ui/configGeneral.qml
+msgid "At least one window is shown"
+msgstr "Als er minimaal één venster wordt getoond"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Always"
+msgstr "Altijd"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Never"
+msgstr "Nooit"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled:"
+msgstr "Ingeschakeld:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr "Widget verbergen:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Widget will show in Desktop Edit Mode"
+msgstr "De widget wordt wel getoond in de bewerkmodus"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Animation duration:"
+msgstr "Animatieduur:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Filter:"
+msgstr "Filter:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Only check for windows in active screen"
+msgstr "Alleen op actief scherm zoeken naar vensters"
+
+#: ../contents/ui/configGeneral.qml
+msgid "How to get active Desktop Effects"
+msgstr "Hoe verkrijg ik actieve bureaubladeffecten?"
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"To get the currently active Desktop Effects run the following in a terminal:"
+msgstr "Voer hiertoe de volgende opdracht uit in een terminalvenster:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Blur"
+msgstr "Vervagen"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enable:"
+msgstr "Inschakelen:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Desktop Effects"
+msgstr "Bureaubladeffecten"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide in:"
+msgstr "Verbergen in:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show in:"
+msgstr "Tonen in:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Blur radius:"
+msgstr "Vervaagstraal:"
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"Quality of the blur is reduced if value exceeds 64. Higher values may cause "
+"the blur to stop working!"
+msgstr ""
+"De kwaliteit van het vervagen (blurren) wordt verminderd als de waarde "
+"hoger is dan 64. Let op: hogere waarden kunnen voor problemen zorgen!"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Pixelate Effect"
+msgstr "Pixelvorming"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Pixel size:"
+msgstr "Pixelgrootte:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grain Effect"
+msgstr "Ruiseffect"
+
+#: ../contents/ui/configGeneral.qml
+msgid "OpenGL ES 2.0 mode:"
+msgstr "OpenGL ES 2.0-modus:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Less random grain but supports older devices"
+msgstr ""
+"Minder willekeurige ruis, maar vebeterde ondersteuning voor oudere apparaten"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Animate:"
+msgstr "Animaties:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grain amount:"
+msgstr "Hoeveelheid ruis:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color Effects"
+msgstr "Kleureneffecten"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Brightness:"
+msgstr "Helderheid:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Contrast:"
+msgstr "Contrast:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Saturation:"
+msgstr "Verzadiging:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Colorization"
+msgstr "Inkleuring"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Amount:"
+msgstr "Hoeveelheid:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color source:"
+msgstr "Kleurbron:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Custom"
+msgstr "Zelfgekozen kleuren"
+
+#: ../contents/ui/configGeneral.qml
+msgid "System"
+msgstr "Systeeminstellingen gebruiken"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color:"
+msgstr "Kleur:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color set:"
+msgstr "Kleurenschema:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Rounded Corners"
+msgstr "Afgeronde hoeken"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Draw rounded corners over wallpaper"
+msgstr "Voorzie de achtergrond van afgeronde hoeken"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border Color"
+msgstr "Randkleur"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Radius:"
+msgstr "Straal:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Shadow:"
+msgstr "Schaduw:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Margins"
+msgstr "Marges"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Top:"
+msgstr "Bovenkant:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Bottom:"
+msgstr "Onderkant:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Left:"
+msgstr "Links:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Right:"
+msgstr "Rechts:"
+
+#: ../contents/ui/main.qml
+msgid "Wallpaper not found, this widget must be placed on the Desktop"
+msgstr ""
+"Er is geen achtergrond aangetroffen - plaats deze widget op het bureaublad"
