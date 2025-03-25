@@ -28,6 +28,9 @@
     <entry name="BlurRadius" type="Int">
       <default>64</default>
     </entry>
+    <entry name="BlurStrength" type="Int">
+      <default>100</default>
+    </entry>
     <entry name="borderEnabled" type="Bool">
       <default>false</default>
     </entry>
