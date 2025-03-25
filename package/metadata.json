@@ -1,24 +1,26 @@
 {
-    "KPackageStructure": "Plasma/Applet",
-    "KPlugin": {
-        "Authors": [
-            {
-                "Email": "luisbocanegra17b@gmail.com",
-                "Name": "Luis Bocanegra"
-            }
-        ],
-        "BugReportUrl": "https://github.com/luisbocanegra/plasma-wallpaper-effects/issues",
-        "Category": "Graphics",
-        "Description": "Active Blur and other effects for all Wallpaper Plugins",
-        "Description[es]": "Desenfoque activo y otros efectos para todos los plugins de fondo de pantalla",
-        "EnabledByDefault": false,
-        "Icon": "preferences-desktop-effects",
-        "Id": "luisbocanegra.desktop.wallpaper.effects",
-        "License": "GPL-3.0",
-        "Name": "Wallpaper Effects",
-        "Name[es]": "Efectos de fondo de pantalla",
-        "Version": "0.4.3",
-        "Website": "https://github.com/luisbocanegra/plasma-wallpaper-effects"
-    },
-    "X-Plasma-API-Minimum-Version": "6.0"
+	"KPackageStructure": "Plasma/Applet",
+	"KPlugin": {
+		"Authors": [
+			{
+				"Email": "luisbocanegra17b@gmail.com",
+				"Name": "Luis Bocanegra"
+			}
+		],
+		"BugReportUrl": "https://github.com/luisbocanegra/plasma-wallpaper-effects/issues",
+		"Category": "Graphics",
+		"Description": "Active Blur and other effects for all Wallpaper Plugins",
+		"Description[es]": "Desenfoque activo y otros efectos para todos los plugins de fondo de pantalla",
+		"Description[nl]": "Actieve vervaging en andere effecten voor achtergrondplug-ins",
+		"EnabledByDefault": false,
+		"Icon": "preferences-desktop-effects",
+		"Id": "luisbocanegra.desktop.wallpaper.effects",
+		"License": "GPL-3.0",
+		"Name": "Wallpaper Effects",
+		"Name[es]": "Efectos de fondo de pantalla",
+		"Name[nl]": "Achtergrondeffecten",
+		"Version": "0.4.3",
+		"Website": "https://github.com/luisbocanegra/plasma-wallpaper-effects"
+	},
+	"X-Plasma-API-Minimum-Version": "6.0"
 }

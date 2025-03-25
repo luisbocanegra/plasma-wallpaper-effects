@@ -1,4 +1,4 @@
-# Translation of effects in LANGUAGE
+# Translation of effects in nl
 # Copyright (C) 2025
 # This file is distributed under the same license as the effects package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -225,8 +225,8 @@ msgid ""
 "Quality of the blur is reduced if value exceeds 64. Higher values may cause "
 "the blur to stop working!"
 msgstr ""
-"De kwaliteit van het vervagen (blurren) wordt verminderd als de waarde "
-"hoger is dan 64. Let op: hogere waarden kunnen voor problemen zorgen!"
+"De kwaliteit van het vervagen (blurren) wordt verminderd als de waarde hoger "
+"is dan 64. Let op: hogere waarden kunnen voor problemen zorgen!"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Pixelate Effect"
