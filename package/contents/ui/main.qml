@@ -33,7 +33,6 @@ PlasmoidItem {
     property bool effectShowPixelate: effectsShowPixelate.some(item => activeEffects.includes(item))
 
     property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
-    property bool isLoaded: false
     property bool isEnabled: plasmoid.configuration.isEnabled
     property var effectsHideBorder: plasmoid.configuration.effectsHideBorder.split(",").filter(Boolean)
     property var effectsShowBorder: plasmoid.configuration.effectsShowBorder.split(",").filter(Boolean)
@@ -86,8 +85,9 @@ PlasmoidItem {
     }
     property int animationDuration: plasmoid.configuration.animationDuration
     property real shadowBlur: plasmoid.configuration.shadowBlur
-    property var wallpaperItem
-    property var wallpaperPluginName
+    property var wallpaperItem: Plasmoid.containment?.wallpaperGraphicsObject ?? null
+    property var wallpaperPluginName: wallpaperItem?.pluginName ?? null
+    property var containmentObjectName: Plasmoid.containment?.pluginName ?? null
     property var rootItem: {
         let candidate = main.parent;
         while (candidate) {
@@ -538,44 +538,17 @@ PlasmoidItem {
         if (pixelateItem) pixelateItem.destroy()
     }
 
-    onWallpaperPluginNameChanged: {
-        if (!isLoaded) return
+    function restart() {
+        if (!wallpaperPluginName || !containmentObjectName) return
         cleanupEffects()
         applyEffects()
     }
 
-    function reloadWallpaper() {
-        wallpaperItem = Plasmoid.containment.wallpaperGraphicsObject
-        var tmp = wallpaperItem?.pluginName
-        if (wallpaperPluginName !== tmp) {
-            wallpaperPluginName = tmp
-        }
+    onWallpaperPluginNameChanged: {
+        restart()
     }
-
-    Timer {
-        id: reloadWallpaperTimer
-        running: true
-        repeat: true
-        interval: 1000
-        onTriggered: {
-            // console.log(effectsModel.activeEffects);
-            reloadWallpaper()
-        }
-    }
-
-    Timer {
-        id: startTimer
-        running: false
-        repeat: false
-        interval: 10
-        onTriggered: {
-            isLoaded = true
-            applyEffects()
-        }
-    }
-
-    Component.onCompleted: {
-        startTimer.start()
+    onContainmentObjectNameChanged: {
+        restart()
     }
 
     Connections {
@@ -591,7 +564,7 @@ PlasmoidItem {
 
     Timer {
         id: shaderTimer
-        running: (main.shaderItem && main.shaderItem.visible && plasmoid.configuration.grainAnimate) || main.shaderItem.isAnimationRunning
+        running: (main.shaderItem && main.shaderItem.visible && plasmoid.configuration.grainAnimate) || (main.shaderItem?.isAnimationRunning ?? false)
         repeat: true
         interval: 33
         onTriggered: {
