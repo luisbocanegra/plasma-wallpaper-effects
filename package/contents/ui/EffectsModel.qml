@@ -20,7 +20,6 @@ import QtQuick
 import org.kde.plasma.plasma5support as P5Support
 
 Item {
-
     id: effectsModel
     property var activeEffects: []
     // sed -e "s|^(\(.*\),)$|\1|;s|^<\(.*\)>$|\1|;s|'|\"|g"
@@ -32,15 +31,13 @@ Item {
     Connections {
         target: plasmoid.configuration
         function onValueChanged() {
-            updateActiveEffects()
+            updateActiveEffects();
         }
     }
 
-
     function isEffectActive(effectId) {
-        return activeEffects.includes(effectId)
+        return activeEffects.includes(effectId);
     }
-
 
     P5Support.DataSource {
         id: runCommand
@@ -48,18 +45,19 @@ Item {
         connectedSources: []
 
         onNewData: function (source, data) {
-            var exitCode = data["exit code"]
-            var exitStatus = data["exit status"]
-            var stdout = data["stdout"]
-            var stderr = data["stderr"]
-            exited(source, exitCode, exitStatus, stdout, stderr)
-            disconnectSource(source) // cmd finished
-            sourceConnected(source)
+            var exitCode = data["exit code"];
+            var exitStatus = data["exit status"];
+            var stdout = data["stdout"];
+            var stderr = data["stderr"];
+            exited(source, exitCode, exitStatus, stdout, stderr);
+            disconnectSource(source); // cmd finished
+            sourceConnected(source);
         }
 
         function exec(cmd) {
-            if (cmd === activeEffectsCmd) activeEffectsCmdRunning = true
-            runCommand.connectSource(cmd)
+            if (cmd === activeEffectsCmd)
+                activeEffectsCmdRunning = true;
+            runCommand.connectSource(cmd);
         }
 
         signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
@@ -68,34 +66,33 @@ Item {
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            if(cmd === activeEffectsCmd) {
-                activeEffectsCmdRunning = false
-                if (exitCode !== 0 ) return
+            if (cmd === activeEffectsCmd) {
+                activeEffectsCmdRunning = false;
+                if (exitCode !== 0)
+                    return;
                 if (stdout.length > 0) {
                     try {
-                        activeEffects = JSON.parse(stdout.trim())
+                        activeEffects = JSON.parse(stdout.trim());
                         // console.log("ACTIVE EFFECTS:", activeEffects);
                     } catch (e) {
-                        console.error(e, e.stack)
+                        console.error(e, e.stack);
                     }
                 }
             }
         }
     }
 
-
     function updateActiveEffects() {
-        if (!activeEffectsCmdRunning) runCommand.exec(activeEffectsCmd)
+        if (!activeEffectsCmdRunning)
+            runCommand.exec(activeEffectsCmd);
     }
-
 
     Timer {
         running: active
         repeat: true
         interval: 100
         onTriggered: {
-            updateActiveEffects()
+            updateActiveEffects();
         }
     }
 }
-

@@ -2,7 +2,6 @@ import QtQuick
 import org.kde.taskmanager 0.1 as TaskManager
 
 Item {
-
     id: model
     property var screenGeometry
 
@@ -20,7 +19,7 @@ Item {
     Connections {
         target: plasmoid.configuration
         function onValueChanged() {
-            updateWindowsinfo()
+            updateWindowsinfo();
         }
     }
 
@@ -46,33 +45,35 @@ Item {
         filterMinimized: true
 
         onActiveTaskChanged: {
-            updateWindowsinfo()
+            updateWindowsinfo();
         }
         onDataChanged: {
-            updateWindowsinfo()
+            updateWindowsinfo();
         }
         onCountChanged: {
-            updateWindowsinfo()
+            updateWindowsinfo();
         }
     }
 
     function updateWindowsinfo() {
-        let activeCount = 0
-        let visibleCount = 0
-        let maximizedCount = 0
+        let activeCount = 0;
+        let visibleCount = 0;
+        let maximizedCount = 0;
         for (var i = 0; i < tasksModel.count; i++) {
-            const currentTask = tasksModel.index(i, 0)
-            if (currentTask === undefined) continue
+            const currentTask = tasksModel.index(i, 0);
+            if (currentTask === undefined)
+                continue;
             if (tasksModel.data(currentTask, isWindow) && !tasksModel.data(currentTask, isMinimized)) {
-                visibleCount+=1
-                if (tasksModel.data(currentTask, isMaximized) || tasksModel.data(currentTask, isFullScreen)) maximizedCount+=1
-                if (tasksModel.data(currentTask, isActive)) activeCount+=1
+                visibleCount += 1;
+                if (tasksModel.data(currentTask, isMaximized) || tasksModel.data(currentTask, isFullScreen))
+                    maximizedCount += 1;
+                if (tasksModel.data(currentTask, isActive))
+                    activeCount += 1;
             }
         }
 
-        visibleExists = visibleCount > 0
-        maximizedExists = maximizedCount > 0
-        activeExists = activeCount > 0
+        visibleExists = visibleCount > 0;
+        maximizedExists = maximizedCount > 0;
+        activeExists = activeCount > 0;
     }
 }
-

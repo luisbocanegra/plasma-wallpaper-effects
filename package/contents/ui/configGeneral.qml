@@ -9,7 +9,7 @@ import org.kde.plasma.plasma5support as P5Support
 import "components" as Components
 
 KCM.SimpleKCM {
-    id:root
+    id: root
     property bool cfg_hideWidget: hideWidget.checked
     property alias cfg_BlurMode: blurModeCombo.currentIndex
     property alias cfg_GrainMode: grainModeCombo.currentIndex
@@ -53,36 +53,62 @@ KCM.SimpleKCM {
     property alias cfg_effectsHideBorder: effectsHideBorderInput.text
     property alias cfg_animationDuration: animationDurationSpinBox.value
     property real cfg_shadowBlur: shadowBlurInput.text
-    property var systemColors: [
+    //TODO remove // when qmlformat off/on becomes a thing
+    property var systemColors: [//
         i18n("Text"),
+        //
         i18n("Disabled Text"),
+        //
         i18n("Highlighted Text"),
+        //
         i18n("Active Text"),
+        //
         i18n("Link"),
+        //
         i18n("Visited Link"),
+        //
         i18n("Negative Text"),
+        //
         i18n("Neutral Text"),
+        //
         i18n("Positive Text"),
+        //
         i18n("Background"),
+        //
         i18n("Highlight"),
+        //
         i18n("Active Background"),
+        //
         i18n("Link Background"),
+        //
         i18n("Visited Link Background"),
+        //
         i18n("Negative Background"),
+        //
         i18n("Neutral Background"),
+        //
         i18n("Positive Background"),
+        //
         i18n("Alternate Background"),
+        //
         i18n("Focus"),
-        i18n("Hover")
+        //
+        i18n("Hover")//
     ]
-    property var systemColorSets: [
+    property var systemColorSets: [//
         i18n("View"),
+        //
         i18n("Window"),
+        //
         i18n("Button"),
+        //
         i18n("Selection"),
+        //
         i18n("Tooltip"),
+        //
         i18n("Complementary"),
-        i18n("Header")
+        //
+        i18n("Header")//
     ]
     property var effectStates: [
         {
@@ -126,14 +152,14 @@ KCM.SimpleKCM {
         }
 
         SpinBox {
-            Kirigami.FormData.label: i18n("Animation duration:")
             id: animationDurationSpinBox
+            Kirigami.FormData.label: i18n("Animation duration:")
             from: 0
             to: 2000000000
             stepSize: 100
             value: cfg_animationDuration
             onValueChanged: {
-                cfg_animationDuration = value
+                cfg_animationDuration = value;
             }
         }
 
@@ -143,18 +169,19 @@ KCM.SimpleKCM {
             checked: cfg_CheckActiveScreen
             text: i18n("Only check for windows in active screen")
             onCheckedChanged: {
-                cfg_CheckActiveScreen = checked
+                cfg_CheckActiveScreen = checked;
             }
         }
 
         Button {
             text: i18n("How to get active Desktop Effects")
             onClicked: {
-                activeEffectsNote.visible = !activeEffectsNote.visible
+                activeEffectsNote.visible = !activeEffectsNote.visible;
             }
         }
 
         TextEdit {
+            id: activeEffectsNote
             wrapMode: Text.Wrap
             Layout.maximumWidth: 400
             readOnly: true
@@ -163,7 +190,6 @@ KCM.SimpleKCM {
             color: Kirigami.Theme.textColor
             selectedTextColor: Kirigami.Theme.highlightedTextColor
             selectionColor: Kirigami.Theme.highlightColor
-            id: activeEffectsNote
             visible: false
         }
 
@@ -173,8 +199,8 @@ KCM.SimpleKCM {
         }
 
         ComboBox {
-            Kirigami.FormData.label: i18n("Enable:")
             id: blurModeCombo
+            Kirigami.FormData.label: i18n("Enable:")
             model: effectStates
             textRole: "label"
             onCurrentIndexChanged: cfg_BlurMode = currentIndex
@@ -187,13 +213,13 @@ KCM.SimpleKCM {
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Hide in:")
             id: effectsHideBlurInput
+            Kirigami.FormData.label: i18n("Hide in:")
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Show in:")
             id: effectsShowBlurInput
+            Kirigami.FormData.label: i18n("Show in:")
         }
 
         RowLayout {
@@ -205,7 +231,7 @@ KCM.SimpleKCM {
                 to: 145
                 value: cfg_BlurRadius
                 onValueChanged: {
-                    cfg_BlurRadius = value
+                    cfg_BlurRadius = value;
                 }
             }
 
@@ -229,8 +255,8 @@ KCM.SimpleKCM {
         }
 
         ComboBox {
-            Kirigami.FormData.label: i18n("Enable:")
             id: pixelateModeCombo
+            Kirigami.FormData.label: i18n("Enable:")
             model: effectStates
             textRole: "label"
             onCurrentIndexChanged: cfg_PixelateMode = currentIndex
@@ -238,8 +264,8 @@ KCM.SimpleKCM {
         }
 
         SpinBox {
-            Kirigami.FormData.label: i18n("Pixel size:")
             id: pixelatePixelSizeSpinBox
+            Kirigami.FormData.label: i18n("Pixel size:")
             from: 0
             to: 100
         }
@@ -250,13 +276,13 @@ KCM.SimpleKCM {
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Hide in:")
             id: effectsHidePixelateInput
+            Kirigami.FormData.label: i18n("Hide in:")
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Show in:")
             id: effectsShowPixelateInput
+            Kirigami.FormData.label: i18n("Show in:")
         }
 
         Kirigami.Separator {
@@ -265,8 +291,8 @@ KCM.SimpleKCM {
         }
 
         ComboBox {
-            Kirigami.FormData.label: i18n("Enable:")
             id: grainModeCombo
+            Kirigami.FormData.label: i18n("Enable:")
             model: effectStates
             textRole: "label"
             onCurrentIndexChanged: cfg_GrainMode = currentIndex
@@ -274,15 +300,15 @@ KCM.SimpleKCM {
         }
 
         CheckBox {
-            Kirigami.FormData.label: i18n("OpenGL ES 2.0 mode:")
             id: grainOpenGL2ModeCheckbox
+            Kirigami.FormData.label: i18n("OpenGL ES 2.0 mode:")
             checked: cfg_grainOpenGL2Mode
             text: i18n("Less random grain but supports older devices")
         }
 
         CheckBox {
-            Kirigami.FormData.label: i18n("Animate:")
             id: grainAnimateCheckbox
+            Kirigami.FormData.label: i18n("Animate:")
             checked: cfg_grainAnimate
         }
 
@@ -303,7 +329,7 @@ KCM.SimpleKCM {
                 }
 
                 onValueChanged: {
-                    cfg_grainAmount = isNaN(value) ? 0 : value
+                    cfg_grainAmount = isNaN(value) ? 0 : value;
                 }
 
                 Components.ValueMouseControl {
@@ -318,7 +344,7 @@ KCM.SimpleKCM {
                     stepSize: 0.05
                     value: parent.value
                     onValueChanged: {
-                        cfg_grainAmount = parseFloat(value).toFixed(decimals)
+                        cfg_grainAmount = parseFloat(value).toFixed(decimals);
                     }
                 }
             }
@@ -330,13 +356,13 @@ KCM.SimpleKCM {
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Hide in:")
             id: effectsHideGrainInput
+            Kirigami.FormData.label: i18n("Hide in:")
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Show in:")
             id: effectsShowGrainInput
+            Kirigami.FormData.label: i18n("Show in:")
         }
 
         Kirigami.Separator {
@@ -344,8 +370,8 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Color Effects")
         }
         ComboBox {
-            Kirigami.FormData.label: i18n("Enable:")
             id: colorEffectsModeCombo
+            Kirigami.FormData.label: i18n("Enable:")
             model: effectStates
             textRole: "label"
             onCurrentIndexChanged: cfg_colorEffectsMode = currentIndex
@@ -357,13 +383,13 @@ KCM.SimpleKCM {
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Hide in:")
             id: effectsHideColorizationInput
+            Kirigami.FormData.label: i18n("Hide in:")
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Show in:")
             id: effectsShowColorizationInput
+            Kirigami.FormData.label: i18n("Show in:")
         }
         RowLayout {
             Kirigami.FormData.label: i18n("Brightness:")
@@ -382,7 +408,7 @@ KCM.SimpleKCM {
                 }
 
                 onValueChanged: {
-                    cfg_brightness = isNaN(value) ? 0 : value
+                    cfg_brightness = isNaN(value) ? 0 : value;
                 }
 
                 Components.ValueMouseControl {
@@ -397,7 +423,7 @@ KCM.SimpleKCM {
                     stepSize: 0.05
                     value: parent.value
                     onValueChanged: {
-                        cfg_brightness = parseFloat(value).toFixed(decimals)
+                        cfg_brightness = parseFloat(value).toFixed(decimals);
                     }
                 }
             }
@@ -419,7 +445,7 @@ KCM.SimpleKCM {
                 }
 
                 onValueChanged: {
-                    cfg_contrast = isNaN(value) ? 0 : value
+                    cfg_contrast = isNaN(value) ? 0 : value;
                 }
 
                 Components.ValueMouseControl {
@@ -434,7 +460,7 @@ KCM.SimpleKCM {
                     stepSize: 0.05
                     value: parent.value
                     onValueChanged: {
-                        cfg_contrast = parseFloat(value).toFixed(decimals)
+                        cfg_contrast = parseFloat(value).toFixed(decimals);
                     }
                 }
             }
@@ -456,7 +482,7 @@ KCM.SimpleKCM {
                 }
 
                 onValueChanged: {
-                    cfg_saturation = isNaN(value) ? 0 : value
+                    cfg_saturation = isNaN(value) ? 0 : value;
                 }
 
                 Components.ValueMouseControl {
@@ -471,12 +497,12 @@ KCM.SimpleKCM {
                     stepSize: 0.05
                     value: parent.value
                     onValueChanged: {
-                        cfg_saturation = parseFloat(value).toFixed(decimals)
+                        cfg_saturation = parseFloat(value).toFixed(decimals);
                     }
                 }
             }
         }
-        
+
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Colorization")
             Layout.fillWidth: true
@@ -499,7 +525,7 @@ KCM.SimpleKCM {
                 }
 
                 onValueChanged: {
-                    cfg_colorization = isNaN(value) ? 0 : value
+                    cfg_colorization = isNaN(value) ? 0 : value;
                 }
 
                 Components.ValueMouseControl {
@@ -514,24 +540,24 @@ KCM.SimpleKCM {
                     stepSize: 0.05
                     value: parent.value
                     onValueChanged: {
-                        cfg_colorization = parseFloat(value).toFixed(decimals)
+                        cfg_colorization = parseFloat(value).toFixed(decimals);
                     }
                 }
             }
         }
 
         RadioButton {
+            id: customColorizationColorRadio
             Kirigami.FormData.label: i18n("Color source:")
             text: i18n("Custom")
-            id: customColorizationColorRadio
             ButtonGroup.group: colorizationModeGroup
             property int index: 0
             checked: plasmoid.configuration.colorizationColorMode === index
             enabled: cfg_colorization > 0
         }
         RadioButton {
-            text: i18n("System")
             id: systemColorizationColorRadio
+            text: i18n("System")
             ButtonGroup.group: colorizationModeGroup
             property int index: 1
             checked: plasmoid.configuration.colorizationColorMode === index
@@ -542,7 +568,7 @@ KCM.SimpleKCM {
             id: colorizationModeGroup
             onCheckedButtonChanged: {
                 if (checkedButton) {
-                    cfg_colorizationColorMode = checkedButton.index
+                    cfg_colorizationColorMode = checkedButton.index;
                 }
             }
         }
@@ -554,7 +580,7 @@ KCM.SimpleKCM {
             dialogTitle: i18n("Colorization")
             color: cfg_colorizationColor
             onAccepted: {
-                cfg_colorizationColor = color
+                cfg_colorizationColor = color;
             }
             enabled: cfg_colorization > 0
             visible: customColorizationColorRadio.checked
@@ -587,7 +613,7 @@ KCM.SimpleKCM {
             checked: cfg_borderEnabled
             text: i18n("Draw rounded corners over wallpaper")
             onCheckedChanged: {
-                cfg_borderEnabled = checked
+                cfg_borderEnabled = checked;
             }
         }
 
@@ -597,27 +623,27 @@ KCM.SimpleKCM {
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Hide in:")
             id: effectsHideBorderInput
+            Kirigami.FormData.label: i18n("Hide in:")
         }
 
         TextField {
-            Kirigami.FormData.label: i18n("Show in:")
             id: effectsShowBorderInput
+            Kirigami.FormData.label: i18n("Show in:")
         }
 
         RadioButton {
+            id: customColorRadio
             Kirigami.FormData.label: i18n("Color source:")
             text: i18n("Custom")
-            id: customColorRadio
             ButtonGroup.group: colorModeGroup
             property int index: 0
             checked: plasmoid.configuration.borderColorMode === index
             enabled: borderEnabledCheckbox.checked
         }
         RadioButton {
-            text: i18n("System")
             id: systemColorRadio
+            text: i18n("System")
             ButtonGroup.group: colorModeGroup
             property int index: 1
             checked: plasmoid.configuration.borderColorMode === index
@@ -628,7 +654,7 @@ KCM.SimpleKCM {
             id: colorModeGroup
             onCheckedButtonChanged: {
                 if (checkedButton) {
-                    cfg_borderColorMode = checkedButton.index
+                    cfg_borderColorMode = checkedButton.index;
                 }
             }
         }
@@ -640,7 +666,7 @@ KCM.SimpleKCM {
             dialogTitle: i18n("Border Color")
             color: cfg_borderColor
             onAccepted: {
-                cfg_borderColor = color
+                cfg_borderColor = color;
             }
             enabled: borderEnabledCheckbox.checked
             visible: customColorRadio.checked
@@ -663,17 +689,16 @@ KCM.SimpleKCM {
         }
 
         SpinBox {
-            Kirigami.FormData.label: i18n("Radius:")
             id: borderRadiusSpinBox
+            Kirigami.FormData.label: i18n("Radius:")
             from: 0
             to: 145
             value: cfg_borderRadius
             onValueChanged: {
-                cfg_borderRadius = value
+                cfg_borderRadius = value;
             }
             enabled: borderEnabledCheckbox.checked
         }
-
 
         RowLayout {
             Kirigami.FormData.label: i18n("Shadow:")
@@ -692,7 +717,7 @@ KCM.SimpleKCM {
                 }
 
                 onValueChanged: {
-                    cfg_shadowBlur = isNaN(value) ? 0 : value
+                    cfg_shadowBlur = isNaN(value) ? 0 : value;
                 }
 
                 Components.ValueMouseControl {
@@ -707,7 +732,7 @@ KCM.SimpleKCM {
                     stepSize: 0.05
                     value: parent.value
                     onValueChanged: {
-                        cfg_shadowBlur = parseFloat(value).toFixed(decimals)
+                        cfg_shadowBlur = parseFloat(value).toFixed(decimals);
                     }
                 }
             }
@@ -719,46 +744,46 @@ KCM.SimpleKCM {
         }
 
         SpinBox {
-            Kirigami.FormData.label: i18n("Top:")
             id: marginTopSpinBox
+            Kirigami.FormData.label: i18n("Top:")
             from: 0
             to: 999
             value: cfg_borderMarginTop
             onValueChanged: {
-                cfg_borderMarginTop = value
+                cfg_borderMarginTop = value;
             }
             enabled: borderEnabledCheckbox.checked
         }
         SpinBox {
-            Kirigami.FormData.label: i18n("Bottom:")
             id: marginBottomSpinBox
+            Kirigami.FormData.label: i18n("Bottom:")
             from: 0
             to: 999
             value: cfg_borderMarginBottom
             onValueChanged: {
-                cfg_borderMarginBottom = value
+                cfg_borderMarginBottom = value;
             }
             enabled: borderEnabledCheckbox.checked
         }
         SpinBox {
-            Kirigami.FormData.label: i18n("Left:")
             id: marginLeftSpinBox
+            Kirigami.FormData.label: i18n("Left:")
             from: 0
             to: 999
             value: cfg_borderMarginLeft
             onValueChanged: {
-                cfg_borderMarginLeft = value
+                cfg_borderMarginLeft = value;
             }
             enabled: borderEnabledCheckbox.checked
         }
         SpinBox {
-            Kirigami.FormData.label: i18n("Right:")
             id: marginRightSpinBox
+            Kirigami.FormData.label: i18n("Right:")
             from: 0
             to: 999
             value: cfg_borderMarginRight
             onValueChanged: {
-                cfg_borderMarginRight = value
+                cfg_borderMarginRight = value;
             }
             enabled: borderEnabledCheckbox.checked
         }

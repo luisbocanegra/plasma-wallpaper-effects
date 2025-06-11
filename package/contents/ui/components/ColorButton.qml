@@ -36,8 +36,8 @@ Button {
         implicitWidth: btnL.implicitWidth + 8
         implicitHeight: btnL.implicitHeight
         RowLayout {
-            anchors.centerIn: parent
             id: btnL
+            anchors.centerIn: parent
 
             Rectangle {
                 color: root.color
@@ -52,7 +52,7 @@ Button {
 
             Label {
                 id: currentColorText
-                text: "<code>"+root.color.toString().toUpperCase()+"</code>"
+                text: "<code>" + root.color.toString().toUpperCase() + "</code>"
                 visible: root.showCurentColor
                 textFormat: Text.RichText
             }
@@ -75,7 +75,7 @@ Button {
                 options: root.showAlphaChannel
                 parentWindow: window.Window.window
                 onAccepted: {
-                    root.color = selectedColor
+                    root.color = selectedColor;
                     root.accepted(selectedColor);
                     window.destroy();
                 }
@@ -87,6 +87,6 @@ Button {
     }
 
     onClicked: {
-        colorWindowComponent.createObject(root)
+        colorWindowComponent.createObject(root);
     }
 }

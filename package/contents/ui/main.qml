@@ -38,21 +38,19 @@ PlasmoidItem {
     property var effectsShowBorder: plasmoid.configuration.effectsShowBorder.split(",").filter(Boolean)
     property bool effectHideBorder: effectsHideBorder.some(item => activeEffects.includes(item))
     property bool effectShowBorder: effectsShowBorder.some(item => activeEffects.includes(item))
-    property bool borderEnabled: (
-            plasmoid.configuration.borderEnabled && isEnabled && !effectHideBorder
-        ) || effectShowBorder
+    property bool borderEnabled: (plasmoid.configuration.borderEnabled && isEnabled && !effectHideBorder) || effectShowBorder
     property int borderColorMode: plasmoid.configuration.borderColorMode
     property int borderColorModeTheme: plasmoid.configuration.borderColorModeTheme
     property string borderColor: {
         if (borderColorMode === 0) {
-            return plasmoid.configuration.borderColor
+            return plasmoid.configuration.borderColor;
         } else {
-            return themeColors[borderColorModeTheme]
+            return themeColors[borderColorModeTheme];
         }
     }
     property int borderColorModeThemeVariant: plasmoid.configuration.borderColorModeThemeVariant
     property var borderColorScope: {
-        return themeScopes[borderColorModeThemeVariant]
+        return themeScopes[borderColorModeThemeVariant];
     }
     property int borderRadius: plasmoid.configuration.borderRadius
     property int borderMarginTop: plasmoid.configuration.borderMarginTop
@@ -67,21 +65,19 @@ PlasmoidItem {
     property real brightness: showColorEffects ? plasmoid.configuration.brightness : 0
     property real contrast: showColorEffects ? plasmoid.configuration.contrast : 0
     property real saturation: showColorEffects ? plasmoid.configuration.saturation : 0
-    property real colorization: showColorEffects
-        ? plasmoid.configuration.colorization
-        : 0
+    property real colorization: showColorEffects ? plasmoid.configuration.colorization : 0
     property int colorizationColorMode: plasmoid.configuration.colorizationColorMode
     property int colorizationColorModeTheme: plasmoid.configuration.colorizationColorModeTheme
     property string colorizationColor: {
         if (colorizationColorMode === 0) {
-            return plasmoid.configuration.colorizationColor
+            return plasmoid.configuration.colorizationColor;
         } else {
-            return themeColors[colorizationColorModeTheme]
+            return themeColors[colorizationColorModeTheme];
         }
     }
     property int colorizationColorModeThemeVariant: plasmoid.configuration.colorizationColorModeThemeVariant
     property var colorizationColorScope: {
-        return themeScopes[colorizationColorModeThemeVariant]
+        return themeScopes[colorizationColorModeThemeVariant];
     }
     property int animationDuration: plasmoid.configuration.animationDuration
     property real shadowBlur: plasmoid.configuration.shadowBlur
@@ -96,140 +92,108 @@ PlasmoidItem {
             }
             candidate = candidate.parent;
         }
-        return null
+        return null;
     }
     property var blurItem: null
     property var shaderItem: null
     property var roundedItem: null
     property var pixelateItem: null
-    property var themeColors: [
-        "textColor",
-        "disabledTextColor",
-        "highlightedTextColor",
-        "activeTextColor",
-        "linkColor",
-        "visitedLinkColor",
-        "negativeTextColor",
-        "neutralTextColor",
-        "positiveTextColor",
-        "backgroundColor",
-        "highlightColor",
-        "activeBackgroundColor",
-        "linkBackgroundColor",
-        "visitedLinkBackgroundColor",
-        "negativeBackgroundColor",
-        "neutralBackgroundColor",
-        "positiveBackgroundColor",
-        "alternateBackgroundColor",
-        "focusColor",
-        "hoverColor"
-    ]
+    property var themeColors: ["textColor", "disabledTextColor", "highlightedTextColor", "activeTextColor", "linkColor", "visitedLinkColor", "negativeTextColor", "neutralTextColor", "positiveTextColor", "backgroundColor", "highlightColor", "activeBackgroundColor", "linkBackgroundColor", "visitedLinkBackgroundColor", "negativeBackgroundColor", "neutralBackgroundColor", "positiveBackgroundColor", "alternateBackgroundColor", "focusColor", "hoverColor"]
 
-    property var themeScopes: [
-        "View",
-        "Window",
-        "Button",
-        "Selection",
-        "Tooltip",
-        "Complementary",
-        "Header"
-    ]
+    property var themeScopes: ["View", "Window", "Button", "Selection", "Tooltip", "Complementary", "Header"]
 
     property bool showBlur: {
-        let shouldBlur = false
-        switch(plasmoid.configuration.BlurMode) {
-            case 0:
-                shouldBlur = tasksModel.maximizedExists
-                break
-            case 1:
-                shouldBlur = tasksModel.activeExists
-                break
-            case 2:
-                shouldBlur = tasksModel.visibleExists
-                break
-            case 3:
-                shouldBlur = true
-                break
-            case 4:
-                shouldBlur = false
+        let shouldBlur = false;
+        switch (plasmoid.configuration.BlurMode) {
+        case 0:
+            shouldBlur = tasksModel.maximizedExists;
+            break;
+        case 1:
+            shouldBlur = tasksModel.activeExists;
+            break;
+        case 2:
+            shouldBlur = tasksModel.visibleExists;
+            break;
+        case 3:
+            shouldBlur = true;
+            break;
+        case 4:
+            shouldBlur = false;
         }
-        return (shouldBlur && isEnabled && !effectHideBlur) || effectShowBlur
+        return (shouldBlur && isEnabled && !effectHideBlur) || effectShowBlur;
     }
     property bool showGrain: {
-        let shouldGrain = true
-        switch(plasmoid.configuration.GrainMode) {
-            case 0:
-                shouldGrain = tasksModel.maximizedExists
-                break
-            case 1:
-                shouldGrain = tasksModel.activeExists
-                break
-            case 2:
-                shouldGrain = tasksModel.visibleExists
-                break
-            case 3:
-                shouldGrain = true
-                break
-            case 4:
-                shouldGrain = false
+        let shouldGrain = true;
+        switch (plasmoid.configuration.GrainMode) {
+        case 0:
+            shouldGrain = tasksModel.maximizedExists;
+            break;
+        case 1:
+            shouldGrain = tasksModel.activeExists;
+            break;
+        case 2:
+            shouldGrain = tasksModel.visibleExists;
+            break;
+        case 3:
+            shouldGrain = true;
+            break;
+        case 4:
+            shouldGrain = false;
         }
-        return (shouldGrain && isEnabled && !effectHideGrain) || effectShowGrain
+        return (shouldGrain && isEnabled && !effectHideGrain) || effectShowGrain;
     }
 
     property bool showColorEffects: {
-        let showEffect = true
-        switch(plasmoid.configuration.colorEffectsMode) {
-            case 0:
-                showEffect = tasksModel.maximizedExists
-                break
-            case 1:
-                showEffect = tasksModel.activeExists
-                break
-            case 2:
-                showEffect = tasksModel.visibleExists
-                break
-            case 3:
-                showEffect = true
-                break
-            case 4:
-                showEffect = false
+        let showEffect = true;
+        switch (plasmoid.configuration.colorEffectsMode) {
+        case 0:
+            showEffect = tasksModel.maximizedExists;
+            break;
+        case 1:
+            showEffect = tasksModel.activeExists;
+            break;
+        case 2:
+            showEffect = tasksModel.visibleExists;
+            break;
+        case 3:
+            showEffect = true;
+            break;
+        case 4:
+            showEffect = false;
         }
-        return (showEffect && isEnabled && !effectHideColorization) || effectShowColorization
+        return (showEffect && isEnabled && !effectHideColorization) || effectShowColorization;
     }
 
     property bool showPixelate: {
-        let shouldPixelate = true
-        switch(plasmoid.configuration.PixelateMode) {
-            case 0:
-                shouldPixelate = tasksModel.maximizedExists
-                break
-            case 1:
-                shouldPixelate = tasksModel.activeExists
-                break
-            case 2:
-                shouldPixelate = tasksModel.visibleExists
-                break
-            case 3:
-                shouldPixelate = true
-                break
-            case 4:
-                shouldPixelate = false
+        let shouldPixelate = true;
+        switch (plasmoid.configuration.PixelateMode) {
+        case 0:
+            shouldPixelate = tasksModel.maximizedExists;
+            break;
+        case 1:
+            shouldPixelate = tasksModel.activeExists;
+            break;
+        case 2:
+            shouldPixelate = tasksModel.visibleExists;
+            break;
+        case 3:
+            shouldPixelate = true;
+            break;
+        case 4:
+            shouldPixelate = false;
         }
-        return (shouldPixelate && isEnabled && !effectHidePixelate) || effectShowPixelate
+        return (shouldPixelate && isEnabled && !effectHidePixelate) || effectShowPixelate;
     }
 
     Plasmoid.backgroundHints: {
         if (main.inEditMode || !hideWidget) {
-            return PlasmaCore.Types.DefaultBackground
-        }
-        else {
-            return PlasmaCore.Types.NoBackground
+            return PlasmaCore.Types.DefaultBackground;
+        } else {
+            return PlasmaCore.Types.NoBackground;
         }
     }
 
-    toolTipSubText: !onDesktop
-        ? "⚠️ " + i18n("Wallpaper not found, this widget must be placed on the Desktop")
-        : Plasmoid.metaData.description
+    toolTipSubText: !onDesktop ? "⚠️ " + i18n("Wallpaper not found, this widget must be placed on the Desktop") : Plasmoid.metaData.description
     toolTipTextFormat: Text.RichText
     preferredRepresentation: compactRepresentation
     compactRepresentation: CompactRepresentation {
@@ -246,34 +210,30 @@ PlasmoidItem {
     EffectsModel {
         id: effectsModel
         active: {
-            return [
-                effectsShowBlur, effectsHideBlur,
-                effectsShowBorder, effectsHideBorder,
-                effectsShowColorization, effectsHideColorization
-                ].some(arr => arr.length > 0)
+            return [effectsShowBlur, effectsHideBlur, effectsShowBorder, effectsHideBorder, effectsShowColorization, effectsHideColorization].some(arr => arr.length > 0);
         }
     }
 
     function dumpProps(obj) {
         console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         for (var k of Object.keys(obj)) {
-            const val = obj[k]
-            if (typeof val === 'function') continue
-            if (k === 'metaData') continue
-            print(k + "=" + val+"\n")
+            const val = obj[k];
+            if (typeof val === 'function')
+                continue;
+            if (k === 'metaData')
+                continue;
+            print(k + "=" + val + "\n");
         }
     }
 
     property Component blurComponent: MultiEffect {
-        property var target
         id: effect
+        property var target
         height: target.height
         width: target.width
         source: target
         visible: {
-            return !(blurMax === 0 && brightness === 0 && contrast === 0
-                && saturation === 0 && colorization === 0
-            )
+            return !(blurMax === 0 && brightness === 0 && contrast === 0 && saturation === 0 && colorization === 0);
         }
         blurEnabled: true
         blurMax: blurRadius
@@ -287,9 +247,9 @@ PlasmoidItem {
         Kirigami.Theme.inherit: false
         colorizationColor: {
             if (main.colorizationColor.startsWith("#")) {
-                return main.colorizationColor
+                return main.colorizationColor;
             } else {
-                return Kirigami.Theme[main.colorizationColor]
+                return Kirigami.Theme[main.colorizationColor];
             }
         }
         Behavior on blurMax {
@@ -331,18 +291,18 @@ PlasmoidItem {
     }
 
     property Component pixelateEffect: ShaderEffect {
+        id: pixelate
         property var blurItem
         property var effectsSource
-        id: pixelate
         height: blurItem.height
         width: blurItem.width
 
         property var source: ShaderEffectSource {
             sourceItem: {
                 if (!pixelate.visible) {
-                    return null
+                    return null;
                 }
-                return pixelate.blurItem.visible ? pixelate.blurItem : pixelate.effectsSource
+                return pixelate.blurItem.visible ? pixelate.blurItem : pixelate.effectsSource;
             }
             live: true
             hideSource: pixelate.visible
@@ -362,22 +322,22 @@ PlasmoidItem {
     }
 
     property Component grainEffect: ShaderEffect {
+        id: shader
         property var blurItem
         property var effectsSource
         property var pixelateItem
-        id: shader
         height: blurItem.height
         width: blurItem.width
 
         property var source: ShaderEffectSource {
             sourceItem: {
                 if (!shader.visible) {
-                    return null
+                    return null;
                 }
                 if (shader.pixelateItem.visible) {
-                    return pixelateItem
+                    return pixelateItem;
                 }
-                return shader.blurItem.visible ? shader.blurItem : shader.effectsSource
+                return shader.blurItem.visible ? shader.blurItem : shader.effectsSource;
             }
             live: true
             hideSource: shader.visible
@@ -398,19 +358,19 @@ PlasmoidItem {
         visible: grain_amount !== 0
         fragmentShader: {
             if (!visible) {
-                return ""
+                return "";
             }
             if (plasmoid.configuration.grainOpenGL2Mode) {
-                return Qt.resolvedUrl("shaders/grainOpenGL2.frag.qsb")
+                return Qt.resolvedUrl("shaders/grainOpenGL2.frag.qsb");
             }
-            return Qt.resolvedUrl("shaders/grain.frag.qsb")
+            return Qt.resolvedUrl("shaders/grain.frag.qsb");
         }
     }
 
     property Component roundedComponent: Rectangle {
+        id: overlayRectangle
         property var target
         anchors.fill: target
-        id: overlayRectangle
         opacity: borderEnabled ? 1 : 0
         visible: opacity !== 0
         z: 1000
@@ -418,9 +378,9 @@ PlasmoidItem {
         Kirigami.Theme.inherit: false
         color: {
             if (main.borderColor.startsWith("#")) {
-                return main.borderColor
+                return main.borderColor;
             } else {
-                return Kirigami.Theme[main.borderColor]
+                return Kirigami.Theme[main.borderColor];
             }
         }
         width: target.width
@@ -436,7 +396,7 @@ PlasmoidItem {
             radius: borderEnabled ? borderRadius : 0
             color: parent.color
             border {
-                color: Qt.rgba(Kirigami.Theme.highlightColor.r,Kirigami.Theme.highlightColor.g,Kirigami.Theme.highlightColor.b,0)
+                color: Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0)
                 width: 2
             }
             layer.enabled: true
@@ -472,7 +432,7 @@ PlasmoidItem {
                         anchors.bottomMargin: borderMarginBottom
                         anchors.leftMargin: borderMarginLeft
                         anchors.rightMargin: borderMarginRight
-                        radius: borderEnabled ? borderRadius -2: 0
+                        radius: borderEnabled ? borderRadius - 2 : 0
                         Behavior on radius {
                             NumberAnimation {
                                 duration: 100
@@ -490,76 +450,71 @@ PlasmoidItem {
     }
 
     function findBlurSource(element, root) {
-        if (!element.children) return null
-        var visibleChildren = element.children.filter(function(child) {
+        if (!element.children)
+            return null;
+        var visibleChildren = element.children.filter(function (child) {
             return child.height === root.height && child.width === root.width && child.visible;
         });
-        return visibleChildren[visibleChildren.length - 1]
+        return visibleChildren[visibleChildren.length - 1];
     }
 
     function applyEffects() {
-        if (!wallpaperItem) return
-        var effectsSource = findBlurSource(wallpaperItem, rootItem)
+        if (!wallpaperItem)
+            return;
+        var effectsSource = findBlurSource(wallpaperItem, rootItem);
         if (effectsSource) {
-            blurItem = blurComponent.createObject(
-                wallpaperItem,
-                {
-                    "target": effectsSource
-                }
-            )
-            pixelateItem = pixelateEffect.createObject(
-                wallpaperItem,
-                {
-                    "blurItem": blurItem,
-                    "effectsSource": effectsSource
-                }
-            )
-            shaderItem = grainEffect.createObject(
-                wallpaperItem,
-                {
-                    "blurItem": blurItem,
-                    "pixelateItem": pixelateItem,
-                    "effectsSource": effectsSource
-                }
-            )
+            blurItem = blurComponent.createObject(wallpaperItem, {
+                "target": effectsSource
+            });
+            pixelateItem = pixelateEffect.createObject(wallpaperItem, {
+                "blurItem": blurItem,
+                "effectsSource": effectsSource
+            });
+            shaderItem = grainEffect.createObject(wallpaperItem, {
+                "blurItem": blurItem,
+                "pixelateItem": pixelateItem,
+                "effectsSource": effectsSource
+            });
         }
-        roundedItem = roundedComponent.createObject(
-            wallpaperItem,
-            { 
-                "target" : wallpaperItem
-            }
-        )
+        roundedItem = roundedComponent.createObject(wallpaperItem, {
+            "target": wallpaperItem
+        });
     }
 
     function cleanupEffects() {
-        if (blurItem) blurItem.destroy()
-        if (roundedItem) roundedItem.destroy()
-        if (shaderItem) shaderItem.destroy()
-        if (pixelateItem) pixelateItem.destroy()
+        if (blurItem)
+            blurItem.destroy();
+        if (roundedItem)
+            roundedItem.destroy();
+        if (shaderItem)
+            shaderItem.destroy();
+        if (pixelateItem)
+            pixelateItem.destroy();
     }
 
     function restart() {
-        if (!wallpaperPluginName || !containmentObjectName) return
-        cleanupEffects()
-        applyEffects()
+        if (!wallpaperPluginName || !containmentObjectName)
+            return;
+        cleanupEffects();
+        applyEffects();
     }
 
     onWallpaperPluginNameChanged: {
-        restart()
+        restart();
     }
     onContainmentObjectNameChanged: {
-        restart()
+        restart();
     }
 
     Connections {
         target: Qt.application
         function onAboutToQuit() {
-            cleanupEffects()
+            cleanupEffects();
         }
     }
 
     Component.onDestruction: {
-        cleanupEffects()
+        cleanupEffects();
     }
 
     Timer {
@@ -569,7 +524,7 @@ PlasmoidItem {
         interval: 33
         onTriggered: {
             if (shaderItem) {
-                shaderItem.time += 0.033
+                shaderItem.time += 0.033;
             }
         }
     }

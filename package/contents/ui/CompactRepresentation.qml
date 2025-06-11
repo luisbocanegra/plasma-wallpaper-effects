@@ -28,5 +28,4 @@ MouseArea {
             visible: !onDesktop || main.inEditMode || !main.hideWidget
         }
     }
-
 }

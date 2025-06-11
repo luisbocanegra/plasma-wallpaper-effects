@@ -32,9 +32,10 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
             onClicked: {
-                root.parent.forceActiveFocus()
-                if (value < to) value += stepSize
-                value = Math.max(from, Math.min(to, value)).toFixed(decimals)
+                root.parent.forceActiveFocus();
+                if (value < to)
+                    value += stepSize;
+                value = Math.max(from, Math.min(to, value)).toFixed(decimals);
             }
         }
     }
@@ -52,9 +53,10 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
             onClicked: {
-                root.parent.forceActiveFocus()
-                if (value > from) value -= stepSize
-                value = Math.max(from, Math.min(to, value)).toFixed(decimals)
+                root.parent.forceActiveFocus();
+                if (value > from)
+                    value -= stepSize;
+                value = Math.max(from, Math.min(to, value)).toFixed(decimals);
             }
         }
     }
@@ -63,13 +65,13 @@ Item {
         anchors.fill: parent
         propagateComposedEvents: true
         onWheel: {
-            root.parent.forceActiveFocus()
-            if(wheel.angleDelta.y > 0 && value < to) {
-                value += stepSize
+            root.parent.forceActiveFocus();
+            if (wheel.angleDelta.y > 0 && value < to) {
+                value += stepSize;
             } else if (wheel.angleDelta.y < 0 && value > from) {
-                value -= stepSize
+                value -= stepSize;
             }
-            value = Math.max(from, Math.min(to, value)).toFixed(decimals)
+            value = Math.max(from, Math.min(to, value)).toFixed(decimals);
         }
     }
 }
