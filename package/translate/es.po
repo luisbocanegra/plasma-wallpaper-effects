@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
-"POT-Creation-Date: 2025-06-12 05:45+0000\n"
+"POT-Creation-Date: 2025-06-12 18:32+0000\n"
 "PO-Revision-Date: 2024-05-31 01:17-0600\n"
 "Last-Translator: Luis Bocanegra <luisbocanegra17b@gmail.com>\n"
 "Language-Team: none\n"
@@ -177,11 +177,11 @@ msgid "Hide widget:"
 msgstr "Ocultar widget:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Widget will show in Desktop Edit Mode"
-msgstr "El widget se mostrará en el modo de edición de escritorio"
+msgid "Animation duration (ms):"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Animation duration:"
+msgid "In"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -340,6 +340,29 @@ msgstr "Derecha:"
 msgid "Wallpaper not found, this widget must be placed on the Desktop"
 msgstr ""
 "Fondo de pantalla no encontrado, este widget debe colocarse en el Escritorio"
+
+#: ../contents/ui/main.qml
+msgid "Configure %1"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Disable"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Enable"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Show"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Hide"
+msgstr ""
+
+#~ msgid "Widget will show in Desktop Edit Mode"
+#~ msgstr "El widget se mostrará en el modo de edición de escritorio"
 
 #~ msgid "Filter:"
 #~ msgstr "Filtro:"
