@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
-"POT-Creation-Date: 2025-06-12 05:45+0000\n"
+"POT-Creation-Date: 2025-06-12 18:32+0000\n"
 "PO-Revision-Date: 2025-03-25 11:29+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -176,12 +176,12 @@ msgid "Hide widget:"
 msgstr "Widget verbergen:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Widget will show in Desktop Edit Mode"
-msgstr "De widget wordt wel getoond in de bewerkmodus"
+msgid "Animation duration (ms):"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Animation duration:"
-msgstr "Animatieduur:"
+msgid "In"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Filter windows:"
@@ -340,6 +340,32 @@ msgstr "Rechts:"
 msgid "Wallpaper not found, this widget must be placed on the Desktop"
 msgstr ""
 "Er is geen achtergrond aangetroffen - plaats deze widget op het bureaublad"
+
+#: ../contents/ui/main.qml
+msgid "Configure %1"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Disable"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Enable"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Show"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Hide"
+msgstr ""
+
+#~ msgid "Widget will show in Desktop Edit Mode"
+#~ msgstr "De widget wordt wel getoond in de bewerkmodus"
+
+#~ msgid "Animation duration:"
+#~ msgstr "Animatieduur:"
 
 #~ msgid "Filter:"
 #~ msgstr "Filter:"

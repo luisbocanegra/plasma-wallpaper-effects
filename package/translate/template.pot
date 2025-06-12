@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-effects\n"
-"POT-Creation-Date: 2025-06-12 05:45+0000\n"
+"POT-Creation-Date: 2025-06-12 18:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,11 +174,11 @@ msgid "Hide widget:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Widget will show in Desktop Edit Mode"
+msgid "Animation duration (ms):"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Animation duration:"
+msgid "In"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -331,4 +331,24 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Wallpaper not found, this widget must be placed on the Desktop"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Configure %1"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Disable"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Enable"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Show"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Hide"
 msgstr ""
