@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.5.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.4.3...v0.5.0) (2025-06-12)
+
+
+### Features
+
+* add enable and configure actions to wallpaper right-click menu ([aee119c](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/aee119c8769d95705f9fb3954e520160b44584a0))
+* allow disabling grain change animation & disable by default ([5e7181f](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/5e7181f4e1da4897c961440555f2b51bfb214a11))
+* different fade in/out animation duration ([d253324](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/d25332498260991ac2dd1be49c5fd4a0bc65e9b9))
+* enable and hide actions to widget right-click menu ([e1f7a30](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/e1f7a30355d4f6aabd0b3015e1aec1f134834d69))
+* major configuration and desktop effects refactoring ([7cfb23d](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/7cfb23d2308af238cf38ae9faf96e0d55e8285b2))
+
+
+### Bug Fixes
+
+* effects stop working after switching layout (Desktop/Folder View) ([bcfb8c4](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/bcfb8c49acb67593d3d977b7c09a678f920c06d4))
+
 ## [0.4.3](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.4.2...v0.4.3) (2025-03-21)
 
 
