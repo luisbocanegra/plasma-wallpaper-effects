@@ -10,7 +10,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id: root
-    property bool cfg_hideWidget: hideWidget.checked
+    property alias cfg_hideWidget: hideWidget.checked
     property alias cfg_BlurMode: blurModeCombo.currentIndex
     property alias cfg_GrainMode: grainModeCombo.currentIndex
     property alias cfg_effectsShowGrain: effectsShowGrainInput.text
@@ -19,8 +19,7 @@ KCM.SimpleKCM {
     property alias cfg_effectsHidePixelate: effectsHidePixelateInput.text
     property alias cfg_grainAnimate: grainAnimateCheckbox.checked
     property alias cfg_grainOpenGL2Mode: grainOpenGL2ModeCheckbox.checked
-    property real cfg_grainSize: grainSizeInput.text
-    property real cfg_grainAmount: grainAmountInput.text
+    property real cfg_grainAmount: grainAmountInput.value
     property alias cfg_PixelateMode: pixelateModeCombo.currentIndex
     property alias cfg_pixelatePixelSize: pixelatePixelSizeSpinBox.value
     property alias cfg_CheckActiveScreen: activeScreenOnlyCheckbx.checked
@@ -36,14 +35,14 @@ KCM.SimpleKCM {
     property alias cfg_borderMarginBottom: marginBottomSpinBox.value
     property alias cfg_borderMarginLeft: marginLeftSpinBox.value
     property alias cfg_borderMarginRight: marginRightSpinBox.value
-    property real cfg_brightness: brightnessInput.text
-    property real cfg_contrast: contrastInput.text
-    property real cfg_saturation: saturationInput.text
-    property real cfg_colorization: colorizationInput.text
+    property real cfg_brightness: brightnessInput.value
+    property real cfg_contrast: contrastInput.value
+    property real cfg_saturation: saturationInput.value
+    property real cfg_colorization: colorizationInput.value
     property int cfg_colorizationColorMode: plasmoid.configuration.colorizationColorMode
     property alias cfg_colorizationColorModeTheme: colorizationColorModeTheme.currentIndex
     property alias cfg_colorizationColorModeThemeVariant: colorizationColorModeThemeVariant.currentIndex
-    property alias cfg_colorizationColor: colorizationColorButton.color
+    property string cfg_colorizationColor
     property alias cfg_colorEffectsMode: colorEffectsModeCombo.currentIndex
     property alias cfg_effectsShowBlur: effectsShowBlurInput.text
     property alias cfg_effectsHideBlur: effectsHideBlurInput.text
@@ -52,7 +51,7 @@ KCM.SimpleKCM {
     property alias cfg_effectsShowBorder: effectsShowBorderInput.text
     property alias cfg_effectsHideBorder: effectsHideBorderInput.text
     property alias cfg_animationDuration: animationDurationSpinBox.value
-    property real cfg_shadowBlur: shadowBlurInput.text
+    property real cfg_shadowBlur: shadowBlurInput.value
     //TODO remove // when qmlformat off/on becomes a thing
     property var systemColors: [//
         i18n("Text"),
@@ -136,656 +135,499 @@ KCM.SimpleKCM {
         }
     }
 
-    Kirigami.FormLayout {
-        CheckBox {
-            id: isEnabledCheckbox
-            Kirigami.FormData.label: i18n("Enabled:")
-            checked: cfg_isEnabled
-            onCheckedChanged: cfg_isEnabled = checked
-        }
-        CheckBox {
-            id: hideWidget
-            Kirigami.FormData.label: i18n("Hide widget:")
-            text: i18n("Widget will show in Desktop Edit Mode")
-            checked: cfg_hideWidget
-            onCheckedChanged: cfg_hideWidget = checked
-        }
-
-        SpinBox {
-            id: animationDurationSpinBox
-            Kirigami.FormData.label: i18n("Animation duration:")
-            from: 0
-            to: 2000000000
-            stepSize: 100
-            value: cfg_animationDuration
-            onValueChanged: {
-                cfg_animationDuration = value;
+    EffectsModel {
+        id: effects
+        monitorActive: true
+        monitorLoaded: true
+        monitorActiveInterval: 500
+    }
+    ColumnLayout {
+        Kirigami.FormLayout {
+            id: form1
+            CheckBox {
+                id: isEnabledCheckbox
+                Kirigami.FormData.label: i18n("Enabled:")
             }
         }
 
-        CheckBox {
-            id: activeScreenOnlyCheckbx
-            Kirigami.FormData.label: i18n("Filter:")
-            checked: cfg_CheckActiveScreen
-            text: i18n("Only check for windows in active screen")
-            onCheckedChanged: {
-                cfg_CheckActiveScreen = checked;
+        Kirigami.FormLayout {
+            enabled: isEnabledCheckbox.checked
+            twinFormLayouts: [form1]
+            RowLayout {
+                Kirigami.FormData.label: i18n("Hide widget:")
+                CheckBox {
+                    id: hideWidget
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Widget will show in Desktop Edit Mode")
+                }
             }
-        }
 
-        Button {
-            text: i18n("How to get active Desktop Effects")
-            onClicked: {
-                activeEffectsNote.visible = !activeEffectsNote.visible;
-            }
-        }
-
-        TextEdit {
-            id: activeEffectsNote
-            wrapMode: Text.Wrap
-            Layout.maximumWidth: 400
-            readOnly: true
-            textFormat: TextEdit.RichText
-            text: i18n("To get the currently active Desktop Effects run the following in a terminal:") + "<br><strong><code>while sleep 1; do gdbus call --session --dest org.kde.KWin.Effect.WindowView1 --object-path /Effects --method org.freedesktop.DBus.Properties.Get org.kde.kwin.Effects activeEffects; done</code></strong>"
-            color: Kirigami.Theme.textColor
-            selectedTextColor: Kirigami.Theme.highlightedTextColor
-            selectionColor: Kirigami.Theme.highlightColor
-            visible: false
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Blur")
-        }
-
-        ComboBox {
-            id: blurModeCombo
-            Kirigami.FormData.label: i18n("Enable:")
-            model: effectStates
-            textRole: "label"
-            onCurrentIndexChanged: cfg_BlurMode = currentIndex
-            currentIndex: cfg_BlurMode
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Desktop Effects")
-            Layout.fillWidth: true
-        }
-
-        TextField {
-            id: effectsHideBlurInput
-            Kirigami.FormData.label: i18n("Hide in:")
-        }
-
-        TextField {
-            id: effectsShowBlurInput
-            Kirigami.FormData.label: i18n("Show in:")
-        }
-
-        RowLayout {
-            visible: cfg_BlurMode !== 4
-            Kirigami.FormData.label: i18n("Blur radius:")
             SpinBox {
-                id: blurRadiusSpinBox
+                id: animationDurationSpinBox
+                Kirigami.FormData.label: i18n("Animation duration:")
+                from: 0
+                to: 3600000
+                stepSize: 100
+            }
+
+            CheckBox {
+                id: activeScreenOnlyCheckbx
+                Kirigami.FormData.label: i18n("Filter windows:")
+                text: i18n("This screen only")
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Blur")
+            }
+
+            ComboBox {
+                id: blurModeCombo
+                Kirigami.FormData.label: i18n("Enable:")
+                model: effectStates
+                textRole: "label"
+            }
+
+            RowLayout {
+                enabled: blurModeCombo.currentIndex !== 4
+                Kirigami.FormData.label: i18n("Blur radius:")
+                SpinBox {
+                    id: blurRadiusSpinBox
+                    from: 0
+                    to: 145
+                }
+
+                Button {
+                    visible: blurRadiusSpinBox.visible && cfg_BlurRadius > 64
+                    icon.name: "dialog-warning-symbolic"
+                    ToolTip.text: i18n("Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!")
+                    highlighted: true
+                    hoverEnabled: true
+                    ToolTip.visible: hovered
+                    Kirigami.Theme.inherit: false
+                    Kirigami.Theme.textColor: root.Kirigami.Theme.neutralTextColor
+                    Kirigami.Theme.highlightColor: root.Kirigami.Theme.neutralTextColor
+                    icon.color: Kirigami.Theme.neutralTextColor
+                }
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.label: i18n("Desktop Effects")
+                Layout.fillWidth: true
+            }
+
+            Components.CheckableValueListView {
+                id: effectsHideBlurInput
+                Kirigami.FormData.label: i18n("Hide in:")
+                model: effects.loadedEffects
+                enabled: blurModeCombo.currentIndex !== 4
+            }
+
+            Components.CheckableValueListView {
+                id: effectsShowBlurInput
+                Kirigami.FormData.label: i18n("Show in:")
+                model: effects.loadedEffects
+                enabled: blurModeCombo.currentIndex !== 4
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Pixelate Effect")
+            }
+
+            ComboBox {
+                id: pixelateModeCombo
+                Kirigami.FormData.label: i18n("Enable:")
+                model: effectStates
+                textRole: "label"
+                onCurrentIndexChanged: cfg_PixelateMode = currentIndex
+                currentIndex: cfg_PixelateMode
+            }
+
+            SpinBox {
+                id: pixelatePixelSizeSpinBox
+                Kirigami.FormData.label: i18n("Pixel size:")
+                from: 0
+                to: 100
+                enabled: pixelateModeCombo.currentIndex !== 4
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.label: i18n("Desktop Effects")
+                Layout.fillWidth: true
+            }
+
+            Components.CheckableValueListView {
+                id: effectsHidePixelateInput
+                Kirigami.FormData.label: i18n("Hide in:")
+                model: effects.loadedEffects
+                enabled: pixelateModeCombo.currentIndex !== 4
+            }
+
+            Components.CheckableValueListView {
+                id: effectsShowPixelateInput
+                Kirigami.FormData.label: i18n("Show in:")
+                model: effects.loadedEffects
+                enabled: pixelateModeCombo.currentIndex !== 4
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Grain Effect")
+            }
+
+            ComboBox {
+                id: grainModeCombo
+                Kirigami.FormData.label: i18n("Enable:")
+                model: effectStates
+                textRole: "label"
+            }
+
+            RowLayout {
+                Kirigami.FormData.label: i18n("OpenGL ES 2.0 mode:")
+                CheckBox {
+                    id: grainOpenGL2ModeCheckbox
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Less random grain but supports older devices")
+                }
+                enabled: grainModeCombo.currentIndex !== 4
+            }
+
+            CheckBox {
+                id: grainAnimateCheckbox
+                Kirigami.FormData.label: i18n("Animate:")
+                enabled: grainModeCombo.currentIndex !== 4
+            }
+
+            Components.DoubleSpinBox {
+                id: grainAmountInput
+                Kirigami.FormData.label: i18n("Grain amount:")
+                from: 0 * multiplier
+                to: 1 * multiplier
+                value: root.cfg_grainAmount * multiplier
+                onValueModified: {
+                    root.cfg_grainAmount = value / grainAmountInput.multiplier;
+                }
+                enabled: grainModeCombo.currentIndex !== 4
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.label: i18n("Desktop Effects")
+                Layout.fillWidth: true
+            }
+
+            Components.CheckableValueListView {
+                id: effectsHideGrainInput
+                Kirigami.FormData.label: i18n("Hide in:")
+                model: effects.loadedEffects
+                enabled: grainModeCombo.currentIndex !== 4
+            }
+
+            Components.CheckableValueListView {
+                id: effectsShowGrainInput
+                Kirigami.FormData.label: i18n("Show in:")
+                model: effects.loadedEffects
+                enabled: grainModeCombo.currentIndex !== 4
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Color Effects")
+            }
+            ComboBox {
+                id: colorEffectsModeCombo
+                Kirigami.FormData.label: i18n("Enable:")
+                model: effectStates
+                textRole: "label"
+            }
+
+            Components.DoubleSpinBox {
+                id: brightnessInput
+                Kirigami.FormData.label: i18n("Brightness:")
+                from: -1 * multiplier
+                to: 1 * multiplier
+                value: root.cfg_brightness * multiplier
+                onValueModified: {
+                    root.cfg_brightness = value / brightnessInput.multiplier;
+                }
+                enabled: colorEffectsModeCombo.currentIndex !== 4
+            }
+            Components.DoubleSpinBox {
+                id: contrastInput
+                Kirigami.FormData.label: i18n("Contrast:")
+                from: -1 * multiplier
+                to: 1 * multiplier
+                value: root.cfg_contrast * multiplier
+                onValueModified: {
+                    root.cfg_contrast = value / contrastInput.multiplier;
+                }
+                enabled: colorEffectsModeCombo.currentIndex !== 4
+            }
+            Components.DoubleSpinBox {
+                id: saturationInput
+                Kirigami.FormData.label: i18n("Saturation:")
+                from: 0 * multiplier
+                to: 1 * multiplier
+                value: root.cfg_saturation * multiplier
+                onValueModified: {
+                    root.cfg_saturation = value / saturationInput.multiplier;
+                }
+                enabled: colorEffectsModeCombo.currentIndex !== 4
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.label: i18n("Colorization")
+                Layout.fillWidth: true
+            }
+
+            Components.DoubleSpinBox {
+                id: colorizationInput
+                Kirigami.FormData.label: i18n("Amount:")
+                from: 0 * multiplier
+                to: 1 * multiplier
+                value: root.cfg_colorization * multiplier
+                onValueModified: {
+                    root.cfg_colorization = value / colorizationInput.multiplier;
+                }
+                enabled: colorEffectsModeCombo.currentIndex !== 4
+            }
+
+            RadioButton {
+                id: customColorizationColorRadio
+                Kirigami.FormData.label: i18n("Color source:")
+                text: i18n("Custom")
+                ButtonGroup.group: colorizationModeGroup
+                property int index: 0
+                checked: plasmoid.configuration.colorizationColorMode === index
+                enabled: cfg_colorization > 0 && colorEffectsModeCombo.currentIndex !== 4
+            }
+            RadioButton {
+                id: systemColorizationColorRadio
+                text: i18n("System")
+                ButtonGroup.group: colorizationModeGroup
+                property int index: 1
+                checked: plasmoid.configuration.colorizationColorMode === index
+                enabled: cfg_colorization > 0 && colorEffectsModeCombo.currentIndex !== 4
+            }
+
+            ButtonGroup {
+                id: colorizationModeGroup
+                onCheckedButtonChanged: {
+                    if (checkedButton) {
+                        cfg_colorizationColorMode = checkedButton.index;
+                    }
+                }
+            }
+
+            Components.ColorButton {
+                id: colorizationColorButton
+                showAlphaChannel: false
+                Kirigami.FormData.label: i18n("Color:")
+                dialogTitle: i18n("Colorization")
+                color: cfg_colorizationColor
+                onAccepted: {
+                    cfg_colorizationColor = color;
+                }
+                enabled: cfg_colorization > 0 && colorEffectsModeCombo.currentIndex !== 4
+                visible: customColorizationColorRadio.checked
+            }
+
+            ComboBox {
+                id: colorizationColorModeTheme
+                Kirigami.FormData.label: i18n("Color:")
+                model: systemColors
+                visible: systemColorizationColorRadio.checked
+                enabled: cfg_colorization > 0 && colorEffectsModeCombo.currentIndex !== 4
+            }
+
+            ComboBox {
+                id: colorizationColorModeThemeVariant
+                Kirigami.FormData.label: i18n("Color set:")
+                model: systemColorSets
+                visible: systemColorizationColorRadio.checked
+                enabled: cfg_colorization > 0 && colorEffectsModeCombo.currentIndex !== 4
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.label: i18n("Desktop Effects")
+                Layout.fillWidth: true
+            }
+
+            Components.CheckableValueListView {
+                id: effectsHideColorizationInput
+                Kirigami.FormData.label: i18n("Hide in:")
+                model: effects.loadedEffects
+                enabled: colorEffectsModeCombo.currentIndex !== 4
+            }
+
+            Components.CheckableValueListView {
+                id: effectsShowColorizationInput
+                Kirigami.FormData.label: i18n("Show in:")
+                model: effects.loadedEffects
+                enabled: colorEffectsModeCombo.currentIndex !== 4
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Rounded Corners")
+            }
+
+            RowLayout {
+                Kirigami.FormData.label: i18n("Enable:")
+                CheckBox {
+                    id: borderEnabledCheckbox
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Draw rounded corners on top of the wallpaper")
+                }
+            }
+
+            RadioButton {
+                id: customColorRadio
+                Kirigami.FormData.label: i18n("Color source:")
+                text: i18n("Custom")
+                ButtonGroup.group: colorModeGroup
+                property int index: 0
+                checked: plasmoid.configuration.borderColorMode === index
+                enabled: borderEnabledCheckbox.checked
+            }
+            RadioButton {
+                id: systemColorRadio
+                text: i18n("System")
+                ButtonGroup.group: colorModeGroup
+                property int index: 1
+                checked: plasmoid.configuration.borderColorMode === index
+                enabled: borderEnabledCheckbox.checked
+            }
+
+            ButtonGroup {
+                id: colorModeGroup
+                onCheckedButtonChanged: {
+                    if (checkedButton) {
+                        cfg_borderColorMode = checkedButton.index;
+                    }
+                }
+            }
+
+            Components.ColorButton {
+                id: borderColorButton
+                showAlphaChannel: false
+                Kirigami.FormData.label: i18n("Color:")
+                dialogTitle: i18n("Border Color")
+                color: cfg_borderColor
+                onAccepted: {
+                    cfg_borderColor = color;
+                }
+                enabled: borderEnabledCheckbox.checked
+                visible: customColorRadio.checked
+            }
+
+            ComboBox {
+                id: borderModeTheme
+                Kirigami.FormData.label: i18n("Color:")
+                model: systemColors
+                visible: systemColorRadio.checked
+                enabled: borderEnabledCheckbox.checked
+            }
+
+            ComboBox {
+                id: borderModeThemeVariant
+                Kirigami.FormData.label: i18n("Color set:")
+                model: systemColorSets
+                visible: systemColorRadio.checked
+                enabled: borderEnabledCheckbox.checked
+            }
+
+            SpinBox {
+                id: borderRadiusSpinBox
+                Kirigami.FormData.label: i18n("Radius:")
                 from: 0
                 to: 145
-                value: cfg_BlurRadius
-                onValueChanged: {
-                    cfg_BlurRadius = value;
-                }
+                enabled: borderEnabledCheckbox.checked
             }
 
-            Button {
-                visible: blurRadiusSpinBox.visible && cfg_BlurRadius > 64
-                icon.name: "dialog-warning-symbolic"
-                ToolTip.text: i18n("Quality of the blur is reduced if value exceeds 64. Higher values may cause the blur to stop working!")
-                highlighted: true
-                hoverEnabled: true
-                ToolTip.visible: hovered
-                Kirigami.Theme.inherit: false
-                Kirigami.Theme.textColor: root.Kirigami.Theme.neutralTextColor
-                Kirigami.Theme.highlightColor: root.Kirigami.Theme.neutralTextColor
-                icon.color: Kirigami.Theme.neutralTextColor
-            }
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Pixelate Effect")
-        }
-
-        ComboBox {
-            id: pixelateModeCombo
-            Kirigami.FormData.label: i18n("Enable:")
-            model: effectStates
-            textRole: "label"
-            onCurrentIndexChanged: cfg_PixelateMode = currentIndex
-            currentIndex: cfg_PixelateMode
-        }
-
-        SpinBox {
-            id: pixelatePixelSizeSpinBox
-            Kirigami.FormData.label: i18n("Pixel size:")
-            from: 0
-            to: 100
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Desktop Effects")
-            Layout.fillWidth: true
-        }
-
-        TextField {
-            id: effectsHidePixelateInput
-            Kirigami.FormData.label: i18n("Hide in:")
-        }
-
-        TextField {
-            id: effectsShowPixelateInput
-            Kirigami.FormData.label: i18n("Show in:")
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Grain Effect")
-        }
-
-        ComboBox {
-            id: grainModeCombo
-            Kirigami.FormData.label: i18n("Enable:")
-            model: effectStates
-            textRole: "label"
-            onCurrentIndexChanged: cfg_GrainMode = currentIndex
-            currentIndex: cfg_GrainMode
-        }
-
-        CheckBox {
-            id: grainOpenGL2ModeCheckbox
-            Kirigami.FormData.label: i18n("OpenGL ES 2.0 mode:")
-            checked: cfg_grainOpenGL2Mode
-            text: i18n("Less random grain but supports older devices")
-        }
-
-        CheckBox {
-            id: grainAnimateCheckbox
-            Kirigami.FormData.label: i18n("Animate:")
-            checked: cfg_grainAnimate
-        }
-
-        RowLayout {
-            Kirigami.FormData.label: i18n("Grain amount:")
-            TextField {
-                id: grainAmountInput
-                placeholderText: "0-1"
-                text: cfg_grainAmount
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-                property real value: parseFloat(text).toFixed(validator.decimals)
-
-                validator: DoubleValidator {
-                    bottom: 0.0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onValueChanged: {
-                    cfg_grainAmount = isNaN(value) ? 0 : value;
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: parent.value
-                    onValueChanged: {
-                        cfg_grainAmount = parseFloat(value).toFixed(decimals);
-                    }
-                }
-            }
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Desktop Effects")
-            Layout.fillWidth: true
-        }
-
-        TextField {
-            id: effectsHideGrainInput
-            Kirigami.FormData.label: i18n("Hide in:")
-        }
-
-        TextField {
-            id: effectsShowGrainInput
-            Kirigami.FormData.label: i18n("Show in:")
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Color Effects")
-        }
-        ComboBox {
-            id: colorEffectsModeCombo
-            Kirigami.FormData.label: i18n("Enable:")
-            model: effectStates
-            textRole: "label"
-            onCurrentIndexChanged: cfg_colorEffectsMode = currentIndex
-            currentIndex: cfg_colorEffectsMode
-        }
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Desktop Effects")
-            Layout.fillWidth: true
-        }
-
-        TextField {
-            id: effectsHideColorizationInput
-            Kirigami.FormData.label: i18n("Hide in:")
-        }
-
-        TextField {
-            id: effectsShowColorizationInput
-            Kirigami.FormData.label: i18n("Show in:")
-        }
-        RowLayout {
-            Kirigami.FormData.label: i18n("Brightness:")
-            TextField {
-                id: brightnessInput
-                placeholderText: "0-1"
-                text: cfg_brightness
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-                property real value: parseFloat(text).toFixed(validator.decimals)
-
-                validator: DoubleValidator {
-                    bottom: -1.0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onValueChanged: {
-                    cfg_brightness = isNaN(value) ? 0 : value;
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: parent.value
-                    onValueChanged: {
-                        cfg_brightness = parseFloat(value).toFixed(decimals);
-                    }
-                }
-            }
-        }
-        RowLayout {
-            Kirigami.FormData.label: i18n("Contrast:")
-            TextField {
-                id: contrastInput
-                placeholderText: "0-1"
-                text: cfg_contrast
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-                property real value: parseFloat(text).toFixed(validator.decimals)
-
-                validator: DoubleValidator {
-                    bottom: -1.0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onValueChanged: {
-                    cfg_contrast = isNaN(value) ? 0 : value;
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: parent.value
-                    onValueChanged: {
-                        cfg_contrast = parseFloat(value).toFixed(decimals);
-                    }
-                }
-            }
-        }
-        RowLayout {
-            Kirigami.FormData.label: i18n("Saturation:")
-            TextField {
-                id: saturationInput
-                placeholderText: "0-1"
-                text: cfg_saturation
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-                property real value: parseFloat(text).toFixed(validator.decimals)
-
-                validator: DoubleValidator {
-                    bottom: -1.0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onValueChanged: {
-                    cfg_saturation = isNaN(value) ? 0 : value;
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: parent.value
-                    onValueChanged: {
-                        cfg_saturation = parseFloat(value).toFixed(decimals);
-                    }
-                }
-            }
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Colorization")
-            Layout.fillWidth: true
-        }
-
-        RowLayout {
-            Kirigami.FormData.label: i18n("Amount:")
-            TextField {
-                id: colorizationInput
-                placeholderText: "0-1"
-                text: cfg_colorization
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-                property real value: parseFloat(text).toFixed(validator.decimals)
-
-                validator: DoubleValidator {
-                    bottom: 0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onValueChanged: {
-                    cfg_colorization = isNaN(value) ? 0 : value;
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: parent.value
-                    onValueChanged: {
-                        cfg_colorization = parseFloat(value).toFixed(decimals);
-                    }
-                }
-            }
-        }
-
-        RadioButton {
-            id: customColorizationColorRadio
-            Kirigami.FormData.label: i18n("Color source:")
-            text: i18n("Custom")
-            ButtonGroup.group: colorizationModeGroup
-            property int index: 0
-            checked: plasmoid.configuration.colorizationColorMode === index
-            enabled: cfg_colorization > 0
-        }
-        RadioButton {
-            id: systemColorizationColorRadio
-            text: i18n("System")
-            ButtonGroup.group: colorizationModeGroup
-            property int index: 1
-            checked: plasmoid.configuration.colorizationColorMode === index
-            enabled: cfg_colorization > 0
-        }
-
-        ButtonGroup {
-            id: colorizationModeGroup
-            onCheckedButtonChanged: {
-                if (checkedButton) {
-                    cfg_colorizationColorMode = checkedButton.index;
-                }
-            }
-        }
-
-        Components.ColorButton {
-            id: colorizationColorButton
-            showAlphaChannel: false
-            Kirigami.FormData.label: i18n("Color:")
-            dialogTitle: i18n("Colorization")
-            color: cfg_colorizationColor
-            onAccepted: {
-                cfg_colorizationColor = color;
-            }
-            enabled: cfg_colorization > 0
-            visible: customColorizationColorRadio.checked
-        }
-
-        ComboBox {
-            id: colorizationColorModeTheme
-            Kirigami.FormData.label: i18n("Color:")
-            model: systemColors
-            visible: systemColorizationColorRadio.checked
-            enabled: cfg_colorization > 0
-        }
-
-        ComboBox {
-            id: colorizationColorModeThemeVariant
-            Kirigami.FormData.label: i18n("Color set:")
-            model: systemColorSets
-            visible: systemColorizationColorRadio.checked
-            enabled: cfg_colorization > 0
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Rounded Corners")
-        }
-
-        CheckBox {
-            id: borderEnabledCheckbox
-            Kirigami.FormData.label: i18n("Enable:")
-            checked: cfg_borderEnabled
-            text: i18n("Draw rounded corners over wallpaper")
-            onCheckedChanged: {
-                cfg_borderEnabled = checked;
-            }
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Desktop Effects")
-            Layout.fillWidth: true
-        }
-
-        TextField {
-            id: effectsHideBorderInput
-            Kirigami.FormData.label: i18n("Hide in:")
-        }
-
-        TextField {
-            id: effectsShowBorderInput
-            Kirigami.FormData.label: i18n("Show in:")
-        }
-
-        RadioButton {
-            id: customColorRadio
-            Kirigami.FormData.label: i18n("Color source:")
-            text: i18n("Custom")
-            ButtonGroup.group: colorModeGroup
-            property int index: 0
-            checked: plasmoid.configuration.borderColorMode === index
-            enabled: borderEnabledCheckbox.checked
-        }
-        RadioButton {
-            id: systemColorRadio
-            text: i18n("System")
-            ButtonGroup.group: colorModeGroup
-            property int index: 1
-            checked: plasmoid.configuration.borderColorMode === index
-            enabled: borderEnabledCheckbox.checked
-        }
-
-        ButtonGroup {
-            id: colorModeGroup
-            onCheckedButtonChanged: {
-                if (checkedButton) {
-                    cfg_borderColorMode = checkedButton.index;
-                }
-            }
-        }
-
-        Components.ColorButton {
-            id: borderColorButton
-            showAlphaChannel: false
-            Kirigami.FormData.label: i18n("Color:")
-            dialogTitle: i18n("Border Color")
-            color: cfg_borderColor
-            onAccepted: {
-                cfg_borderColor = color;
-            }
-            enabled: borderEnabledCheckbox.checked
-            visible: customColorRadio.checked
-        }
-
-        ComboBox {
-            id: borderModeTheme
-            Kirigami.FormData.label: i18n("Color:")
-            model: systemColors
-            visible: systemColorRadio.checked
-            enabled: borderEnabledCheckbox.checked
-        }
-
-        ComboBox {
-            id: borderModeThemeVariant
-            Kirigami.FormData.label: i18n("Color set:")
-            model: systemColorSets
-            visible: systemColorRadio.checked
-            enabled: borderEnabledCheckbox.checked
-        }
-
-        SpinBox {
-            id: borderRadiusSpinBox
-            Kirigami.FormData.label: i18n("Radius:")
-            from: 0
-            to: 145
-            value: cfg_borderRadius
-            onValueChanged: {
-                cfg_borderRadius = value;
-            }
-            enabled: borderEnabledCheckbox.checked
-        }
-
-        RowLayout {
-            Kirigami.FormData.label: i18n("Shadow:")
-            TextField {
+            Components.DoubleSpinBox {
                 id: shadowBlurInput
-                placeholderText: "0-1"
-                text: cfg_shadowBlur
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-                property real value: parseFloat(text).toFixed(validator.decimals)
-
-                validator: DoubleValidator {
-                    bottom: 0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
+                Kirigami.FormData.label: i18n("Shadow:")
+                from: 0 * multiplier
+                to: 1 * multiplier
+                value: root.cfg_shadowBlur * multiplier
+                onValueModified: {
+                    root.cfg_shadowBlur = value / shadowBlurInput.multiplier;
                 }
+                enabled: borderEnabledCheckbox.checked
+            }
 
+            Kirigami.Separator {
+                Kirigami.FormData.label: i18n("Margins")
+                Layout.fillWidth: true
+            }
+
+            SpinBox {
+                id: marginTopSpinBox
+                Kirigami.FormData.label: i18n("Top:")
+                from: 0
+                to: 999
+                value: cfg_borderMarginTop
                 onValueChanged: {
-                    cfg_shadowBlur = isNaN(value) ? 0 : value;
+                    cfg_borderMarginTop = value;
                 }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: parent.value
-                    onValueChanged: {
-                        cfg_shadowBlur = parseFloat(value).toFixed(decimals);
-                    }
+                enabled: borderEnabledCheckbox.checked
+            }
+            SpinBox {
+                id: marginBottomSpinBox
+                Kirigami.FormData.label: i18n("Bottom:")
+                from: 0
+                to: 999
+                value: cfg_borderMarginBottom
+                onValueChanged: {
+                    cfg_borderMarginBottom = value;
                 }
+                enabled: borderEnabledCheckbox.checked
             }
-        }
+            SpinBox {
+                id: marginLeftSpinBox
+                Kirigami.FormData.label: i18n("Left:")
+                from: 0
+                to: 999
+                value: cfg_borderMarginLeft
+                onValueChanged: {
+                    cfg_borderMarginLeft = value;
+                }
+                enabled: borderEnabledCheckbox.checked
+            }
+            SpinBox {
+                id: marginRightSpinBox
+                Kirigami.FormData.label: i18n("Right:")
+                from: 0
+                to: 999
+                value: cfg_borderMarginRight
+                onValueChanged: {
+                    cfg_borderMarginRight = value;
+                }
+                enabled: borderEnabledCheckbox.checked
+            }
 
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Margins")
-            Layout.fillWidth: true
-        }
+            Kirigami.Separator {
+                Kirigami.FormData.label: i18n("Desktop Effects")
+                Layout.fillWidth: true
+            }
 
-        SpinBox {
-            id: marginTopSpinBox
-            Kirigami.FormData.label: i18n("Top:")
-            from: 0
-            to: 999
-            value: cfg_borderMarginTop
-            onValueChanged: {
-                cfg_borderMarginTop = value;
+            Components.CheckableValueListView {
+                id: effectsHideBorderInput
+                Kirigami.FormData.label: i18n("Hide in:")
+                model: effects.loadedEffects
+                enabled: borderEnabledCheckbox.checked
             }
-            enabled: borderEnabledCheckbox.checked
-        }
-        SpinBox {
-            id: marginBottomSpinBox
-            Kirigami.FormData.label: i18n("Bottom:")
-            from: 0
-            to: 999
-            value: cfg_borderMarginBottom
-            onValueChanged: {
-                cfg_borderMarginBottom = value;
+
+            Components.CheckableValueListView {
+                id: effectsShowBorderInput
+                Kirigami.FormData.label: i18n("Show in:")
+                model: effects.loadedEffects
+                enabled: borderEnabledCheckbox.checked
             }
-            enabled: borderEnabledCheckbox.checked
-        }
-        SpinBox {
-            id: marginLeftSpinBox
-            Kirigami.FormData.label: i18n("Left:")
-            from: 0
-            to: 999
-            value: cfg_borderMarginLeft
-            onValueChanged: {
-                cfg_borderMarginLeft = value;
-            }
-            enabled: borderEnabledCheckbox.checked
-        }
-        SpinBox {
-            id: marginRightSpinBox
-            Kirigami.FormData.label: i18n("Right:")
-            from: 0
-            to: 999
-            value: cfg_borderMarginRight
-            onValueChanged: {
-                cfg_borderMarginRight = value;
-            }
-            enabled: borderEnabledCheckbox.checked
         }
     }
 }

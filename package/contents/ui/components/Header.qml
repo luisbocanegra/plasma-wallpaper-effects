@@ -3,7 +3,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasma5support as P5Support
+import org.kde.plasma.plasmoid
 
 RowLayout {
     id: root
@@ -13,54 +13,8 @@ RowLayout {
     readonly property string kofi: "https://ko-fi.com/luisbocanegra"
     readonly property string paypal: "https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA"
     readonly property string email: "mailto:luisbocanegra17b@gmail.com"
-    readonly property string projects: "https://github.com/" + ghUser + "?tab=repositories&q=&type=source&language=&sort=stargazers"
+    readonly property string projects: "https://github.com/" + ghUser + "?tab=repositories&q=&type=source"
     readonly property string kdeStore: "https://store.kde.org/p/2145723"
-    property string wallpaperVersion
-
-    P5Support.DataSource {
-        id: runCommand
-        engine: "executable"
-        connectedSources: []
-
-        onNewData: function (source, data) {
-            var exitCode = data["exit code"];
-            var exitStatus = data["exit status"];
-            var stdout = data["stdout"];
-            var stderr = data["stderr"];
-            exited(source, exitCode, exitStatus, stdout, stderr);
-            disconnectSource(source); // cmd finished
-            sourceConnected(source);
-        }
-
-        function exec(cmd) {
-            runCommand.connectSource(cmd);
-        }
-
-        signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
-    }
-
-    Connections {
-        target: runCommand
-        function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            if (exitCode !== 0) {
-                wallpaperVersion = stderr;
-                console.log(cmd, stder);
-            } else {
-                try {
-                    wallpaperVersion = JSON.parse(stdout).KPlugin.Version;
-                } catch (e) {
-                    console.log(e);
-                    wallpaperVersion = e;
-                }
-            }
-        }
-    }
-
-    Component.onCompleted: {
-        const metaDataFile = Qt.resolvedUrl("../../../").toString().substring(7) + "metadata.json";
-        console.log(metaDataFile);
-        runCommand.exec(`cat "${metaDataFile}"`);
-    }
 
     Item {
         Layout.fillWidth: true
@@ -71,7 +25,7 @@ RowLayout {
             text: i18n("Version:")
         }
         Label {
-            text: wallpaperVersion
+            text: Plasmoid.metaData.version
             font.weight: Font.DemiBold
         }
     }

@@ -209,7 +209,7 @@ PlasmoidItem {
 
     EffectsModel {
         id: effectsModel
-        active: {
+        monitorActive: {
             return [effectsShowBlur, effectsHideBlur, effectsShowBorder, effectsHideBorder, effectsShowColorization, effectsHideColorization].some(arr => arr.length > 0);
         }
     }
