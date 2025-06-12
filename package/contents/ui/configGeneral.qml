@@ -17,7 +17,8 @@ KCM.SimpleKCM {
     property alias cfg_effectsHideGrain: effectsHideGrainInput.text
     property alias cfg_effectsShowPixelate: effectsShowPixelateInput.text
     property alias cfg_effectsHidePixelate: effectsHidePixelateInput.text
-    property alias cfg_grainAnimate: grainAnimateCheckbox.checked
+    property bool cfg_grainAnimate
+    property bool cfg_grainAnimateChange
     property alias cfg_grainOpenGL2Mode: grainOpenGL2ModeCheckbox.checked
     property real cfg_grainAmount: grainAmountInput.value
     property alias cfg_PixelateMode: pixelateModeCombo.currentIndex
@@ -304,10 +305,31 @@ KCM.SimpleKCM {
                 enabled: grainModeCombo.currentIndex !== 4
             }
 
-            CheckBox {
-                id: grainAnimateCheckbox
+            RadioButton {
                 Kirigami.FormData.label: i18n("Animate:")
                 enabled: grainModeCombo.currentIndex !== 4
+                text: i18n("Never")
+                checked: !grainAnimateCheckbox.checked && !grainAnimateChangeCheckbox.checked
+                ButtonGroup.group: animateButtonGroup
+            }
+            RadioButton {
+                id: grainAnimateCheckbox
+                enabled: grainModeCombo.currentIndex !== 4
+                text: i18n("Always")
+                ButtonGroup.group: animateButtonGroup
+                checked: cfg_grainAnimate
+                onCheckedChanged: cfg_grainAnimate = checked
+            }
+            RadioButton {
+                id: grainAnimateChangeCheckbox
+                enabled: grainModeCombo.currentIndex !== 4
+                text: i18n("On change")
+                ButtonGroup.group: animateButtonGroup
+                checked: cfg_grainAnimateChange
+                onCheckedChanged: cfg_grainAnimateChange = checked
+            }
+            ButtonGroup {
+                id: animateButtonGroup
             }
 
             Components.DoubleSpinBox {

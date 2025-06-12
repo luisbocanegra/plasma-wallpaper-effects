@@ -161,6 +161,9 @@
     <entry name="grainAnimate" type="Bool">
       <default>False</default>
     </entry>
+    <entry name="grainAnimateChange" type="Bool">
+      <default>False</default>
+    </entry>
     <entry name="grainAmount" type="Double">
       <default>0.15</default>
     </entry>

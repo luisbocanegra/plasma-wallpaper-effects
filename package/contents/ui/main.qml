@@ -557,7 +557,12 @@ PlasmoidItem {
 
     Timer {
         id: shaderTimer
-        running: (main.shaderItem && main.shaderItem.visible && plasmoid.configuration.grainAnimate) || (main.shaderItem?.isAnimationRunning ?? false)
+        running: (main.shaderItem && main.shaderItem.visible && plasmoid.configuration.grainAnimate) || ((main.shaderItem?.isAnimationRunning ?? false) && plasmoid.configuration.grainAnimateChange)
+        onRunningChanged: {
+            if (!running) {
+                shaderItem.time = 0;
+            }
+        }
         repeat: true
         interval: 33
         onTriggered: {
