@@ -139,6 +139,9 @@
     <entry name="animationDuration" type="Int">
       <default>300</default>
     </entry>
+    <entry name="animationOutDuration" type="Int">
+      <default>300</default>
+    </entry>
     <entry name="shadowBlur" type="Double">
       <default>0.5</default>
     </entry>

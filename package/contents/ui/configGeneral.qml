@@ -51,6 +51,7 @@ KCM.SimpleKCM {
     property alias cfg_effectsShowBorder: effectsShowBorderInput.text
     property alias cfg_effectsHideBorder: effectsHideBorderInput.text
     property alias cfg_animationDuration: animationDurationSpinBox.value
+    property alias cfg_animationOutDuration: animationOutDurationSpinBox.value
     property real cfg_shadowBlur: shadowBlurInput.value
     //TODO remove // when qmlformat off/on becomes a thing
     property var systemColors: [//
@@ -163,12 +164,26 @@ KCM.SimpleKCM {
                 }
             }
 
-            SpinBox {
-                id: animationDurationSpinBox
-                Kirigami.FormData.label: i18n("Animation duration:")
-                from: 0
-                to: 3600000
-                stepSize: 100
+            RowLayout {
+                Kirigami.FormData.label: i18n("Animation duration (ms):")
+                Label {
+                    text: i18n("In")
+                }
+                SpinBox {
+                    id: animationDurationSpinBox
+                    from: 0
+                    to: 60000
+                    stepSize: 100
+                }
+                Label {
+                    text: "Out"
+                }
+                SpinBox {
+                    id: animationOutDurationSpinBox
+                    from: 0
+                    to: 60000
+                    stepSize: 100
+                }
             }
 
             CheckBox {

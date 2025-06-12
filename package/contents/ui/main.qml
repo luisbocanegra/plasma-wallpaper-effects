@@ -79,7 +79,8 @@ PlasmoidItem {
     property var colorizationColorScope: {
         return themeScopes[colorizationColorModeThemeVariant];
     }
-    property int animationDuration: plasmoid.configuration.animationDuration
+    property int animationInDuration: plasmoid.configuration.animationDuration
+    property int animationOutDuration: plasmoid.configuration.animationOutDuration
     property real shadowBlur: plasmoid.configuration.shadowBlur
     property var wallpaperItem: Plasmoid.containment?.wallpaperGraphicsObject ?? null
     property var wallpaperPluginName: wallpaperItem?.pluginName ?? null
@@ -254,37 +255,37 @@ PlasmoidItem {
         }
         Behavior on blurMax {
             NumberAnimation {
-                duration: animationDuration
+                duration: blurMax > 0 ? animationOutDuration : animationInDuration
                 easing.type: Easing.InOutQuad
             }
         }
         Behavior on brightness {
             NumberAnimation {
-                duration: animationDuration
+                duration: brightness !== 0 ? animationOutDuration : animationInDuration
                 easing.type: Easing.InOutQuad
             }
         }
         Behavior on contrast {
             NumberAnimation {
-                duration: animationDuration
+                duration: contrast !== 0 ? animationOutDuration : animationInDuration
                 easing.type: Easing.InOutQuad
             }
         }
         Behavior on saturation {
             NumberAnimation {
-                duration: animationDuration
+                duration: saturation > 0 ? animationOutDuration : animationInDuration
                 easing.type: Easing.InOutQuad
             }
         }
         Behavior on colorization {
             NumberAnimation {
-                duration: animationDuration
+                duration: colorization > 0 ? animationOutDuration : animationInDuration
                 easing.type: Easing.InOutQuad
             }
         }
         Behavior on colorizationColor {
             ColorAnimation {
-                duration: animationDuration
+                duration: animationInDuration
                 easing.type: Easing.InOutQuad
             }
         }
@@ -313,7 +314,7 @@ PlasmoidItem {
 
         Behavior on pixelSize {
             NumberAnimation {
-                duration: main.animationDuration
+                duration: pixelSize > 1 ? animationOutDuration : animationInDuration
                 easing.type: Easing.InOutQuad
             }
         }
@@ -350,7 +351,7 @@ PlasmoidItem {
         property real grain_amount: main.showGrain ? plasmoid.configuration.grainAmount : 0
         Behavior on grain_amount {
             NumberAnimation {
-                duration: main.animationDuration
+                duration: grain_amount > 0 ? animationOutDuration : animationInDuration
                 easing.type: Easing.InOutQuad
             }
         }
