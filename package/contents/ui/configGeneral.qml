@@ -154,16 +154,10 @@ KCM.SimpleKCM {
         Kirigami.FormLayout {
             enabled: isEnabledCheckbox.checked
             twinFormLayouts: [form1]
-            RowLayout {
+            CheckBox {
+                id: hideWidget
                 Kirigami.FormData.label: i18n("Hide widget:")
-                CheckBox {
-                    id: hideWidget
-                }
-                Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Widget will show in Desktop Edit Mode")
-                }
             }
-
             RowLayout {
                 Kirigami.FormData.label: i18n("Animation duration (ms):")
                 Label {

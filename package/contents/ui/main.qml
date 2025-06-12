@@ -14,7 +14,7 @@ PlasmoidItem {
     property string iconName: onDesktop ? "icon" : "error"
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
     property bool hideWidget: plasmoid.configuration.hideWidget
-    property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
+    property bool inEditMode: containmentItem?.corona?.editMode ?? false
     property bool widgetConfiguring: Plasmoid.userConfiguring
     property var activeEffects: effectsModel.activeEffects
     property var effectsHideBlur: plasmoid.configuration.effectsHideBlur.split(",").filter(Boolean)
@@ -82,9 +82,10 @@ PlasmoidItem {
     property int animationInDuration: plasmoid.configuration.animationDuration
     property int animationOutDuration: plasmoid.configuration.animationOutDuration
     property real shadowBlur: plasmoid.configuration.shadowBlur
-    property var wallpaperItem: Plasmoid.containment?.wallpaperGraphicsObject ?? null
+    property var wallpaperItem: containmentItem?.wallpaperGraphicsObject ?? null
     property var wallpaperPluginName: wallpaperItem?.pluginName ?? null
-    property var containmentObjectName: Plasmoid.containment?.pluginName ?? null
+    property var containmentPluginName: containmentItem?.pluginName ?? null
+    property var containmentItem: Plasmoid.containment ?? null
     property var rootItem: {
         let candidate = main.parent;
         while (candidate) {
@@ -494,7 +495,7 @@ PlasmoidItem {
     }
 
     function restart() {
-        if (!wallpaperPluginName || !containmentObjectName)
+        if (!wallpaperPluginName || !containmentPluginName)
             return;
         cleanupEffects();
         applyEffects();
@@ -503,19 +504,55 @@ PlasmoidItem {
     onWallpaperPluginNameChanged: {
         restart();
     }
-    onContainmentObjectNameChanged: {
+    onContainmentPluginNameChanged: {
         restart();
+    }
+
+    PlasmaCore.Action {
+        id: configureEffectsAction
+        property string effectsActionName: "configureEffectsAction"
+        text: i18n("Configure %1", Plasmoid.metaData.name)
+        icon.name: 'configure'
+        onTriggered: plasmoid.internalAction("configure").trigger()
+    }
+
+    PlasmaCore.Action {
+        id: toggleEffectsAction
+        property string effectsActionName: "toggleEffectsAction"
+        text: (plasmoid.configuration.isEnabled ? i18n("Disable") : i18n("Enable")) + ` ${Plasmoid.metaData.name}`
+        icon.name: "starred-symbolic"
+        onTriggered: {
+            plasmoid.configuration.isEnabled = !plasmoid.configuration.isEnabled;
+            plasmoid.configuration.writeConfig();
+        }
+    }
+
+    onContainmentItemChanged: {
+        if (containmentItem && "contextualActions" in containmentItem) {
+            containmentItem.contextualActions.push(toggleEffectsAction);
+            containmentItem.contextualActions.push(configureEffectsAction);
+        }
+    }
+
+    function cleanupActions() {
+        if (containmentItem && "contextualActions" in containmentItem) {
+            containmentItem.contextualActions = containmentItem.contextualActions.filter(action => {
+                return !("effectsActionName" in action && ["configureEffectsAction", "toggleEffectsAction"].includes(action.effectsActionName));
+            });
+        }
     }
 
     Connections {
         target: Qt.application
         function onAboutToQuit() {
             cleanupEffects();
+            cleanupActions();
         }
     }
 
     Component.onDestruction: {
         cleanupEffects();
+        cleanupActions();
     }
 
     Timer {
@@ -532,22 +569,18 @@ PlasmoidItem {
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
-            text: i18n("Enable")
-            checkable: true
+            text: (plasmoid.configuration.isEnabled ? i18n("Disable") : i18n("Enable")) + ` ${Plasmoid.metaData.name}`
             icon.name: "starred-symbolic"
-            checked: Plasmoid.configuration.isEnabled
-            onTriggered: checked => {
+            onTriggered: {
                 plasmoid.configuration.isEnabled = !plasmoid.configuration.isEnabled;
                 plasmoid.configuration.writeConfig();
             }
         },
         PlasmaCore.Action {
-            text: i18n("Hide widget (visible in panel Edit Mode)")
-            checkable: true
+            text: (plasmoid.configuration.hideWidget ? i18n("Show") : i18n("Hide")) + " widget"
             icon.name: "visibility-symbolic"
-            checked: Plasmoid.configuration.hideWidget
-            onTriggered: checked => {
-                plasmoid.configuration.hideWidget = checked;
+            onTriggered: {
+                plasmoid.configuration.hideWidget = !plasmoid.configuration.hideWidget;
                 plasmoid.configuration.writeConfig();
             }
         }
