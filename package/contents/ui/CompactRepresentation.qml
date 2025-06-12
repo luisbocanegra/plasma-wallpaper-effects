@@ -26,6 +26,7 @@ MouseArea {
             width: height
             source: icon
             visible: !onDesktop || main.inEditMode || !main.hideWidget
+            opacity: plasmoid.configuration.isEnabled ? 1 : 0.5
         }
     }
 }

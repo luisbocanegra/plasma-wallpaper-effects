@@ -528,4 +528,27 @@ PlasmoidItem {
             }
         }
     }
+
+    Plasmoid.contextualActions: [
+        PlasmaCore.Action {
+            text: i18n("Enable")
+            checkable: true
+            icon.name: "starred-symbolic"
+            checked: Plasmoid.configuration.isEnabled
+            onTriggered: checked => {
+                plasmoid.configuration.isEnabled = !plasmoid.configuration.isEnabled;
+                plasmoid.configuration.writeConfig();
+            }
+        },
+        PlasmaCore.Action {
+            text: i18n("Hide widget (visible in panel Edit Mode)")
+            checkable: true
+            icon.name: "visibility-symbolic"
+            checked: Plasmoid.configuration.hideWidget
+            onTriggered: checked => {
+                plasmoid.configuration.hideWidget = checked;
+                plasmoid.configuration.writeConfig();
+            }
+        }
+    ]
 }
