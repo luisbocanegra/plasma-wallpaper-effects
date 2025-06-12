@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
-"POT-Creation-Date: 2025-03-21 17:03+0000\n"
+"POT-Creation-Date: 2025-06-12 05:45+0000\n"
 "PO-Revision-Date: 2024-05-31 01:17-0600\n"
 "Last-Translator: Luis Bocanegra <luisbocanegra17b@gmail.com>\n"
 "Language-Team: none\n"
@@ -31,6 +31,10 @@ msgstr ""
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "General"
+
+#: ../contents/ui/components/CheckableValueListView.qml
+msgid "Not configured"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
@@ -181,20 +185,11 @@ msgid "Animation duration:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Filter:"
-msgstr "Filtro:"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Only check for windows in active screen"
-msgstr "Verifique solo las ventanas en la pantalla activa"
-
-#: ../contents/ui/configGeneral.qml
-msgid "How to get active Desktop Effects"
+msgid "Filter windows:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid ""
-"To get the currently active Desktop Effects run the following in a terminal:"
+msgid "This screen only"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -204,18 +199,6 @@ msgstr "Desenfoque"
 #: ../contents/ui/configGeneral.qml
 msgid "Enable:"
 msgstr "Activar:"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Desktop Effects"
-msgstr "Efectos de escritorio"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Hide in:"
-msgstr "Ocultar en:"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Show in:"
-msgstr "Mostrar en:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Blur radius:"
@@ -228,6 +211,18 @@ msgid ""
 msgstr ""
 "La calidad del desenfoque se reduce si el valor excede 64. ¡Valores más "
 "altos pueden hacer que el desenfoque deje de funcionar!"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Desktop Effects"
+msgstr "Efectos de escritorio"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide in:"
+msgstr "Ocultar en:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show in:"
+msgstr "Mostrar en:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Pixelate Effect"
@@ -306,8 +301,8 @@ msgid "Rounded Corners"
 msgstr "Esquinas redondeadas"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Draw rounded corners over wallpaper"
-msgstr "Mostrar esquinas redondeadas sobre el fondo de pantalla"
+msgid "Draw rounded corners on top of the wallpaper"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Border Color"
@@ -345,6 +340,15 @@ msgstr "Derecha:"
 msgid "Wallpaper not found, this widget must be placed on the Desktop"
 msgstr ""
 "Fondo de pantalla no encontrado, este widget debe colocarse en el Escritorio"
+
+#~ msgid "Filter:"
+#~ msgstr "Filtro:"
+
+#~ msgid "Only check for windows in active screen"
+#~ msgstr "Verifique solo las ventanas en la pantalla activa"
+
+#~ msgid "Draw rounded corners over wallpaper"
+#~ msgstr "Mostrar esquinas redondeadas sobre el fondo de pantalla"
 
 #~ msgid "QDbus executable:"
 #~ msgstr "Ejecutable QDbus:"
