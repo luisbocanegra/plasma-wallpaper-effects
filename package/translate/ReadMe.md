@@ -4,9 +4,9 @@
 
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
-| Template |      84 |       |
-| es       |   64/84 |   76% |
-| nl       |   73/84 |   86% |
+| Template |      85 |       |
+| es       |   64/85 |   75% |
+| nl       |   73/85 |   85% |
 
 
 ## New Translations

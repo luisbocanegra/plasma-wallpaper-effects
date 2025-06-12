@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-effects\n"
-"POT-Creation-Date: 2025-06-12 18:32+0000\n"
+"POT-Creation-Date: 2025-06-12 19:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,6 +239,10 @@ msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Animate:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "On change"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
