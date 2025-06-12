@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
-"POT-Creation-Date: 2025-03-21 17:03+0000\n"
+"POT-Creation-Date: 2025-06-12 05:45+0000\n"
 "PO-Revision-Date: 2025-03-25 11:29+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -30,6 +30,10 @@ msgstr "Actieve vervaging en andere effecten voor achtergrondplug-ins"
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "Algemeen"
+
+#: ../contents/ui/components/CheckableValueListView.qml
+msgid "Not configured"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
@@ -180,21 +184,12 @@ msgid "Animation duration:"
 msgstr "Animatieduur:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Filter:"
-msgstr "Filter:"
+msgid "Filter windows:"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Only check for windows in active screen"
-msgstr "Alleen op actief scherm zoeken naar vensters"
-
-#: ../contents/ui/configGeneral.qml
-msgid "How to get active Desktop Effects"
-msgstr "Hoe verkrijg ik actieve bureaubladeffecten?"
-
-#: ../contents/ui/configGeneral.qml
-msgid ""
-"To get the currently active Desktop Effects run the following in a terminal:"
-msgstr "Voer hiertoe de volgende opdracht uit in een terminalvenster:"
+msgid "This screen only"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Blur"
@@ -203,18 +198,6 @@ msgstr "Vervagen"
 #: ../contents/ui/configGeneral.qml
 msgid "Enable:"
 msgstr "Inschakelen:"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Desktop Effects"
-msgstr "Bureaubladeffecten"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Hide in:"
-msgstr "Verbergen in:"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Show in:"
-msgstr "Tonen in:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Blur radius:"
@@ -227,6 +210,18 @@ msgid ""
 msgstr ""
 "De kwaliteit van het vervagen (blurren) wordt verminderd als de waarde hoger "
 "is dan 64. Let op: hogere waarden kunnen voor problemen zorgen!"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Desktop Effects"
+msgstr "Bureaubladeffecten"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide in:"
+msgstr "Verbergen in:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show in:"
+msgstr "Tonen in:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Pixelate Effect"
@@ -306,8 +301,8 @@ msgid "Rounded Corners"
 msgstr "Afgeronde hoeken"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Draw rounded corners over wallpaper"
-msgstr "Voorzie de achtergrond van afgeronde hoeken"
+msgid "Draw rounded corners on top of the wallpaper"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Border Color"
@@ -345,3 +340,20 @@ msgstr "Rechts:"
 msgid "Wallpaper not found, this widget must be placed on the Desktop"
 msgstr ""
 "Er is geen achtergrond aangetroffen - plaats deze widget op het bureaublad"
+
+#~ msgid "Filter:"
+#~ msgstr "Filter:"
+
+#~ msgid "Only check for windows in active screen"
+#~ msgstr "Alleen op actief scherm zoeken naar vensters"
+
+#~ msgid "How to get active Desktop Effects"
+#~ msgstr "Hoe verkrijg ik actieve bureaubladeffecten?"
+
+#~ msgid ""
+#~ "To get the currently active Desktop Effects run the following in a "
+#~ "terminal:"
+#~ msgstr "Voer hiertoe de volgende opdracht uit in een terminalvenster:"
+
+#~ msgid "Draw rounded corners over wallpaper"
+#~ msgstr "Voorzie de achtergrond van afgeronde hoeken"
