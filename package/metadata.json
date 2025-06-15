@@ -19,7 +19,7 @@
 		"Name": "Wallpaper Effects",
 		"Name[es]": "Efectos de fondo de pantalla",
 		"Name[nl]": "Achtergrondeffecten",
-		"Version": "0.5.0",
+		"Version": "0.6.0",
 		"Website": "https://github.com/luisbocanegra/plasma-wallpaper-effects"
 	},
 	"X-Plasma-API-Minimum-Version": "6.0"

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.5.0...v0.6.0) (2025-06-15)
+
+
+### Features
+
+* show running desktop effects in settings window ([8966ad1](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/8966ad125f62b47ad256cf41a8583b6cdf544492))
+
+
+### Bug Fixes
+
+* make gdbus fallback actually work ([b7bd3f2](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/b7bd3f22b6cb0968eca9ecf77aed1519f5e951be))
+
 ## [0.5.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.4.3...v0.5.0) (2025-06-12)
 
 
