@@ -660,5 +660,43 @@ KCM.SimpleKCM {
                 enabled: borderEnabledCheckbox.checked
             }
         }
+        ColumnLayout {
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: form1.implicitWidth
+            Label {
+                text: i18n("Currently enabled and <u><strong><font color='%1'>active</font></strong></u> Desktop Effects:", Kirigami.Theme.positiveTextColor)
+            }
+
+            Kirigami.AbstractCard {
+                // Layout.maximumWidth: 400
+                // Layout.preferredWidth: 400
+                contentItem: ColumnLayout {
+                    Label {
+                        text: i18n("Select to copy")
+                        font.pointSize: Kirigami.Theme.smallFont.pointSize
+                        color: Kirigami.Theme.disabledTextColor
+                    }
+                    Flow {
+                        Layout.fillWidth: true
+                        spacing: Kirigami.Units.smallSpacing
+                        Repeater {
+                            model: effects.loadedEffects.sort()
+                            Kirigami.SelectableLabel {
+                                required property int index
+                                required property string modelData
+                                text: modelData
+                                font.pointSize: Kirigami.Theme.smallFont.pointSize
+                                font.weight: effects.activeEffects.includes(modelData) ? Font.Bold : Font.Normal
+                                font.underline: effects.activeEffects.includes(modelData)
+                                color: effects.activeEffects.includes(modelData) ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.textColor
+                                selectedTextColor: Kirigami.Theme.highlightedTextColor
+                                selectionColor: Kirigami.Theme.highlightColor
+                                rightPadding: Kirigami.Units.smallSpacing
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
