@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
-"POT-Creation-Date: 2025-06-12 19:30+0000\n"
+"POT-Creation-Date: 2025-06-15 00:12+0000\n"
 "PO-Revision-Date: 2025-06-13 10:41+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -339,6 +339,16 @@ msgstr "Links:"
 #: ../contents/ui/configGeneral.qml
 msgid "Right:"
 msgstr "Rechts:"
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"Currently enabled and <u><strong><font color='%1'>active</font></strong></u> "
+"Desktop Effects:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Select to copy"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Wallpaper not found, this widget must be placed on the Desktop"

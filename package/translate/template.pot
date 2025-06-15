@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-effects\n"
-"POT-Creation-Date: 2025-06-12 19:30+0000\n"
+"POT-Creation-Date: 2025-06-15 00:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -331,6 +331,14 @@ msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Right:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Currently enabled and <u><strong><font color='%1'>active</font></strong></u> Desktop Effects:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Select to copy"
 msgstr ""
 
 #: ../contents/ui/main.qml
