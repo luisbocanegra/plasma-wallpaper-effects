@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.6.0...v0.6.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* check empty callback in DBusFallBack ([723416a](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/723416a104e855abacc49ecf0acbc14a8dec0726))
+
 ## [0.6.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.5.0...v0.6.0) (2025-06-15)
 
 
