@@ -54,6 +54,7 @@ KCM.SimpleKCM {
     property alias cfg_animationDuration: animationDurationSpinBox.value
     property alias cfg_animationOutDuration: animationOutDurationSpinBox.value
     property real cfg_shadowBlur: shadowBlurInput.value
+    property int cfg_cornersStyle: plasmoid.configuration.cornersStyle || 0
     //TODO remove // when qmlformat off/on becomes a thing
     property var systemColors: [//
         i18n("Text"),
@@ -512,6 +513,18 @@ KCM.SimpleKCM {
                 }
                 Kirigami.ContextualHelpButton {
                     toolTipText: i18n("Draw rounded corners on top of the wallpaper")
+                }
+            }
+
+            ComboBox {
+                id: cornersStyleCombo
+                Kirigami.FormData.label: i18n("Style:")
+                model: [i18n("All"), i18n("Top"), i18n("Bottom")]
+                enabled: borderEnabledCheckbox.checked
+                currentIndex: cfg_cornersStyle
+                onCurrentIndexChanged: {
+                    cfg_cornersStyle = currentIndex
+                    propertiesChanged()
                 }
             }
 

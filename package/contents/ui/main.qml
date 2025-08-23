@@ -100,6 +100,7 @@ PlasmoidItem {
     property var shaderItem: null
     property var roundedItem: null
     property var pixelateItem: null
+    property int cornersStyle: plasmoid.configuration.cornersStyle || 0
     property var themeColors: ["textColor", "disabledTextColor", "highlightedTextColor", "activeTextColor", "linkColor", "visitedLinkColor", "negativeTextColor", "neutralTextColor", "positiveTextColor", "backgroundColor", "highlightColor", "activeBackgroundColor", "linkBackgroundColor", "visitedLinkBackgroundColor", "negativeBackgroundColor", "neutralBackgroundColor", "positiveBackgroundColor", "alternateBackgroundColor", "focusColor", "hoverColor"]
 
     property var themeScopes: ["View", "Window", "Button", "Selection", "Tooltip", "Complementary", "Header"]
@@ -429,6 +430,7 @@ PlasmoidItem {
                     width: target.width
                     height: target.height
                     Rectangle {
+                        id: mask
                         anchors.fill: parent
                         anchors.topMargin: borderMarginTop
                         anchors.bottomMargin: borderMarginBottom
@@ -440,6 +442,20 @@ PlasmoidItem {
                                 duration: 100
                             }
                         }
+                    }
+                    Rectangle {
+                        width: mask.width
+                        height: mask.height / 2
+                        color: "white"
+                        anchors.top: mask.top
+                        visible: main.cornersStyle == 2
+                    }
+                    Rectangle {
+                        width: mask.width
+                        height: mask.height / 2
+                        color: "white"
+                        anchors.bottom: mask.bottom
+                        visible: main.cornersStyle == 1
                     }
                 }
             }
@@ -461,7 +477,7 @@ PlasmoidItem {
     }
 
     function applyEffects() {
-        if (!wallpaperItem)
+        if (!wallpaperItem || !rootItem)
             return;
         var effectsSource = findBlurSource(wallpaperItem, rootItem);
         if (effectsSource) {
