@@ -34,6 +34,10 @@
     <entry name="borderColor" type="String">
       <default>#000000</default>
     </entry>
+    <entry name="borderRadius" type="Int">
+      <label>DEPRECATED: Use per-corner radius instead. This is just for reference.</label>
+      <default>16</default>
+    </entry>
     <entry name="borderRadiusTopLeft" type="Int">
       <default>16</default>
     </entry>

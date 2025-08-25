@@ -31,6 +31,7 @@ KCM.SimpleKCM {
     property alias cfg_borderColorModeTheme: borderModeTheme.currentIndex
     property alias cfg_borderColorModeThemeVariant: borderModeThemeVariant.currentIndex
     property alias cfg_borderColor: borderColorButton.color
+    property alias cfg_borderRadius: borderRadiusSpinBox.value
     property alias cfg_borderRadiusTopLeft: borderRadiusTopLeftSpinBox.value
     property alias cfg_borderRadiusTopRight: borderRadiusTopRightSpinBox.value
     property alias cfg_borderRadiusBottomLeft: borderRadiusBottomLeftSpinBox.value
@@ -575,6 +576,20 @@ KCM.SimpleKCM {
                 model: systemColorSets
                 visible: systemColorRadio.checked
                 enabled: borderEnabledCheckbox.checked
+            }
+
+            // DEPRECATED: Use per-corner radius instead. This is just for reference.
+            RowLayout {
+                Kirigami.FormData.label: i18n("Radius (Deprecated):")
+                SpinBox {
+                    id: borderRadiusSpinBox
+                    from: 0
+                    to: 145
+                    enabled: false
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("This option is deprecated. Use the per-corner radius settings below. This value is shown for reference from your old configuration.")
+                }
             }
 
             GridLayout {
