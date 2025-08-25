@@ -32,6 +32,10 @@ KCM.SimpleKCM {
     property alias cfg_borderColorModeThemeVariant: borderModeThemeVariant.currentIndex
     property alias cfg_borderColor: borderColorButton.color
     property alias cfg_borderRadius: borderRadiusSpinBox.value
+    property alias cfg_borderRadiusTopLeft: borderRadiusTopLeftSpinBox.value
+    property alias cfg_borderRadiusTopRight: borderRadiusTopRightSpinBox.value
+    property alias cfg_borderRadiusBottomLeft: borderRadiusBottomLeftSpinBox.value
+    property alias cfg_borderRadiusBottomRight: borderRadiusBottomRightSpinBox.value
     property alias cfg_borderMarginTop: marginTopSpinBox.value
     property alias cfg_borderMarginBottom: marginBottomSpinBox.value
     property alias cfg_borderMarginLeft: marginLeftSpinBox.value
@@ -54,6 +58,7 @@ KCM.SimpleKCM {
     property alias cfg_animationDuration: animationDurationSpinBox.value
     property alias cfg_animationOutDuration: animationOutDurationSpinBox.value
     property real cfg_shadowBlur: shadowBlurInput.value
+    
     //TODO remove // when qmlformat off/on becomes a thing
     property var systemColors: [//
         i18n("Text"),
@@ -515,6 +520,8 @@ KCM.SimpleKCM {
                 }
             }
 
+            
+
             RadioButton {
                 id: customColorRadio
                 Kirigami.FormData.label: i18n("Color source:")
@@ -571,12 +578,48 @@ KCM.SimpleKCM {
                 enabled: borderEnabledCheckbox.checked
             }
 
-            SpinBox {
-                id: borderRadiusSpinBox
+            // DEPRECATED: Use per-corner radius instead. This is just for reference.
+            RowLayout {
+                Kirigami.FormData.label: i18n("Radius (Deprecated):")
+                SpinBox {
+                    id: borderRadiusSpinBox
+                    from: 0
+                    to: 145
+                    enabled: false
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("This option is deprecated. Use the per-corner radius settings below. This value is shown for reference from your old configuration.")
+                }
+            }
+
+            GridLayout {
                 Kirigami.FormData.label: i18n("Radius:")
-                from: 0
-                to: 145
+                columns: 2
                 enabled: borderEnabledCheckbox.checked
+
+                SpinBox {
+                    id: borderRadiusTopLeftSpinBox
+                    from: 0
+                    to: 145
+                }
+
+                SpinBox {
+                    id: borderRadiusTopRightSpinBox
+                    from: 0
+                    to: 145
+                }
+
+                SpinBox {
+                    id: borderRadiusBottomLeftSpinBox
+                    from: 0
+                    to: 145
+                }
+
+                SpinBox {
+                    id: borderRadiusBottomRightSpinBox
+                    from: 0
+                    to: 145
+                }
             }
 
             Components.DoubleSpinBox {

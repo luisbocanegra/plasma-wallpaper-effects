@@ -52,7 +52,10 @@ PlasmoidItem {
     property var borderColorScope: {
         return themeScopes[borderColorModeThemeVariant];
     }
-    property int borderRadius: plasmoid.configuration.borderRadius
+    property int borderRadiusTopLeft: plasmoid.configuration.borderRadiusTopLeft
+    property int borderRadiusTopRight: plasmoid.configuration.borderRadiusTopRight
+    property int borderRadiusBottomLeft: plasmoid.configuration.borderRadiusBottomLeft
+    property int borderRadiusBottomRight: plasmoid.configuration.borderRadiusBottomRight
     property int borderMarginTop: plasmoid.configuration.borderMarginTop
     property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
     property int borderMarginLeft: plasmoid.configuration.borderMarginLeft
@@ -100,6 +103,7 @@ PlasmoidItem {
     property var shaderItem: null
     property var roundedItem: null
     property var pixelateItem: null
+    
     property var themeColors: ["textColor", "disabledTextColor", "highlightedTextColor", "activeTextColor", "linkColor", "visitedLinkColor", "negativeTextColor", "neutralTextColor", "positiveTextColor", "backgroundColor", "highlightColor", "activeBackgroundColor", "linkBackgroundColor", "visitedLinkBackgroundColor", "negativeBackgroundColor", "neutralBackgroundColor", "positiveBackgroundColor", "alternateBackgroundColor", "focusColor", "hoverColor"]
 
     property var themeScopes: ["View", "Window", "Button", "Selection", "Tooltip", "Complementary", "Header"]
@@ -388,31 +392,38 @@ PlasmoidItem {
         width: target.width
         height: target.height
         layer.enabled: true
-        Rectangle {
+        Kirigami.ShadowedRectangle {
             id: shadowRect
             anchors.fill: parent
             anchors.topMargin: borderMarginTop
             anchors.bottomMargin: borderMarginBottom
             anchors.leftMargin: borderMarginLeft
             anchors.rightMargin: borderMarginRight
-            radius: borderEnabled ? borderRadius : 0
             color: parent.color
-            border {
-                color: Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0)
-                width: 2
+            shadow.size: main.shadowBlur * 32
+            shadow.color: "black"
+            shadow.xOffset: 0
+            shadow.yOffset: 0
+            corners.topLeftRadius: borderEnabled ? borderRadiusTopLeft : 0
+            corners.topRightRadius: borderEnabled ? borderRadiusTopRight : 0
+            corners.bottomLeftRadius: borderEnabled ? borderRadiusBottomLeft : 0
+            corners.bottomRightRadius: borderEnabled ? borderRadiusBottomRight : 0
+            Behavior on corners.topLeftRadius {
+                NumberAnimation {
+                    duration: 100
+                }
             }
-            layer.enabled: true
-            layer.effect: MultiEffect {
-                source: shadowRect
-                anchors.fill: shadowRect
-                autoPaddingEnabled: true
-                shadowBlur: main.shadowBlur
-                shadowEnabled: true
-                shadowVerticalOffset: 0
-                shadowHorizontalOffset: 0
-                shadowColor: "black"
+            Behavior on corners.topRightRadius {
+                NumberAnimation {
+                    duration: 100
+                }
             }
-            Behavior on radius {
+            Behavior on corners.bottomLeftRadius {
+                NumberAnimation {
+                    duration: 100
+                }
+            }
+            Behavior on corners.bottomRightRadius {
                 NumberAnimation {
                     duration: 100
                 }
@@ -428,14 +439,35 @@ PlasmoidItem {
                 sourceItem: Item {
                     width: target.width
                     height: target.height
-                    Rectangle {
+                    Kirigami.ShadowedRectangle {
+                        id: mask
                         anchors.fill: parent
                         anchors.topMargin: borderMarginTop
                         anchors.bottomMargin: borderMarginBottom
                         anchors.leftMargin: borderMarginLeft
                         anchors.rightMargin: borderMarginRight
-                        radius: borderEnabled ? borderRadius - 2 : 0
-                        Behavior on radius {
+                        color: "white"
+                        shadow.size: 0
+                        corners.topLeftRadius: borderEnabled ? Math.max(0, borderRadiusTopLeft - 2) : 0
+                        corners.topRightRadius: borderEnabled ? Math.max(0, borderRadiusTopRight - 2) : 0
+                        corners.bottomLeftRadius: borderEnabled ? Math.max(0, borderRadiusBottomLeft - 2) : 0
+                        corners.bottomRightRadius: borderEnabled ? Math.max(0, borderRadiusBottomRight - 2) : 0
+                        Behavior on corners.topLeftRadius {
+                            NumberAnimation {
+                                duration: 100
+                            }
+                        }
+                        Behavior on corners.topRightRadius {
+                            NumberAnimation {
+                                duration: 100
+                            }
+                        }
+                        Behavior on corners.bottomLeftRadius {
+                            NumberAnimation {
+                                duration: 100
+                            }
+                        }
+                        Behavior on corners.bottomRightRadius {
                             NumberAnimation {
                                 duration: 100
                             }
@@ -461,7 +493,7 @@ PlasmoidItem {
     }
 
     function applyEffects() {
-        if (!wallpaperItem)
+        if (!wallpaperItem || !rootItem)
             return;
         var effectsSource = findBlurSource(wallpaperItem, rootItem);
         if (effectsSource) {

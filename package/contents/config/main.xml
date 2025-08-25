@@ -35,6 +35,19 @@
       <default>#000000</default>
     </entry>
     <entry name="borderRadius" type="Int">
+      <label>DEPRECATED: Use per-corner radius instead. This is just for reference.</label>
+      <default>16</default>
+    </entry>
+    <entry name="borderRadiusTopLeft" type="Int">
+      <default>16</default>
+    </entry>
+    <entry name="borderRadiusTopRight" type="Int">
+      <default>16</default>
+    </entry>
+    <entry name="borderRadiusBottomLeft" type="Int">
+      <default>16</default>
+    </entry>
+    <entry name="borderRadiusBottomRight" type="Int">
       <default>16</default>
     </entry>
     <entry name="borderMarginTop" type="Int">
@@ -181,6 +194,7 @@
     <entry name="pixelatePixelSize" type="Int">
       <default>64</default>
     </entry>
+    
     <entry name="effectsHideGrain" type="String">
       <default></default>
     </entry>
