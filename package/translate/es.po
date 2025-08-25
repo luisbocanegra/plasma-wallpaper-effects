@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
-"POT-Creation-Date: 2025-06-15 00:12+0000\n"
+"POT-Creation-Date: 2025-08-25 19:35+0000\n"
 "PO-Revision-Date: 2024-05-31 01:17-0600\n"
 "Last-Translator: Luis Bocanegra <luisbocanegra17b@gmail.com>\n"
 "Language-Team: none\n"
@@ -311,6 +311,16 @@ msgstr ""
 #: ../contents/ui/configGeneral.qml
 msgid "Border Color"
 msgstr "Color del borde"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Radius (Deprecated):"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"This option is deprecated. Use the per-corner radius settings below. This "
+"value is shown for reference from your old configuration."
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Radius:"
