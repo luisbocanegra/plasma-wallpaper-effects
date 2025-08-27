@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
 "POT-Creation-Date: 2025-08-25 19:35+0000\n"
-"PO-Revision-Date: 2025-06-13 10:41+0200\n"
+"PO-Revision-Date: 2025-08-27 10:47+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -314,13 +314,15 @@ msgstr "Randkleur"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Radius (Deprecated):"
-msgstr ""
+msgstr "Straal (verouderd):"
 
 #: ../contents/ui/configGeneral.qml
 msgid ""
 "This option is deprecated. Use the per-corner radius settings below. This "
 "value is shown for reference from your old configuration."
 msgstr ""
+"Deze optie is verouderd - maak gebruik van de instellingen per hoekstraal "
+"hieronder. Deze optie is er alleen voor inzicht in je oude instellingen."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Radius:"
@@ -355,10 +357,12 @@ msgid ""
 "Currently enabled and <u><strong><font color='%1'>active</font></strong></u> "
 "Desktop Effects:"
 msgstr ""
+"Momenteel ingeschakelde en <u><strong><font color='%1'>actieve</font></"
+"strong></u> bureaubladeffecten:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Select to copy"
-msgstr ""
+msgstr "Selecteer om te kopiëren"
 
 #: ../contents/ui/main.qml
 msgid "Wallpaper not found, this widget must be placed on the Desktop"
