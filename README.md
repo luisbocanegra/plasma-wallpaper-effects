@@ -4,7 +4,6 @@
 
 [![AUR version](https://img.shields.io/aur/version/plasma6-applets-wallpaper-effects?logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-wallpaper-effects)
 [![Store version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2145723&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2145723)
-[![Store downloads](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2145723&query=%2Focs%2Fdata%2Fcontent%2Fdownloads%2Ftext()&logo=kde&label=Downloads&labelColor=2d333b)](https://store.kde.org/p/2145723)
 
 Plasma Widget to enable Active Blur and other effects for all Wallpaper Plugins
 
@@ -120,7 +119,7 @@ Instructions to translate the project are available [here](https://github.com/lu
 
 ## How does it work
 
-Similar to [plasma-panel-colorizer](https://github.com/luisbocanegra/plasma-panel-colorizer), this widget works by injecting/managing effects of the existing wallpaper. Replicating the famous Active Blur for all Wallpaper Plugins without having to modify each Plugin source code.
+Similar to [plasma-panel-colorizer](https://github.com/luisbocanegra/plasma-panel-colorizer), this widget works by injecting/managing effects of the existing wallpaper. Replicating the famous Active Blur for all Wallpaper Plugins without having to modify each wallpaper plugin source code.
 
 ## Support the development
 
