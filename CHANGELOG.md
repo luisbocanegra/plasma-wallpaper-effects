@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.6.1...v0.7.0) (2025-08-27)
+
+
+### Features
+
+* Split "Rounded Corners" radius into per corner settings ([#34](https://github.com/luisbocanegra/plasma-wallpaper-effects/issues/34)) ([605b41f](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/605b41fc39e67e8d0d9eca62cd50511389e50b2e))
+
 ## [0.6.1](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.6.0...v0.6.1) (2025-06-20)
 
 
