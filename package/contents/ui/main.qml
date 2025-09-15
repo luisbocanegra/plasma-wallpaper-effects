@@ -103,7 +103,7 @@ PlasmoidItem {
     property var shaderItem: null
     property var roundedItem: null
     property var pixelateItem: null
-    
+
     property var themeColors: ["textColor", "disabledTextColor", "highlightedTextColor", "activeTextColor", "linkColor", "visitedLinkColor", "negativeTextColor", "neutralTextColor", "positiveTextColor", "backgroundColor", "highlightColor", "activeBackgroundColor", "linkBackgroundColor", "visitedLinkBackgroundColor", "negativeBackgroundColor", "neutralBackgroundColor", "positiveBackgroundColor", "alternateBackgroundColor", "focusColor", "hoverColor"]
 
     property var themeScopes: ["View", "Window", "Button", "Selection", "Tooltip", "Complementary", "Header"]
@@ -376,7 +376,6 @@ PlasmoidItem {
     property Component roundedComponent: Rectangle {
         id: overlayRectangle
         property var target
-        anchors.fill: target
         opacity: borderEnabled ? 1 : 0
         visible: opacity !== 0
         z: 1000
@@ -391,7 +390,6 @@ PlasmoidItem {
         }
         width: target.width
         height: target.height
-        layer.enabled: true
         Kirigami.ShadowedRectangle {
             id: shadowRect
             anchors.fill: parent
@@ -429,18 +427,16 @@ PlasmoidItem {
                 }
             }
         }
-        layer.effect: MultiEffect {
-            maskEnabled: true
-            maskInverted: true
-            maskSpreadAtMax: 1
-            maskSpreadAtMin: 1
-            maskThresholdMin: 0.5
+        layer.enabled: true
+        layer.effect: Components.OpacityMaskInverted {
+            source: ShaderEffectSource {
+                sourceItem: overlayRectangle
+            }
             maskSource: ShaderEffectSource {
                 sourceItem: Item {
-                    width: target.width
-                    height: target.height
+                    width: overlayRectangle.width
+                    height: overlayRectangle.height
                     Kirigami.ShadowedRectangle {
-                        id: mask
                         anchors.fill: parent
                         anchors.topMargin: borderMarginTop
                         anchors.bottomMargin: borderMarginBottom
