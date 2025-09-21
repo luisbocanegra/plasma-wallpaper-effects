@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.7.0...v0.7.1) (2025-09-21)
+
+
+### Bug Fixes
+
+* broken effects after monitor unplug ([534530a](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/534530a70e4da24033e25e51f17f94c1905638dd))
+
 ## [0.7.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.6.1...v0.7.0) (2025-08-27)
 
 
