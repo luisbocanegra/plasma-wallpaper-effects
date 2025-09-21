@@ -103,7 +103,7 @@ PlasmoidItem {
     property var shaderItem: null
     property var roundedItem: null
     property var pixelateItem: null
-    
+
     property var themeColors: ["textColor", "disabledTextColor", "highlightedTextColor", "activeTextColor", "linkColor", "visitedLinkColor", "negativeTextColor", "neutralTextColor", "positiveTextColor", "backgroundColor", "highlightColor", "activeBackgroundColor", "linkBackgroundColor", "visitedLinkBackgroundColor", "negativeBackgroundColor", "neutralBackgroundColor", "positiveBackgroundColor", "alternateBackgroundColor", "focusColor", "hoverColor"]
 
     property var themeScopes: ["View", "Window", "Button", "Selection", "Tooltip", "Complementary", "Header"]
@@ -530,7 +530,8 @@ PlasmoidItem {
         if (!wallpaperPluginName || !containmentPluginName)
             return;
         cleanupEffects();
-        applyEffects();
+        // callLater so applyEffects runs after effects are destroyed
+        Qt.callLater(applyEffects);
     }
 
     onWallpaperPluginNameChanged: {
