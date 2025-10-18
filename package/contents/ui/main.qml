@@ -376,7 +376,6 @@ PlasmoidItem {
     property Component roundedComponent: Rectangle {
         id: overlayRectangle
         property var target
-        anchors.fill: target
         opacity: borderEnabled ? 1 : 0
         visible: opacity !== 0
         z: 1000
@@ -391,7 +390,6 @@ PlasmoidItem {
         }
         width: target.width
         height: target.height
-        layer.enabled: true
         Kirigami.ShadowedRectangle {
             id: shadowRect
             anchors.fill: parent
@@ -429,45 +427,42 @@ PlasmoidItem {
                 }
             }
         }
-        layer.effect: MultiEffect {
-            maskEnabled: true
-            maskInverted: true
-            maskSpreadAtMax: 1
-            maskSpreadAtMin: 1
-            maskThresholdMin: 0.5
+        layer.enabled: true
+        layer.effect: Components.OpacityMaskInverted {
+            source: ShaderEffectSource {
+                sourceItem: overlayRectangle
+            }
             maskSource: ShaderEffectSource {
                 sourceItem: Item {
-                    width: target.width
-                    height: target.height
-                    Kirigami.ShadowedRectangle {
-                        id: mask
+                    width: overlayRectangle.width
+                    height: overlayRectangle.height
+                    Rectangle {
                         anchors.fill: parent
                         anchors.topMargin: borderMarginTop
                         anchors.bottomMargin: borderMarginBottom
                         anchors.leftMargin: borderMarginLeft
                         anchors.rightMargin: borderMarginRight
                         color: "white"
-                        shadow.size: 0
-                        corners.topLeftRadius: borderEnabled ? Math.max(0, borderRadiusTopLeft - 2) : 0
-                        corners.topRightRadius: borderEnabled ? Math.max(0, borderRadiusTopRight - 2) : 0
-                        corners.bottomLeftRadius: borderEnabled ? Math.max(0, borderRadiusBottomLeft - 2) : 0
-                        corners.bottomRightRadius: borderEnabled ? Math.max(0, borderRadiusBottomRight - 2) : 0
-                        Behavior on corners.topLeftRadius {
+                        topLeftRadius: borderEnabled ? Math.max(0, borderRadiusTopLeft - 2) : 0
+                        topRightRadius: borderEnabled ? Math.max(0, borderRadiusTopRight - 2) : 0
+                        bottomLeftRadius: borderEnabled ? Math.max(0, borderRadiusBottomLeft - 2) : 0
+                        bottomRightRadius: borderEnabled ? Math.max(0, borderRadiusBottomRight - 2) : 0
+                        Behavior on topLeftRadius {
                             NumberAnimation {
                                 duration: 100
                             }
                         }
-                        Behavior on corners.topRightRadius {
+                        Behavior on topRightRadius {
                             NumberAnimation {
                                 duration: 100
                             }
                         }
-                        Behavior on corners.bottomLeftRadius {
+                        Behavior on bottomLeftRadius {
                             NumberAnimation {
                                 duration: 100
                             }
                         }
-                        Behavior on corners.bottomRightRadius {
+                        Behavior on bottomRightRadius {
                             NumberAnimation {
                                 duration: 100
                             }
