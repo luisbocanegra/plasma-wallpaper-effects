@@ -26,11 +26,20 @@ KCM.SimpleKCM {
     property alias cfg_CheckActiveScreen: activeScreenOnlyCheckbx.checked
     property alias cfg_BlurRadius: blurRadiusSpinBox.value
     property alias cfg_isEnabled: isEnabledCheckbox.checked
+
     property alias cfg_borderEnabled: borderEnabledCheckbox.checked
-    property int cfg_borderColorMode: plasmoid.configuration.borderColorMode
+    property int cfg_borderColorMode
     property alias cfg_borderColorModeTheme: borderModeTheme.currentIndex
     property alias cfg_borderColorModeThemeVariant: borderModeThemeVariant.currentIndex
     property alias cfg_borderColor: borderColorButton.color
+
+    property alias cfg_innerBorderEnabled: innerBorderEnabledCheckbox.checked
+    property int cfg_innerBorderColorMode
+    property alias cfg_innerBorderColorModeTheme: innerBorderModeTheme.currentIndex
+    property alias cfg_innerBorderColorModeThemeVariant: innerBorderModeThemeVariant.currentIndex
+    property alias cfg_innerBorderColor: innerBorderColorButton.color
+    property alias cfg_innerBorderWidth: innerBorderWidth.value
+
     property alias cfg_borderRadius: borderRadiusSpinBox.value
     property alias cfg_borderRadiusTopLeft: borderRadiusTopLeftSpinBox.value
     property alias cfg_borderRadiusTopRight: borderRadiusTopRightSpinBox.value
@@ -58,7 +67,7 @@ KCM.SimpleKCM {
     property alias cfg_animationDuration: animationDurationSpinBox.value
     property alias cfg_animationOutDuration: animationOutDurationSpinBox.value
     property real cfg_shadowBlur: shadowBlurInput.value
-    
+
     //TODO remove // when qmlformat off/on becomes a thing
     property var systemColors: [//
         i18n("Text"),
@@ -520,7 +529,11 @@ KCM.SimpleKCM {
                 }
             }
 
-            
+            Item {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Background")
+                Layout.fillWidth: true
+            }
 
             RadioButton {
                 id: customColorRadio
@@ -528,23 +541,23 @@ KCM.SimpleKCM {
                 text: i18n("Custom")
                 ButtonGroup.group: colorModeGroup
                 property int index: 0
-                checked: plasmoid.configuration.borderColorMode === index
-                enabled: borderEnabledCheckbox.checked
+                checked: root.cfg_borderColorMode === index
+                enabled: root.cfg_borderEnabled
             }
             RadioButton {
                 id: systemColorRadio
                 text: i18n("System")
                 ButtonGroup.group: colorModeGroup
                 property int index: 1
-                checked: plasmoid.configuration.borderColorMode === index
-                enabled: borderEnabledCheckbox.checked
+                checked: root.cfg_borderColorMode === index
+                enabled: root.cfg_borderEnabled
             }
 
             ButtonGroup {
                 id: colorModeGroup
                 onCheckedButtonChanged: {
                     if (checkedButton) {
-                        cfg_borderColorMode = checkedButton.index;
+                        root.cfg_borderColorMode = checkedButton.index;
                     }
                 }
             }
@@ -554,29 +567,107 @@ KCM.SimpleKCM {
                 showAlphaChannel: false
                 Kirigami.FormData.label: i18n("Color:")
                 dialogTitle: i18n("Border Color")
-                color: cfg_borderColor
+                color: root.cfg_borderColor
                 onAccepted: {
-                    cfg_borderColor = color;
+                    root.cfg_borderColor = color;
                 }
-                enabled: borderEnabledCheckbox.checked
-                visible: customColorRadio.checked
+                visible: root.cfg_borderColorMode === 0
+                enabled: root.cfg_borderEnabled
             }
 
             ComboBox {
                 id: borderModeTheme
                 Kirigami.FormData.label: i18n("Color:")
-                model: systemColors
-                visible: systemColorRadio.checked
-                enabled: borderEnabledCheckbox.checked
+                model: root.systemColors
+                visible: root.cfg_borderColorMode === 1
+                enabled: root.cfg_borderEnabled
             }
 
             ComboBox {
                 id: borderModeThemeVariant
                 Kirigami.FormData.label: i18n("Color set:")
-                model: systemColorSets
-                visible: systemColorRadio.checked
-                enabled: borderEnabledCheckbox.checked
+                model: root.systemColorSets
+                visible: root.cfg_borderColorMode === 1
+                enabled: root.cfg_borderEnabled
             }
+
+            ///
+
+            Item {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Border")
+                Layout.fillWidth: true
+            }
+
+            RowLayout {
+                Kirigami.FormData.label: i18n("Enable:")
+                CheckBox {
+                    id: innerBorderEnabledCheckbox
+                }
+            }
+
+            SpinBox {
+                id: innerBorderWidth
+                from: 0
+                to: 999
+            }
+
+            RadioButton {
+                id: innerBorderCustomColorRadio
+                Kirigami.FormData.label: i18n("Color source:")
+                text: i18n("Custom")
+                ButtonGroup.group: innerBorderColorModeGroup
+                property int index: 0
+                checked: root.cfg_innerBorderColorMode === index
+                enabled: root.cfg_borderEnabled
+            }
+            RadioButton {
+                id: innerBorderSystemColorRadio
+                text: i18n("System")
+                ButtonGroup.group: innerBorderColorModeGroup
+                property int index: 1
+                checked: root.cfg_innerBorderColorMode === index
+                enabled: root.cfg_borderEnabled
+            }
+
+            ButtonGroup {
+                id: innerBorderColorModeGroup
+                onCheckedButtonChanged: {
+                    if (checkedButton) {
+                        cfg_innerBorderColorMode = checkedButton.index;
+                    }
+                }
+            }
+
+            Components.ColorButton {
+                id: innerBorderColorButton
+                showAlphaChannel: false
+                Kirigami.FormData.label: i18n("Color:")
+                dialogTitle: i18n("Border Color")
+                color: root.cfg_innerBorderColor
+                onAccepted: {
+                    cfg_innerBorderColor = color;
+                }
+                visible: root.cfg_innerBorderColorMode === 0
+                enabled: root.cfg_borderEnabled
+            }
+
+            ComboBox {
+                id: innerBorderModeTheme
+                Kirigami.FormData.label: i18n("Color:")
+                model: root.systemColors
+                visible: root.cfg_innerBorderColorMode === 1
+                enabled: root.cfg_borderEnabled
+            }
+
+            ComboBox {
+                id: innerBorderModeThemeVariant
+                Kirigami.FormData.label: i18n("Color set:")
+                model: root.systemColorSets
+                visible: root.cfg_innerBorderColorMode === 1
+                enabled: root.cfg_borderEnabled
+            }
+            ///
 
             // DEPRECATED: Use per-corner radius instead. This is just for reference.
             RowLayout {
@@ -595,7 +686,7 @@ KCM.SimpleKCM {
             GridLayout {
                 Kirigami.FormData.label: i18n("Radius:")
                 columns: 2
-                enabled: borderEnabledCheckbox.checked
+                enabled: root.cfg_borderEnabled
 
                 SpinBox {
                     id: borderRadiusTopLeftSpinBox
@@ -631,7 +722,7 @@ KCM.SimpleKCM {
                 onValueModified: {
                     root.cfg_shadowBlur = value / shadowBlurInput.multiplier;
                 }
-                enabled: borderEnabledCheckbox.checked
+                enabled: root.cfg_borderEnabled
             }
 
             Kirigami.Separator {
@@ -648,7 +739,7 @@ KCM.SimpleKCM {
                 onValueChanged: {
                     cfg_borderMarginTop = value;
                 }
-                enabled: borderEnabledCheckbox.checked
+                enabled: root.cfg_borderEnabled
             }
             SpinBox {
                 id: marginBottomSpinBox
@@ -659,7 +750,7 @@ KCM.SimpleKCM {
                 onValueChanged: {
                     cfg_borderMarginBottom = value;
                 }
-                enabled: borderEnabledCheckbox.checked
+                enabled: root.cfg_borderEnabled
             }
             SpinBox {
                 id: marginLeftSpinBox
@@ -670,7 +761,7 @@ KCM.SimpleKCM {
                 onValueChanged: {
                     cfg_borderMarginLeft = value;
                 }
-                enabled: borderEnabledCheckbox.checked
+                enabled: root.cfg_borderEnabled
             }
             SpinBox {
                 id: marginRightSpinBox
@@ -681,7 +772,7 @@ KCM.SimpleKCM {
                 onValueChanged: {
                     cfg_borderMarginRight = value;
                 }
-                enabled: borderEnabledCheckbox.checked
+                enabled: root.cfg_borderEnabled
             }
 
             Kirigami.Separator {
@@ -693,14 +784,14 @@ KCM.SimpleKCM {
                 id: effectsHideBorderInput
                 Kirigami.FormData.label: i18n("Hide in:")
                 model: effects.loadedEffects
-                enabled: borderEnabledCheckbox.checked
+                enabled: root.cfg_borderEnabled
             }
 
             Components.CheckableValueListView {
                 id: effectsShowBorderInput
                 Kirigami.FormData.label: i18n("Show in:")
                 model: effects.loadedEffects
-                enabled: borderEnabledCheckbox.checked
+                enabled: root.cfg_borderEnabled
             }
         }
         ColumnLayout {

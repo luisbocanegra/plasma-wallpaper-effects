@@ -16,11 +16,14 @@ PlasmoidItem {
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool inEditMode: containmentItem?.corona?.editMode ?? false
     property bool widgetConfiguring: Plasmoid.userConfiguring
+
     property var activeEffects: effectsModel.activeEffects
+
     property var effectsHideBlur: plasmoid.configuration.effectsHideBlur.split(",").filter(Boolean)
     property var effectsShowBlur: plasmoid.configuration.effectsShowBlur.split(",").filter(Boolean)
     property bool effectHideBlur: effectsHideBlur.some(item => activeEffects.includes(item))
     property bool effectShowBlur: effectsShowBlur.some(item => activeEffects.includes(item))
+    property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
 
     property var effectsHideGrain: plasmoid.configuration.effectsHideGrain.split(",").filter(Boolean)
     property var effectsShowGrain: plasmoid.configuration.effectsShowGrain.split(",").filter(Boolean)
@@ -32,13 +35,15 @@ PlasmoidItem {
     property bool effectHidePixelate: effectsHidePixelate.some(item => activeEffects.includes(item))
     property bool effectShowPixelate: effectsShowPixelate.some(item => activeEffects.includes(item))
 
-    property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
     property bool isEnabled: plasmoid.configuration.isEnabled
+
     property var effectsHideBorder: plasmoid.configuration.effectsHideBorder.split(",").filter(Boolean)
     property var effectsShowBorder: plasmoid.configuration.effectsShowBorder.split(",").filter(Boolean)
     property bool effectHideBorder: effectsHideBorder.some(item => activeEffects.includes(item))
     property bool effectShowBorder: effectsShowBorder.some(item => activeEffects.includes(item))
     property bool borderEnabled: (plasmoid.configuration.borderEnabled && isEnabled && !effectHideBorder) || effectShowBorder
+    property bool innerBorderEnabled: plasmoid.configuration.innerBorderEnabled && borderEnabled
+
     property int borderColorMode: plasmoid.configuration.borderColorMode
     property int borderColorModeTheme: plasmoid.configuration.borderColorModeTheme
     property string borderColor: {
@@ -52,6 +57,21 @@ PlasmoidItem {
     property var borderColorScope: {
         return themeScopes[borderColorModeThemeVariant];
     }
+
+    property int innerBorderColorMode: plasmoid.configuration.innerBorderColorMode
+    property int innerBorderColorModeTheme: plasmoid.configuration.innerBorderColorModeTheme
+    property string innerBorderColor: {
+        if (innerBorderColorMode === 0) {
+            return plasmoid.configuration.innerBorderColor;
+        } else {
+            return themeColors[innerBorderColorModeTheme];
+        }
+    }
+    property int innerBorderColorModeThemeVariant: plasmoid.configuration.innerBorderColorModeThemeVariant
+    property var innerBorderColorScope: {
+        return themeScopes[innerBorderColorModeThemeVariant];
+    }
+
     property int borderRadiusTopLeft: plasmoid.configuration.borderRadiusTopLeft
     property int borderRadiusTopRight: plasmoid.configuration.borderRadiusTopRight
     property int borderRadiusBottomLeft: plasmoid.configuration.borderRadiusBottomLeft
@@ -60,6 +80,7 @@ PlasmoidItem {
     property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
     property int borderMarginLeft: plasmoid.configuration.borderMarginLeft
     property int borderMarginRight: plasmoid.configuration.borderMarginRight
+
     property var effectsHideColorization: plasmoid.configuration.effectsHideColorization.split(",").filter(Boolean)
     property var effectsShowColorization: plasmoid.configuration.effectsShowColorization.split(",").filter(Boolean)
     property bool effectHideColorization: effectsHideColorization.some(item => activeEffects.includes(item))
@@ -101,6 +122,7 @@ PlasmoidItem {
     }
     property var blurItem: null
     property var shaderItem: null
+    property var borderItem: null
     property var roundedItem: null
     property var pixelateItem: null
 
@@ -483,6 +505,36 @@ PlasmoidItem {
         }
     }
 
+    property Component borderComponent: Rectangle {
+        id: overlayBorder
+        property var target
+        anchors.fill: target
+        anchors.topMargin: borderMarginTop
+        anchors.bottomMargin: borderMarginBottom
+        anchors.leftMargin: borderMarginLeft
+        anchors.rightMargin: borderMarginRight
+        opacity: innerBorderEnabled ? 1 : 0
+        z: 1000
+        color: "transparent"
+        border.color: {
+            if (innerBorderColor.startsWith("#")) {
+                return innerBorderColor;
+            } else {
+                return Kirigami.Theme[innerBorderColor];
+            }
+        }
+        border.width: plasmoid.configuration.innerBorderWidth
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 100
+            }
+        }
+        topLeftRadius: borderEnabled ? Math.max(0, borderRadiusTopLeft - 2) : 0
+        topRightRadius: borderEnabled ? Math.max(0, borderRadiusTopRight - 2) : 0
+        bottomLeftRadius: borderEnabled ? Math.max(0, borderRadiusBottomLeft - 2) : 0
+        bottomRightRadius: borderEnabled ? Math.max(0, borderRadiusBottomRight - 2) : 0
+    }
+
     function findBlurSource(element, root) {
         if (!element.children)
             return null;
@@ -513,11 +565,17 @@ PlasmoidItem {
         roundedItem = roundedComponent.createObject(wallpaperItem, {
             "target": wallpaperItem
         });
+
+        borderItem = borderComponent.createObject(wallpaperItem, {
+            "target": wallpaperItem
+        });
     }
 
     function cleanupEffects() {
         if (blurItem)
             blurItem.destroy();
+        if (borderItem)
+            borderItem.destroy();
         if (roundedItem)
             roundedItem.destroy();
         if (shaderItem)
