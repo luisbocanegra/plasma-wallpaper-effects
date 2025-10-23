@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.7.1...v1.0.0) (2025-10-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* widget now requires Qt version 6.7 or newer (shouldn't be a problem for anyone using Plasma 6.1 and newer)
+
+### Features
+
+* rounded corners border ([117bb80](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/117bb80f9578e069bf652f3d84431caec25fd08c))
+
+
+### Bug Fixes
+
+* jaggy rounded corners ([409b2dd](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/409b2dd297025a76998323b52c10be685d57925d))
+
 ## [0.7.1](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.7.0...v0.7.1) (2025-09-21)
 
 
