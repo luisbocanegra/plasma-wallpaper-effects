@@ -241,8 +241,7 @@ msgstr "Tryb OpenGL ES 2.0:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Less random grain but supports older devices"
-msgstr ""
-"Mniej losowe ziarno, ale obsługuje starsze urządzenia"
+msgstr "Mniej losowe ziarno, ale obsługuje starsze urządzenia"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Animate:"
@@ -325,8 +324,9 @@ msgid ""
 "This option is deprecated. Use the per-corner radius settings below. This "
 "value is shown for reference from your old configuration."
 msgstr ""
-"Ta opcja jest przestarzała. Użyj ustawień promienia dla każdego rogu poniżej. "
-"Ta wartość jest pokazana dla odniesienia z twojej starej konfiguracji."
+"Ta opcja jest przestarzała. Użyj ustawień promienia dla każdego rogu "
+"poniżej. Ta wartość jest pokazana dla odniesienia z twojej starej "
+"konfiguracji."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Radius:"
@@ -370,8 +370,7 @@ msgstr "Wybierz, aby skopiować"
 
 #: ../contents/ui/main.qml
 msgid "Wallpaper not found, this widget must be placed on the Desktop"
-msgstr ""
-"Nie znaleziono tapety - ten widżet musi być umieszczony na pulpicie"
+msgstr "Nie znaleziono tapety - ten widżet musi być umieszczony na pulpicie"
 
 #: ../contents/ui/main.qml
 msgid "Configure %1"
