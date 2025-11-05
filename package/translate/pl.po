@@ -1,0 +1,419 @@
+# Translation of effects in Polish
+# Copyright (C) 2025
+# This file is distributed under the same license as the effects package.
+# RygorrMortis <rygorrmortis@github.com>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: effects\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
+"effects\n"
+"POT-Creation-Date: 2025-10-22 06:55+0000\n"
+"PO-Revision-Date: 2025-11-05 12:00+0100\n"
+"Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Manual\n"
+
+#: ../metadata.json
+msgid "Wallpaper Effects"
+msgstr "Efekty tapety"
+
+#: ../metadata.json
+msgid "Active Blur and other effects for all Wallpaper Plugins"
+msgstr "Aktywne rozmycie i inne efekty dla wszystkich wtyczek tapet"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "Ogólne"
+
+#: ../contents/ui/components/CheckableValueListView.qml
+msgid "Not configured"
+msgstr "Nie skonfigurowano"
+
+#: ../contents/ui/components/Header.qml
+msgid "Version:"
+msgstr "Wersja:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Text"
+msgstr "Tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Disabled Text"
+msgstr "Wyłączony tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Highlighted Text"
+msgstr "Podświetlony tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active Text"
+msgstr "Aktywny tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Link"
+msgstr "Łącze"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visited Link"
+msgstr "Odwiedzone łącze"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Negative Text"
+msgstr "Negatywny tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Neutral Text"
+msgstr "Neutralny tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Positive Text"
+msgstr "Pozytywny tekst"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "Tło"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Highlight"
+msgstr "Podświetlenie"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active Background"
+msgstr "Aktywne tło"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Link Background"
+msgstr "Tło łącza"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visited Link Background"
+msgstr "Tło odwiedzonego łącza"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Negative Background"
+msgstr "Negatywne tło"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Neutral Background"
+msgstr "Neutralne tło"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Positive Background"
+msgstr "Pozytywne tło"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Alternate Background"
+msgstr "Alternatywne tło"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Focus"
+msgstr "Fokus"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hover"
+msgstr "Najazd"
+
+#: ../contents/ui/configGeneral.qml
+msgid "View"
+msgstr "Widok"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Window"
+msgstr "Okno"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Button"
+msgstr "Przycisk"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Selection"
+msgstr "Zaznaczenie"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Tooltip"
+msgstr "Podpowiedź"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Complementary"
+msgstr "Uzupełniające"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Header"
+msgstr "Nagłówek"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Maximized or full-screen windows"
+msgstr "Zmaksymalizowane lub pełnoekranowe okna"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Active window is present"
+msgstr "Obecne jest aktywne okno"
+
+#: ../contents/ui/configGeneral.qml
+msgid "At least one window is shown"
+msgstr "Wyświetlane jest co najmniej jedno okno"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Always"
+msgstr "Zawsze"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Never"
+msgstr "Nigdy"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled:"
+msgstr "Włączone:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr "Ukryj widżet:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Animation duration (ms):"
+msgstr "Czas trwania animacji (ms):"
+
+#: ../contents/ui/configGeneral.qml
+msgid "In"
+msgstr "Wejście"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Filter windows:"
+msgstr "Filtruj okna:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "This screen only"
+msgstr "Tylko ten ekran"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Blur"
+msgstr "Rozmycie"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enable:"
+msgstr "Włącz:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Blur radius:"
+msgstr "Promień rozmycia:"
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"Quality of the blur is reduced if value exceeds 64. Higher values may cause "
+"the blur to stop working!"
+msgstr ""
+"Jakość rozmycia jest obniżona, jeśli wartość przekracza 64. Wyższe wartości "
+"mogą spowodować, że rozmycie przestanie działać!"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Desktop Effects"
+msgstr "Efekty pulpitu"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide in:"
+msgstr "Ukryj w:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show in:"
+msgstr "Pokaż w:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Pixelate Effect"
+msgstr "Efekt pikselizacji"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Pixel size:"
+msgstr "Rozmiar piksela:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grain Effect"
+msgstr "Efekt ziarna"
+
+#: ../contents/ui/configGeneral.qml
+msgid "OpenGL ES 2.0 mode:"
+msgstr "Tryb OpenGL ES 2.0:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Less random grain but supports older devices"
+msgstr ""
+"Mniej losowe ziarno, ale obsługuje starsze urządzenia"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Animate:"
+msgstr "Animuj:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "On change"
+msgstr "Przy zmianie"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grain amount:"
+msgstr "Ilość ziarna:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color Effects"
+msgstr "Efekty kolorów"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Brightness:"
+msgstr "Jasność:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Contrast:"
+msgstr "Kontrast:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Saturation:"
+msgstr "Nasycenie:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Colorization"
+msgstr "Koloryzacja"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Amount:"
+msgstr "Ilość:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color source:"
+msgstr "Źródło koloru:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Custom"
+msgstr "Niestandardowe"
+
+#: ../contents/ui/configGeneral.qml
+msgid "System"
+msgstr "System"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color:"
+msgstr "Kolor:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Color set:"
+msgstr "Zestaw kolorów:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Rounded Corners"
+msgstr "Zaokrąglone rogi"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Draw rounded corners on top of the wallpaper"
+msgstr "Rysuj zaokrąglone rogi na wierzchu tapety"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border Color"
+msgstr "Kolor obramowania"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border"
+msgstr "Obramowanie"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Radius (Deprecated):"
+msgstr "Promień (Przestarzałe):"
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"This option is deprecated. Use the per-corner radius settings below. This "
+"value is shown for reference from your old configuration."
+msgstr ""
+"Ta opcja jest przestarzała. Użyj ustawień promienia dla każdego rogu poniżej. "
+"Ta wartość jest pokazana dla odniesienia z twojej starej konfiguracji."
+
+#: ../contents/ui/configGeneral.qml
+msgid "Radius:"
+msgstr "Promień:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Shadow:"
+msgstr "Cień:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Margins"
+msgstr "Marginesy"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Top:"
+msgstr "Góra:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Bottom:"
+msgstr "Dół:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Left:"
+msgstr "Lewo:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Right:"
+msgstr "Prawo:"
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"Currently enabled and <u><strong><font color='%1'>active</font></strong></u> "
+"Desktop Effects:"
+msgstr ""
+"Aktualnie włączone i <u><strong><font color='%1'>aktywne</font></strong></u> "
+"Efekty pulpitu:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Select to copy"
+msgstr "Wybierz, aby skopiować"
+
+#: ../contents/ui/main.qml
+msgid "Wallpaper not found, this widget must be placed on the Desktop"
+msgstr ""
+"Nie znaleziono tapety - ten widżet musi być umieszczony na pulpicie"
+
+#: ../contents/ui/main.qml
+msgid "Configure %1"
+msgstr "Konfiguruj %1"
+
+#: ../contents/ui/main.qml
+msgid "Disable"
+msgstr "Wyłącz"
+
+#: ../contents/ui/main.qml
+msgid "Enable"
+msgstr "Włącz"
+
+#: ../contents/ui/main.qml
+msgid "Show"
+msgstr "Pokaż"
+
+#: ../contents/ui/main.qml
+msgid "Hide"
+msgstr "Ukryj"
+
+#~ msgid "Widget will show in Desktop Edit Mode"
+#~ msgstr "Widżet będzie wyświetlany w trybie edycji pulpitu"
+
+#~ msgid "Animation duration:"
+#~ msgstr "Czas trwania animacji:"
+
+#~ msgid "Filter:"
+#~ msgstr "Filtr:"
+
+#~ msgid "Only check for windows in active screen"
+#~ msgstr "Sprawdzaj okna tylko na aktywnym ekranie"
+
+#~ msgid "How to get active Desktop Effects"
+#~ msgstr "Jak uzyskać aktywne efekty pulpitu"
+
+#~ msgid ""
+#~ "To get the currently active Desktop Effects run the following in a "
+#~ "terminal:"
+#~ msgstr ""
+#~ "Aby uzyskać obecnie aktywne efekty pulpitu, uruchom następujące polecenie "
+#~ "w terminalu:"
+
+#~ msgid "Draw rounded corners over wallpaper"
+#~ msgstr "Rysuj zaokrąglone rogi na tapecie"
