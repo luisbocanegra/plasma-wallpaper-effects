@@ -7,6 +7,7 @@
 | Template |      90 |       |
 | es       |   64/90 |   71% |
 | nl       |   89/90 |   98% |
+| pl       |   90/90 |  100% |
 
 
 ## New Translations

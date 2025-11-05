@@ -12,6 +12,7 @@
 		"Description": "Active Blur and other effects for all Wallpaper Plugins",
 		"Description[es]": "Desenfoque activo y otros efectos para todos los plugins de fondo de pantalla",
 		"Description[nl]": "Actieve vervaging en andere effecten voor achtergrondplug-ins",
+		"Description[pl]": "Aktywne rozmycie i inne efekty dla wszystkich wtyczek tapet",
 		"EnabledByDefault": false,
 		"Icon": "preferences-desktop-effects",
 		"Id": "luisbocanegra.desktop.wallpaper.effects",
@@ -19,6 +20,7 @@
 		"Name": "Wallpaper Effects",
 		"Name[es]": "Efectos de fondo de pantalla",
 		"Name[nl]": "Achtergrondeffecten",
+		"Name[pl]": "Efekty tapety",
 		"Version": "1.0.0",
 		"Website": "https://github.com/luisbocanegra/plasma-wallpaper-effects"
 	},
