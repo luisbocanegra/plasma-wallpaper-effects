@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v1.0.0...v1.1.0) (2025-12-04)
+
+
+### Features
+
+* option to remove the enable/configure actions from Desktop menu ([342c7d5](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/342c7d573ee2b6c92f08327ab2b593274b080b05))
+
 ## [1.0.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v0.7.1...v1.0.0) (2025-10-22)
 
 
