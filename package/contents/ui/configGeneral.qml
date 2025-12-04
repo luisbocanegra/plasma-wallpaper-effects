@@ -67,6 +67,7 @@ KCM.SimpleKCM {
     property alias cfg_animationDuration: animationDurationSpinBox.value
     property alias cfg_animationOutDuration: animationOutDurationSpinBox.value
     property real cfg_shadowBlur: shadowBlurInput.value
+    property alias cfg_contextualActionsEnabled: contextualActionsEnabled.checked
 
     //TODO remove // when qmlformat off/on becomes a thing
     property var systemColors: [//
@@ -163,6 +164,15 @@ KCM.SimpleKCM {
             CheckBox {
                 id: isEnabledCheckbox
                 Kirigami.FormData.label: i18n("Enabled:")
+            }
+            RowLayout {
+                Kirigami.FormData.label: i18n("Contextual actions:")
+                CheckBox {
+                    id: contextualActionsEnabled
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Disable to remove the Configure and Enable effects action from the Desktop right-click menu.")
+                }
             }
         }
 

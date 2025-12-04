@@ -106,6 +106,7 @@ PlasmoidItem {
     property int animationInDuration: plasmoid.configuration.animationDuration
     property int animationOutDuration: plasmoid.configuration.animationOutDuration
     property real shadowBlur: plasmoid.configuration.shadowBlur
+    property bool contextualActionsEnabled: Plasmoid.configuration.contextualActionsEnabled
     property var wallpaperItem: containmentItem?.wallpaperGraphicsObject ?? null
     property var wallpaperPluginName: wallpaperItem?.pluginName ?? null
     property var containmentPluginName: containmentItem?.pluginName ?? null
@@ -596,7 +597,7 @@ PlasmoidItem {
 
     PlasmaCore.Action {
         id: configureEffectsAction
-        property string effectsActionName: "configureEffectsAction"
+        objectName: "wallpaperEffectsAction"
         text: i18n("Configure %1", Plasmoid.metaData.name)
         icon.name: 'configure'
         onTriggered: plasmoid.internalAction("configure").trigger()
@@ -604,7 +605,7 @@ PlasmoidItem {
 
     PlasmaCore.Action {
         id: toggleEffectsAction
-        property string effectsActionName: "toggleEffectsAction"
+        objectName: "wallpaperEffectsAction"
         text: (plasmoid.configuration.isEnabled ? i18n("Disable") : i18n("Enable")) + ` ${Plasmoid.metaData.name}`
         icon.name: "starred-symbolic"
         onTriggered: {
@@ -614,31 +615,24 @@ PlasmoidItem {
     }
 
     onContainmentItemChanged: {
-        if (containmentItem && "contextualActions" in containmentItem) {
-            containmentItem.contextualActions.push(toggleEffectsAction);
-            containmentItem.contextualActions.push(configureEffectsAction);
-        }
+        updateContextualActions(contextualActionsEnabled);
     }
 
-    function cleanupActions() {
-        if (containmentItem && "contextualActions" in containmentItem) {
-            containmentItem.contextualActions = containmentItem.contextualActions.filter(action => {
-                return !("effectsActionName" in action && ["configureEffectsAction", "toggleEffectsAction"].includes(action.effectsActionName));
-            });
-        }
+    onContextualActionsEnabledChanged: {
+        updateContextualActions(contextualActionsEnabled);
     }
 
     Connections {
         target: Qt.application
         function onAboutToQuit() {
-            cleanupEffects();
-            cleanupActions();
+            main.cleanupEffects();
+            main.updateContextualActions(false);
         }
     }
 
     Component.onDestruction: {
         cleanupEffects();
-        cleanupActions();
+        updateContextualActions(false);
     }
 
     Timer {
@@ -676,4 +670,16 @@ PlasmoidItem {
             }
         }
     ]
+
+    function updateContextualActions(enabled) {
+        if (containmentItem && "contextualActions" in containmentItem) {
+            containmentItem.contextualActions = containmentItem.contextualActions.filter(action => action && action.objectName !== "wallpaperEffectsAction");
+        }
+        if (enabled) {
+            if (containmentItem && "contextualActions" in containmentItem) {
+                containmentItem.contextualActions.push(toggleEffectsAction);
+                containmentItem.contextualActions.push(configureEffectsAction);
+            }
+        }
+    }
 }
