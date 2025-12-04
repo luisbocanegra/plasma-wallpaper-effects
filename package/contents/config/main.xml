@@ -236,6 +236,8 @@
         type="Int">
         <default>2</default>
     </entry>
-
+    <entry name="contextualActionsEnabled" type="Bool">
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>
