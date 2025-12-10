@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v1.1.0...v1.2.0) (2025-12-10)
+
+
+### Features
+
+* update Polish translation ([a8ed1ee](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/a8ed1eeebcc4ac1d6cde2a5c95c3f207666061e5))
+
 ## [1.1.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v1.0.0...v1.1.0) (2025-12-04)
 
 
