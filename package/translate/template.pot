@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-effects\n"
-"POT-Creation-Date: 2025-12-04 22:35+0000\n"
+"POT-Creation-Date: 2025-12-16 05:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -310,14 +310,6 @@ msgid "Draw rounded corners on top of the wallpaper"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Border Color"
-msgstr ""
-
-#: ../contents/ui/configGeneral.qml
-msgid "Border"
-msgstr ""
-
-#: ../contents/ui/configGeneral.qml
 msgid "Radius (Deprecated):"
 msgstr ""
 
@@ -338,19 +330,31 @@ msgid "Margins"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Top:"
+msgid "Automatic:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Bottom:"
+msgid "Adjust based on panel sizes. Works better with always visible non-floating panels."
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Left:"
+msgid "Offsets:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Right:"
+msgid "Margins:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border Color"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Width:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
