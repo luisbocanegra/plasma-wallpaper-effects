@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: effects\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-wallpaper-"
 "effects\n"
-"POT-Creation-Date: 2025-12-04 22:35+0000\n"
+"POT-Creation-Date: 2025-12-16 05:58+0000\n"
 "PO-Revision-Date: 2025-08-27 10:47+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -319,14 +319,6 @@ msgid "Draw rounded corners on top of the wallpaper"
 msgstr "Voorzie de achtergrond van afgeronde hoeken"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Border Color"
-msgstr "Randkleur"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Border"
-msgstr ""
-
-#: ../contents/ui/configGeneral.qml
 msgid "Radius (Deprecated):"
 msgstr "Straal (verouderd):"
 
@@ -351,20 +343,34 @@ msgid "Margins"
 msgstr "Marges"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Top:"
-msgstr "Bovenkant:"
+msgid "Automatic:"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Bottom:"
-msgstr "Onderkant:"
+msgid ""
+"Adjust based on panel sizes. Works better with always visible non-floating "
+"panels."
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Left:"
-msgstr "Links:"
+msgid "Offsets:"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Right:"
-msgstr "Rechts:"
+msgid "Margins:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border Color"
+msgstr "Randkleur"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Border"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Width:"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid ""
@@ -402,6 +408,18 @@ msgstr "Tonen"
 #: ../contents/ui/main.qml
 msgid "Hide"
 msgstr "Verbergen"
+
+#~ msgid "Top:"
+#~ msgstr "Bovenkant:"
+
+#~ msgid "Bottom:"
+#~ msgstr "Onderkant:"
+
+#~ msgid "Left:"
+#~ msgstr "Links:"
+
+#~ msgid "Right:"
+#~ msgstr "Rechts:"
 
 #~ msgid "Widget will show in Desktop Edit Mode"
 #~ msgstr "De widget wordt wel getoond in de bewerkmodus"
