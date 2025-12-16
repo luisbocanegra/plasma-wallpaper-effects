@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v1.2.0...v2.0.0) (2025-12-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rounded corners margin is now automatically adjusted based on the panels size, disable automatic margins option to use the previous fixed values
+
+### Features
+
+* automatic rounded corners margin based on panel size ([c8bedb0](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/c8bedb0d45a04c619ed943a2d980221c45d6c278))
+
 ## [1.2.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v1.1.0...v1.2.0) (2025-12-10)
 
 
