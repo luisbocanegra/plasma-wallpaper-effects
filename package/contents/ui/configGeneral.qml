@@ -49,6 +49,11 @@ KCM.SimpleKCM {
     property alias cfg_borderMarginBottom: marginBottomSpinBox.value
     property alias cfg_borderMarginLeft: marginLeftSpinBox.value
     property alias cfg_borderMarginRight: marginRightSpinBox.value
+    property alias cfg_autoMargins: autoMargins.checked
+    property alias cfg_autoMarginOffsetTop: autoMarginOffsetTop.value
+    property alias cfg_autoMarginOffsetBottom: autoMarginOffsetBottom.value
+    property alias cfg_autoMarginOffsetLeft: autoMarginOffsetLeft.value
+    property alias cfg_autoMarginOffsetRight: autoMarginOffsetRight.value
     property real cfg_brightness: brightnessInput.value
     property real cfg_contrast: contrastInput.value
     property real cfg_saturation: saturationInput.value
@@ -539,6 +544,139 @@ KCM.SimpleKCM {
                 }
             }
 
+            // DEPRECATED: Use per-corner radius instead. This is just for reference.
+            RowLayout {
+                Kirigami.FormData.label: i18n("Radius (Deprecated):")
+                SpinBox {
+                    id: borderRadiusSpinBox
+                    from: 0
+                    to: 145
+                    enabled: false
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("This option is deprecated. Use the per-corner radius settings below. This value is shown for reference from your old configuration.")
+                }
+            }
+
+            GridLayout {
+                Kirigami.FormData.label: i18n("Radius:")
+                columns: 2
+                enabled: root.cfg_borderEnabled
+
+                SpinBox {
+                    id: borderRadiusTopLeftSpinBox
+                    from: 0
+                    to: 145
+                }
+
+                SpinBox {
+                    id: borderRadiusTopRightSpinBox
+                    from: 0
+                    to: 145
+                }
+
+                SpinBox {
+                    id: borderRadiusBottomLeftSpinBox
+                    from: 0
+                    to: 145
+                }
+
+                SpinBox {
+                    id: borderRadiusBottomRightSpinBox
+                    from: 0
+                    to: 145
+                }
+            }
+
+            Components.DoubleSpinBox {
+                id: shadowBlurInput
+                Kirigami.FormData.label: i18n("Shadow:")
+                from: 0 * multiplier
+                to: 1 * multiplier
+                value: root.cfg_shadowBlur * multiplier
+                onValueModified: {
+                    root.cfg_shadowBlur = value / shadowBlurInput.multiplier;
+                }
+                enabled: root.cfg_borderEnabled
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.label: i18n("Margins")
+                Layout.fillWidth: true
+            }
+
+            RowLayout {
+                Kirigami.FormData.label: i18n("Automatic:")
+                CheckBox {
+                    id: autoMargins
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Adjust based on panel sizes. Works better with always visible non-floating panels.")
+                }
+            }
+
+            RowLayout {
+                Kirigami.FormData.label: i18n("Offsets:")
+                visible: autoMargins.checked
+                SpinBox {
+                    id: autoMarginOffsetLeft
+                    from: -999
+                    to: 999
+                    enabled: root.cfg_borderEnabled
+                }
+                ColumnLayout {
+                    SpinBox {
+                        id: autoMarginOffsetTop
+                        from: -999
+                        to: 999
+                        enabled: root.cfg_borderEnabled
+                    }
+                    SpinBox {
+                        id: autoMarginOffsetBottom
+                        from: -999
+                        to: 999
+                        enabled: root.cfg_borderEnabled
+                    }
+                }
+                SpinBox {
+                    id: autoMarginOffsetRight
+                    from: -999
+                    to: 999
+                    enabled: root.cfg_borderEnabled
+                }
+            }
+
+            RowLayout {
+                Kirigami.FormData.label: i18n("Margins:")
+                visible: !autoMargins.checked
+                SpinBox {
+                    id: marginLeftSpinBox
+                    from: 0
+                    to: 999
+                    enabled: root.cfg_borderEnabled
+                }
+                ColumnLayout {
+                    SpinBox {
+                        id: marginTopSpinBox
+                        from: 0
+                        to: 999
+                        enabled: root.cfg_borderEnabled
+                    }
+                    SpinBox {
+                        id: marginBottomSpinBox
+                        from: 0
+                        to: 999
+                        enabled: root.cfg_borderEnabled
+                    }
+                }
+                SpinBox {
+                    id: marginRightSpinBox
+                    from: 0
+                    to: 999
+                    enabled: root.cfg_borderEnabled
+                }
+            }
+
             Item {
                 Kirigami.FormData.isSection: true
                 Kirigami.FormData.label: i18n("Background")
@@ -618,6 +756,7 @@ KCM.SimpleKCM {
 
             SpinBox {
                 id: innerBorderWidth
+                Kirigami.FormData.label: i18n("Width:")
                 from: 0
                 to: 999
             }
@@ -677,115 +816,9 @@ KCM.SimpleKCM {
                 visible: root.cfg_innerBorderColorMode === 1
                 enabled: root.cfg_borderEnabled
             }
-            ///
 
-            // DEPRECATED: Use per-corner radius instead. This is just for reference.
-            RowLayout {
-                Kirigami.FormData.label: i18n("Radius (Deprecated):")
-                SpinBox {
-                    id: borderRadiusSpinBox
-                    from: 0
-                    to: 145
-                    enabled: false
-                }
-                Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("This option is deprecated. Use the per-corner radius settings below. This value is shown for reference from your old configuration.")
-                }
-            }
-
-            GridLayout {
-                Kirigami.FormData.label: i18n("Radius:")
-                columns: 2
-                enabled: root.cfg_borderEnabled
-
-                SpinBox {
-                    id: borderRadiusTopLeftSpinBox
-                    from: 0
-                    to: 145
-                }
-
-                SpinBox {
-                    id: borderRadiusTopRightSpinBox
-                    from: 0
-                    to: 145
-                }
-
-                SpinBox {
-                    id: borderRadiusBottomLeftSpinBox
-                    from: 0
-                    to: 145
-                }
-
-                SpinBox {
-                    id: borderRadiusBottomRightSpinBox
-                    from: 0
-                    to: 145
-                }
-            }
-
-            Components.DoubleSpinBox {
-                id: shadowBlurInput
-                Kirigami.FormData.label: i18n("Shadow:")
-                from: 0 * multiplier
-                to: 1 * multiplier
-                value: root.cfg_shadowBlur * multiplier
-                onValueModified: {
-                    root.cfg_shadowBlur = value / shadowBlurInput.multiplier;
-                }
-                enabled: root.cfg_borderEnabled
-            }
-
-            Kirigami.Separator {
-                Kirigami.FormData.label: i18n("Margins")
-                Layout.fillWidth: true
-            }
-
-            SpinBox {
-                id: marginTopSpinBox
-                Kirigami.FormData.label: i18n("Top:")
-                from: 0
-                to: 999
-                value: cfg_borderMarginTop
-                onValueChanged: {
-                    cfg_borderMarginTop = value;
-                }
-                enabled: root.cfg_borderEnabled
-            }
-            SpinBox {
-                id: marginBottomSpinBox
-                Kirigami.FormData.label: i18n("Bottom:")
-                from: 0
-                to: 999
-                value: cfg_borderMarginBottom
-                onValueChanged: {
-                    cfg_borderMarginBottom = value;
-                }
-                enabled: root.cfg_borderEnabled
-            }
-            SpinBox {
-                id: marginLeftSpinBox
-                Kirigami.FormData.label: i18n("Left:")
-                from: 0
-                to: 999
-                value: cfg_borderMarginLeft
-                onValueChanged: {
-                    cfg_borderMarginLeft = value;
-                }
-                enabled: root.cfg_borderEnabled
-            }
-            SpinBox {
-                id: marginRightSpinBox
-                Kirigami.FormData.label: i18n("Right:")
-                from: 0
-                to: 999
-                value: cfg_borderMarginRight
-                onValueChanged: {
-                    cfg_borderMarginRight = value;
-                }
-                enabled: root.cfg_borderEnabled
-            }
-
-            Kirigami.Separator {
+            Item {
+                Kirigami.FormData.isSection: true
                 Kirigami.FormData.label: i18n("Desktop Effects")
                 Layout.fillWidth: true
             }

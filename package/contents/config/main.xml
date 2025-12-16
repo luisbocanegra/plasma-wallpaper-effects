@@ -239,5 +239,22 @@
     <entry name="contextualActionsEnabled" type="Bool">
       <default>true</default>
     </entry>
+
+    <entry name="autoMargins" type="Bool">
+      <default>true</default>
+    </entry>
+
+    <entry name="autoMarginOffsetTop" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="autoMarginOffsetBottom" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="autoMarginOffsetLeft" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="autoMarginOffsetRight" type="Int">
+      <default>0</default>
+    </entry>
   </group>
 </kcfg>

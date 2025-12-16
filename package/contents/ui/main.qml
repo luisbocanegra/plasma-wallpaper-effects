@@ -80,6 +80,31 @@ PlasmoidItem {
     property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
     property int borderMarginLeft: plasmoid.configuration.borderMarginLeft
     property int borderMarginRight: plasmoid.configuration.borderMarginRight
+    property bool autoMargins: Plasmoid.configuration.autoMargins
+    property int autoMarginOffsetTop: Plasmoid.configuration.autoMarginOffsetTop
+    property int autoMarginOffsetBottom: Plasmoid.configuration.autoMarginOffsetBottom
+    property int autoMarginOffsetLeft: Plasmoid.configuration.autoMarginOffsetLeft
+    property int autoMarginOffsetRight: Plasmoid.configuration.autoMarginOffsetRight
+    property var borderMargins: {
+        if (autoMargins) {
+            let top = Plasmoid.containment.availableScreenRect.y;
+            let bottom = (Plasmoid.containment.screenGeometry.height - Plasmoid.containment.availableScreenRect.height) - top;
+            let left = Plasmoid.containment.availableScreenRect.x;
+            let right = (Plasmoid.containment.screenGeometry.width - Plasmoid.containment.availableScreenRect.width) - left;
+            return {
+                "top": top + autoMarginOffsetTop,
+                "bottom": bottom + autoMarginOffsetBottom,
+                "left": left + autoMarginOffsetLeft,
+                "right": right + autoMarginOffsetRight
+            };
+        }
+        return {
+            "top": borderMarginTop,
+            "bottom": borderMarginBottom,
+            "left": borderMarginLeft,
+            "right": borderMarginRight
+        };
+    }
 
     property var effectsHideColorization: plasmoid.configuration.effectsHideColorization.split(",").filter(Boolean)
     property var effectsShowColorization: plasmoid.configuration.effectsShowColorization.split(",").filter(Boolean)
@@ -416,10 +441,10 @@ PlasmoidItem {
         Kirigami.ShadowedRectangle {
             id: shadowRect
             anchors.fill: parent
-            anchors.topMargin: borderMarginTop
-            anchors.bottomMargin: borderMarginBottom
-            anchors.leftMargin: borderMarginLeft
-            anchors.rightMargin: borderMarginRight
+            anchors.topMargin: main.borderMargins.top
+            anchors.bottomMargin: main.borderMargins.bottom
+            anchors.leftMargin: main.borderMargins.left
+            anchors.rightMargin: main.borderMargins.right
             color: parent.color
             shadow.size: main.shadowBlur * 32
             shadow.color: "black"
@@ -461,10 +486,10 @@ PlasmoidItem {
                     height: overlayRectangle.height
                     Rectangle {
                         anchors.fill: parent
-                        anchors.topMargin: borderMarginTop
-                        anchors.bottomMargin: borderMarginBottom
-                        anchors.leftMargin: borderMarginLeft
-                        anchors.rightMargin: borderMarginRight
+                        anchors.topMargin: main.borderMargins.top
+                        anchors.bottomMargin: main.borderMargins.bottom
+                        anchors.leftMargin: main.borderMargins.left
+                        anchors.rightMargin: main.borderMargins.right
                         color: "white"
                         topLeftRadius: borderEnabled ? Math.max(0, borderRadiusTopLeft - 2) : 0
                         topRightRadius: borderEnabled ? Math.max(0, borderRadiusTopRight - 2) : 0
@@ -505,10 +530,10 @@ PlasmoidItem {
         id: overlayBorder
         property var target
         anchors.fill: target
-        anchors.topMargin: borderMarginTop
-        anchors.bottomMargin: borderMarginBottom
-        anchors.leftMargin: borderMarginLeft
-        anchors.rightMargin: borderMarginRight
+        anchors.topMargin: main.borderMargins.top
+        anchors.bottomMargin: main.borderMargins.bottom
+        anchors.leftMargin: main.borderMargins.left
+        anchors.rightMargin: main.borderMargins.right
         opacity: innerBorderEnabled ? 1 : 0
         z: 1000
         color: "transparent"
