@@ -7,7 +7,7 @@
 | Template |      93 |       |
 | es       |   60/93 |   64% |
 | nl       |   85/93 |   91% |
-| pl       |   88/93 |   94% |
+| pl       |   93/93 |  100% |
 
 
 ## New Translations
