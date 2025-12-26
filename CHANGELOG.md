@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v2.0.0...v2.1.0) (2025-12-26)
+
+
+### Features
+
+* update Polish translation ([74cec74](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/74cec748879639ed9c4167cdc386c3536cca2e12))
+
+
+### Bug Fixes
+
+* extra comma in desktop effects text field ([d18d691](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/d18d691e3a19833ea4f46a5f338b51d73e5bcd07))
+
 ## [2.0.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v1.2.0...v2.0.0) (2025-12-16)
 
 
