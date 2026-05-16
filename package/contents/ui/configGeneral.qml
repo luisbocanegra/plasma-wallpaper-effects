@@ -428,13 +428,14 @@ KCM.SimpleKCM {
             Components.DoubleSpinBox {
                 id: saturationInput
                 Kirigami.FormData.label: i18n("Saturation:")
-                from: 0 * multiplier
-                to: 1 * multiplier
+                from: -1 * multiplier
+                to: 10000 * multiplier
                 value: root.cfg_saturation * multiplier
                 onValueModified: {
                     root.cfg_saturation = value / saturationInput.multiplier;
                 }
                 enabled: colorEffectsModeCombo.currentIndex !== 4
+                stepSize: Math.max((10 ** (parseInt(value).toString().length - 2)), 1)
             }
 
             Kirigami.Separator {
