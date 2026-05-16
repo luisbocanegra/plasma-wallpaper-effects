@@ -10,76 +10,76 @@ import "components" as Components
 
 PlasmoidItem {
     id: main
-    property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
+    property bool onDesktop: Plasmoid.location === PlasmaCore.Types.Floating
     property string iconName: onDesktop ? "icon" : "error"
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
-    property bool hideWidget: plasmoid.configuration.hideWidget
+    property bool hideWidget: Plasmoid.configuration.hideWidget
     property bool inEditMode: containmentItem?.corona?.editMode ?? false
     property bool widgetConfiguring: Plasmoid.userConfiguring
 
     property var activeEffects: effectsModel.activeEffects
 
-    property var effectsHideBlur: plasmoid.configuration.effectsHideBlur.split(",").filter(Boolean)
-    property var effectsShowBlur: plasmoid.configuration.effectsShowBlur.split(",").filter(Boolean)
+    property var effectsHideBlur: Plasmoid.configuration.effectsHideBlur.split(",").filter(Boolean)
+    property var effectsShowBlur: Plasmoid.configuration.effectsShowBlur.split(",").filter(Boolean)
     property bool effectHideBlur: effectsHideBlur.some(item => activeEffects.includes(item))
     property bool effectShowBlur: effectsShowBlur.some(item => activeEffects.includes(item))
-    property int blurRadius: showBlur ? plasmoid.configuration.BlurRadius : 0
+    property int blurRadius: showBlur ? Plasmoid.configuration.BlurRadius : 0
 
-    property var effectsHideGrain: plasmoid.configuration.effectsHideGrain.split(",").filter(Boolean)
-    property var effectsShowGrain: plasmoid.configuration.effectsShowGrain.split(",").filter(Boolean)
+    property var effectsHideGrain: Plasmoid.configuration.effectsHideGrain.split(",").filter(Boolean)
+    property var effectsShowGrain: Plasmoid.configuration.effectsShowGrain.split(",").filter(Boolean)
     property bool effectHideGrain: effectsHideGrain.some(item => activeEffects.includes(item))
     property bool effectShowGrain: effectsShowGrain.some(item => activeEffects.includes(item))
 
-    property var effectsHidePixelate: plasmoid.configuration.effectsHidePixelate.split(",").filter(Boolean)
-    property var effectsShowPixelate: plasmoid.configuration.effectsShowPixelate.split(",").filter(Boolean)
+    property var effectsHidePixelate: Plasmoid.configuration.effectsHidePixelate.split(",").filter(Boolean)
+    property var effectsShowPixelate: Plasmoid.configuration.effectsShowPixelate.split(",").filter(Boolean)
     property bool effectHidePixelate: effectsHidePixelate.some(item => activeEffects.includes(item))
     property bool effectShowPixelate: effectsShowPixelate.some(item => activeEffects.includes(item))
 
-    property bool isEnabled: plasmoid.configuration.isEnabled
+    property bool isEnabled: Plasmoid.configuration.isEnabled
 
-    property var effectsHideBorder: plasmoid.configuration.effectsHideBorder.split(",").filter(Boolean)
-    property var effectsShowBorder: plasmoid.configuration.effectsShowBorder.split(",").filter(Boolean)
+    property var effectsHideBorder: Plasmoid.configuration.effectsHideBorder.split(",").filter(Boolean)
+    property var effectsShowBorder: Plasmoid.configuration.effectsShowBorder.split(",").filter(Boolean)
     property bool effectHideBorder: effectsHideBorder.some(item => activeEffects.includes(item))
     property bool effectShowBorder: effectsShowBorder.some(item => activeEffects.includes(item))
-    property bool borderEnabled: (plasmoid.configuration.borderEnabled && isEnabled && !effectHideBorder) || effectShowBorder
-    property bool innerBorderEnabled: plasmoid.configuration.innerBorderEnabled && borderEnabled
+    property bool borderEnabled: (Plasmoid.configuration.borderEnabled && isEnabled && !effectHideBorder) || effectShowBorder
+    property bool innerBorderEnabled: Plasmoid.configuration.innerBorderEnabled && borderEnabled
 
-    property int borderColorMode: plasmoid.configuration.borderColorMode
-    property int borderColorModeTheme: plasmoid.configuration.borderColorModeTheme
+    property int borderColorMode: Plasmoid.configuration.borderColorMode
+    property int borderColorModeTheme: Plasmoid.configuration.borderColorModeTheme
     property string borderColor: {
         if (borderColorMode === 0) {
-            return plasmoid.configuration.borderColor;
+            return Plasmoid.configuration.borderColor;
         } else {
             return themeColors[borderColorModeTheme];
         }
     }
-    property int borderColorModeThemeVariant: plasmoid.configuration.borderColorModeThemeVariant
+    property int borderColorModeThemeVariant: Plasmoid.configuration.borderColorModeThemeVariant
     property var borderColorScope: {
         return themeScopes[borderColorModeThemeVariant];
     }
 
-    property int innerBorderColorMode: plasmoid.configuration.innerBorderColorMode
-    property int innerBorderColorModeTheme: plasmoid.configuration.innerBorderColorModeTheme
+    property int innerBorderColorMode: Plasmoid.configuration.innerBorderColorMode
+    property int innerBorderColorModeTheme: Plasmoid.configuration.innerBorderColorModeTheme
     property string innerBorderColor: {
         if (innerBorderColorMode === 0) {
-            return plasmoid.configuration.innerBorderColor;
+            return Plasmoid.configuration.innerBorderColor;
         } else {
             return themeColors[innerBorderColorModeTheme];
         }
     }
-    property int innerBorderColorModeThemeVariant: plasmoid.configuration.innerBorderColorModeThemeVariant
+    property int innerBorderColorModeThemeVariant: Plasmoid.configuration.innerBorderColorModeThemeVariant
     property var innerBorderColorScope: {
         return themeScopes[innerBorderColorModeThemeVariant];
     }
 
-    property int borderRadiusTopLeft: plasmoid.configuration.borderRadiusTopLeft
-    property int borderRadiusTopRight: plasmoid.configuration.borderRadiusTopRight
-    property int borderRadiusBottomLeft: plasmoid.configuration.borderRadiusBottomLeft
-    property int borderRadiusBottomRight: plasmoid.configuration.borderRadiusBottomRight
-    property int borderMarginTop: plasmoid.configuration.borderMarginTop
-    property int borderMarginBottom: plasmoid.configuration.borderMarginBottom
-    property int borderMarginLeft: plasmoid.configuration.borderMarginLeft
-    property int borderMarginRight: plasmoid.configuration.borderMarginRight
+    property int borderRadiusTopLeft: Plasmoid.configuration.borderRadiusTopLeft
+    property int borderRadiusTopRight: Plasmoid.configuration.borderRadiusTopRight
+    property int borderRadiusBottomLeft: Plasmoid.configuration.borderRadiusBottomLeft
+    property int borderRadiusBottomRight: Plasmoid.configuration.borderRadiusBottomRight
+    property int borderMarginTop: Plasmoid.configuration.borderMarginTop
+    property int borderMarginBottom: Plasmoid.configuration.borderMarginBottom
+    property int borderMarginLeft: Plasmoid.configuration.borderMarginLeft
+    property int borderMarginRight: Plasmoid.configuration.borderMarginRight
     property bool autoMargins: Plasmoid.configuration.autoMargins
     property int autoMarginOffsetTop: Plasmoid.configuration.autoMarginOffsetTop
     property int autoMarginOffsetBottom: Plasmoid.configuration.autoMarginOffsetBottom
@@ -106,31 +106,31 @@ PlasmoidItem {
         };
     }
 
-    property var effectsHideColorization: plasmoid.configuration.effectsHideColorization.split(",").filter(Boolean)
-    property var effectsShowColorization: plasmoid.configuration.effectsShowColorization.split(",").filter(Boolean)
+    property var effectsHideColorization: Plasmoid.configuration.effectsHideColorization.split(",").filter(Boolean)
+    property var effectsShowColorization: Plasmoid.configuration.effectsShowColorization.split(",").filter(Boolean)
     property bool effectHideColorization: effectsHideColorization.some(item => activeEffects.includes(item))
     property bool effectShowColorization: effectsShowColorization.some(item => activeEffects.includes(item))
 
-    property real brightness: showColorEffects ? plasmoid.configuration.brightness : 0
-    property real contrast: showColorEffects ? plasmoid.configuration.contrast : 0
-    property real saturation: showColorEffects ? plasmoid.configuration.saturation : 0
-    property real colorization: showColorEffects ? plasmoid.configuration.colorization : 0
-    property int colorizationColorMode: plasmoid.configuration.colorizationColorMode
-    property int colorizationColorModeTheme: plasmoid.configuration.colorizationColorModeTheme
+    property real brightness: showColorEffects ? Plasmoid.configuration.brightness : 0
+    property real contrast: showColorEffects ? Plasmoid.configuration.contrast : 0
+    property real saturation: showColorEffects ? Plasmoid.configuration.saturation : 0
+    property real colorization: showColorEffects ? Plasmoid.configuration.colorization : 0
+    property int colorizationColorMode: Plasmoid.configuration.colorizationColorMode
+    property int colorizationColorModeTheme: Plasmoid.configuration.colorizationColorModeTheme
     property string colorizationColor: {
         if (colorizationColorMode === 0) {
-            return plasmoid.configuration.colorizationColor;
+            return Plasmoid.configuration.colorizationColor;
         } else {
             return themeColors[colorizationColorModeTheme];
         }
     }
-    property int colorizationColorModeThemeVariant: plasmoid.configuration.colorizationColorModeThemeVariant
+    property int colorizationColorModeThemeVariant: Plasmoid.configuration.colorizationColorModeThemeVariant
     property var colorizationColorScope: {
         return themeScopes[colorizationColorModeThemeVariant];
     }
-    property int animationInDuration: plasmoid.configuration.animationDuration
-    property int animationOutDuration: plasmoid.configuration.animationOutDuration
-    property real shadowBlur: plasmoid.configuration.shadowBlur
+    property int animationInDuration: Plasmoid.configuration.animationDuration
+    property int animationOutDuration: Plasmoid.configuration.animationOutDuration
+    property real shadowBlur: Plasmoid.configuration.shadowBlur
     property bool contextualActionsEnabled: Plasmoid.configuration.contextualActionsEnabled
     property var wallpaperItem: containmentItem?.wallpaperGraphicsObject ?? null
     property var wallpaperPluginName: wallpaperItem?.pluginName ?? null
@@ -158,7 +158,7 @@ PlasmoidItem {
 
     property bool showBlur: {
         let shouldBlur = false;
-        switch (plasmoid.configuration.BlurMode) {
+        switch (Plasmoid.configuration.BlurMode) {
         case 0:
             shouldBlur = tasksModel.maximizedExists;
             break;
@@ -178,7 +178,7 @@ PlasmoidItem {
     }
     property bool showGrain: {
         let shouldGrain = true;
-        switch (plasmoid.configuration.GrainMode) {
+        switch (Plasmoid.configuration.GrainMode) {
         case 0:
             shouldGrain = tasksModel.maximizedExists;
             break;
@@ -199,7 +199,7 @@ PlasmoidItem {
 
     property bool showColorEffects: {
         let showEffect = true;
-        switch (plasmoid.configuration.colorEffectsMode) {
+        switch (Plasmoid.configuration.colorEffectsMode) {
         case 0:
             showEffect = tasksModel.maximizedExists;
             break;
@@ -220,7 +220,7 @@ PlasmoidItem {
 
     property bool showPixelate: {
         let shouldPixelate = true;
-        switch (plasmoid.configuration.PixelateMode) {
+        switch (Plasmoid.configuration.PixelateMode) {
         case 0:
             shouldPixelate = tasksModel.maximizedExists;
             break;
@@ -362,7 +362,7 @@ PlasmoidItem {
             hideSource: pixelate.visible
             textureMirroring: ShaderEffectSource.MirrorVertically
         }
-        property real pixelSize: main.showPixelate ? plasmoid.configuration.pixelatePixelSize : 1
+        property real pixelSize: main.showPixelate ? Plasmoid.configuration.pixelatePixelSize : 1
         property vector2d textureResolution: Qt.vector2d(blurItem.width, blurItem.height)
 
         Behavior on pixelSize {
@@ -398,10 +398,10 @@ PlasmoidItem {
             textureMirroring: ShaderEffectSource.MirrorVertically
         }
 
-        property bool isAnimationRunning: grain_amount !== plasmoid.configuration.grainAmount
+        property bool isAnimationRunning: grain_amount !== Plasmoid.configuration.grainAmount
         property real time: 0
-        property bool animate: plasmoid.configuration.grainAnimate || isAnimationRunning
-        property real grain_amount: main.showGrain ? plasmoid.configuration.grainAmount : 0
+        property bool animate: Plasmoid.configuration.grainAnimate || isAnimationRunning
+        property real grain_amount: main.showGrain ? Plasmoid.configuration.grainAmount : 0
         Behavior on grain_amount {
             NumberAnimation {
                 duration: grain_amount > 0 ? animationOutDuration : animationInDuration
@@ -414,7 +414,7 @@ PlasmoidItem {
             if (!visible) {
                 return "";
             }
-            if (plasmoid.configuration.grainOpenGL2Mode) {
+            if (Plasmoid.configuration.grainOpenGL2Mode) {
                 return Qt.resolvedUrl("shaders/grainOpenGL2.frag.qsb");
             }
             return Qt.resolvedUrl("shaders/grain.frag.qsb");
@@ -544,7 +544,7 @@ PlasmoidItem {
                 return Kirigami.Theme[innerBorderColor];
             }
         }
-        border.width: plasmoid.configuration.innerBorderWidth
+        border.width: Plasmoid.configuration.innerBorderWidth
         Behavior on opacity {
             NumberAnimation {
                 duration: 100
@@ -625,44 +625,54 @@ PlasmoidItem {
         objectName: "wallpaperEffectsAction"
         text: i18n("Configure %1", Plasmoid.metaData.name)
         icon.name: 'configure'
-        onTriggered: plasmoid.internalAction("configure").trigger()
+        onTriggered: Plasmoid.internalAction("configure").trigger()
     }
 
     PlasmaCore.Action {
         id: toggleEffectsAction
         objectName: "wallpaperEffectsAction"
-        text: (plasmoid.configuration.isEnabled ? i18n("Disable") : i18n("Enable")) + ` ${Plasmoid.metaData.name}`
+        text: (Plasmoid.configuration.isEnabled ? i18n("Disable") : i18n("Enable")) + ` ${Plasmoid.metaData.name}`
         icon.name: "starred-symbolic"
         onTriggered: {
-            plasmoid.configuration.isEnabled = !plasmoid.configuration.isEnabled;
-            plasmoid.configuration.writeConfig();
+            Plasmoid.configuration.isEnabled = !Plasmoid.configuration.isEnabled;
+            Plasmoid.configuration.writeConfig();
+        }
+    }
+
+    PlasmaCore.Action {
+        id: hideWidgetAction
+        text: (Plasmoid.configuration.hideWidget ? i18n("Show") : i18n("Hide")) + " widget"
+        icon.name: "visibility-symbolic"
+        onTriggered: {
+            Plasmoid.configuration.hideWidget = !Plasmoid.configuration.hideWidget;
+            Plasmoid.configuration.writeConfig();
         }
     }
 
     onContainmentItemChanged: {
-        updateContextualActions(contextualActionsEnabled);
+        updateContextualActions();
     }
 
     onContextualActionsEnabledChanged: {
-        updateContextualActions(contextualActionsEnabled);
+        updateContextualActions();
     }
 
     Connections {
         target: Qt.application
         function onAboutToQuit() {
             main.cleanupEffects();
-            main.updateContextualActions(false);
+            main.removeContextualActions();
         }
     }
 
     Component.onDestruction: {
         cleanupEffects();
-        updateContextualActions(false);
+        removeContextualActions();
     }
 
     Timer {
         id: shaderTimer
-        running: (main.shaderItem && main.shaderItem.visible && plasmoid.configuration.grainAnimate) || ((main.shaderItem?.isAnimationRunning ?? false) && plasmoid.configuration.grainAnimateChange)
+        running: (main.shaderItem && main.shaderItem.visible && Plasmoid.configuration.grainAnimate) || ((main.shaderItem?.isAnimationRunning ?? false) && Plasmoid.configuration.grainAnimateChange)
         onRunningChanged: {
             if (!running) {
                 shaderItem.time = 0;
@@ -677,34 +687,20 @@ PlasmoidItem {
         }
     }
 
-    Plasmoid.contextualActions: [
-        PlasmaCore.Action {
-            text: (plasmoid.configuration.isEnabled ? i18n("Disable") : i18n("Enable")) + ` ${Plasmoid.metaData.name}`
-            icon.name: "starred-symbolic"
-            onTriggered: {
-                plasmoid.configuration.isEnabled = !plasmoid.configuration.isEnabled;
-                plasmoid.configuration.writeConfig();
-            }
-        },
-        PlasmaCore.Action {
-            text: (plasmoid.configuration.hideWidget ? i18n("Show") : i18n("Hide")) + " widget"
-            icon.name: "visibility-symbolic"
-            onTriggered: {
-                plasmoid.configuration.hideWidget = !plasmoid.configuration.hideWidget;
-                plasmoid.configuration.writeConfig();
+    Plasmoid.contextualActions: [toggleEffectsAction, hideWidgetAction]
+
+    function updateContextualActions() {
+        removeContextualActions();
+        if (contextualActionsEnabled) {
+            if (containmentItem && "contextualActions" in containmentItem) {
+                containmentItem.contextualActions = [...containmentItem.contextualActions, toggleEffectsAction, configureEffectsAction];
             }
         }
-    ]
+    }
 
-    function updateContextualActions(enabled) {
+    function removeContextualActions() {
         if (containmentItem && "contextualActions" in containmentItem) {
             containmentItem.contextualActions = containmentItem.contextualActions.filter(action => action && action.objectName !== "wallpaperEffectsAction");
-        }
-        if (enabled) {
-            if (containmentItem && "contextualActions" in containmentItem) {
-                containmentItem.contextualActions.push(toggleEffectsAction);
-                containmentItem.contextualActions.push(configureEffectsAction);
-            }
         }
     }
 }
