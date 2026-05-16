@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v2.1.0...v2.1.1) (2026-05-16)
+
+
+### Bug Fixes
+
+* increase range of saturation color effect ([37321b9](https://github.com/luisbocanegra/plasma-wallpaper-effects/commit/37321b99ac505aa79883469f9a969fa0ce77a4ec))
+
 ## [2.1.0](https://github.com/luisbocanegra/plasma-wallpaper-effects/compare/v2.0.0...v2.1.0) (2025-12-26)
 
 
